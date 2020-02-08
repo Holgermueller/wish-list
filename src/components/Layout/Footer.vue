@@ -9,3 +9,11 @@ export default {
   name: "Footer"
 };
 </script>
+
+<style scoped>
+.footer-text {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+}
+</style>
