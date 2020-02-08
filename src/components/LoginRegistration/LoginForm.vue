@@ -80,7 +80,16 @@ export default {
   },
 
   methods: {
-    loginUser() {},
+    loginUser() {
+      this.$store.dispatch("login", {
+        email: this.email,
+        password: this.password,
+        userId: this.userId,
+        currentUser: this.currentUser
+      });
+
+      this.clearLoginForm();
+    },
 
     clearLoginForm() {
       this.$refs.form.reset();

@@ -51,6 +51,28 @@ export default {
         });
     },
 
+    login({ commit }, payload) {
+      commit("setLoading", true);
+      commit("clearError", true);
+
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(payload.email, payload.password)
+        .then(user => {
+          commit("setLoading", true);
+          const signedInUser = {
+            email: user.user.email,
+            id: user.user.uid,
+            displayName: user.user.displayName
+          };
+          commit("setUser", signedInUser);
+        })
+        .catch(err => {
+          commit("setloading", false);
+          commit("setError", err);
+        });
+    },
+
     autoSignIn({ commit }, payload) {
       commit("setUser", {
         id: payload.uid,
