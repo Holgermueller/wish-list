@@ -18,7 +18,7 @@
           label="Password"
           prepend-icon="mdi-lock"
           outlined
-          :type="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+          :type="showPassword ? 'text' : 'password'"
           :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
           @click:append="showPassword = !showPassword"
         ></v-text-field>
@@ -57,19 +57,19 @@ export default {
     };
   },
 
-  //   computed: {
-  //     user() {
-  //       return this.$store.getters.user;
-  //     },
+  computed: {
+    user() {
+      return this.$store.getters.user;
+    },
 
-  //     error() {
-  //       return this.$store.getters.error;
-  //     },
+    error() {
+      return this.$store.getters.error;
+    },
 
-  //     loading() {
-  //       return this.$store.getters.loading;
-  //     }
-  //   },
+    loading() {
+      return this.$store.getters.loading;
+    }
+  },
 
   watch: {
     user(value) {

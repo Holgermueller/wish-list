@@ -48,6 +48,7 @@
           :type="showConfirmPassword ? 'text' : 'password'"
           :append-icon="showConfirmPassword ? 'mdi-eye' : 'mdi-eye-off'"
           @click:append="showConfirmPassword = !showConfirmPassword"
+          :rules="[comparePasswords]"
         ></v-text-field>
       </v-flex>
     </v-form>
@@ -94,15 +95,46 @@ export default {
   },
 
   computed: {
-    // user() {},
-    // error() {},
-    // loading() {}
+    comparePasswords() {
+      return this.password !== this.confirmPassword
+        ? "Passwords do not match."
+        : "";
+    },
+
+    user() {
+      return this.$store.getters.user;
+    },
+
+    error() {
+      return this.$store.getters.error;
+    },
+
+    loading() {
+      return this.$store.getters.loading;
+    }
   },
 
-  watch: {},
+  watch: {
+    user(value) {
+      if (value !== null && value !== undefined) {
+        this.$router.push("/user");
+      }
+    }
+  },
 
   methods: {
-    registerUser() {},
+    checkRegistrationData() {
+      this.registerUser();
+      this.clearRegistrationForm();
+    },
+
+    registerUser() {
+      this.$store.dispatch("registerUser", {
+        email: this.email,
+        password: this.password,
+        displayName: this.displayName
+      });
+    },
 
     clearRegistrationForm() {
       this.$refs.form.reset();
