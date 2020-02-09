@@ -17,7 +17,7 @@
           <v-flex xs12 sm12 md12 lg12 xl12>
             <v-text-field
               label="Album Title"
-              v-model="album"
+              v-model="albumTitle"
               type="text"
               outlined
             ></v-text-field>
@@ -48,7 +48,12 @@
       <v-card-actions>
         <v-btn>Clear</v-btn>
         <v-spacer></v-spacer>
-        <v-btn>Submit</v-btn>
+        <v-btn
+          @click.prevent="submitAlbum"
+          :loading="loading"
+          :disabled="loading"
+          >Submit</v-btn
+        >
       </v-card-actions>
     </v-card>
   </div>
@@ -61,10 +66,33 @@ export default {
   data() {
     return {
       artist: "",
-      album: "",
+      albumTitle: "",
       genre: "",
       format: ""
     };
+  },
+
+  computed: {
+    loading() {
+      return this.$store.getters.loading;
+    }
+  },
+
+  methods: {
+    submitAlbum() {
+      this.$store.dispatch("addAlbum", {
+        artist: this.artist,
+        albumTitle: this.albumTitle,
+        genre: this.genre,
+        format: this.format
+      });
+
+      this.clearForm();
+    },
+
+    clearForm() {
+      this.$refs.form.reset();
+    }
   }
 };
 </script>

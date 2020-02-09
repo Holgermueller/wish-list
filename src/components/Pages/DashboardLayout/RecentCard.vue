@@ -2,7 +2,12 @@
   <div>
     <v-card>
       <v-card-title>{{ albumTitle }}</v-card-title>
-      <v-card-text></v-card-text>
+      <v-divider></v-divider>
+      <v-card-text>
+        {{ artist }}
+        {{ format }}
+        {{ genre }}
+      </v-card-text>
     </v-card>
   </div>
 </template>
@@ -13,6 +18,21 @@ export default {
 
   props: {
     albumTitle: {
+      type: String,
+      required: true
+    },
+
+    artist: {
+      type: String,
+      required: true
+    },
+
+    format: {
+      type: String,
+      required: true
+    },
+
+    genre: {
       type: String,
       required: true
     }

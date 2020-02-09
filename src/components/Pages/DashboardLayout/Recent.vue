@@ -4,10 +4,6 @@
       <v-card-title>
         <h1>Recent Albums:</h1>
       </v-card-title>
-
-      <v-divider></v-divider>
-
-      <v-card-text> </v-card-text>
     </v-card>
 
     <RecentsCard
@@ -15,6 +11,9 @@
       :key="singleAlbum.albumId"
       :index="index"
       :albumTitle="singleAlbum.albumTitle"
+      :artist="singleAlbum.artist"
+      :genre="singleAlbum.genre"
+      :format="singleAlbum.format"
     />
   </div>
 </template>
@@ -42,7 +41,7 @@ export default {
 </script>
 
 <style scoped>
-.recent-card {
+#recent {
   width: 45%;
   float: right;
   margin-top: 2%;

@@ -33,6 +33,7 @@ export default {
               commit("setLoading", false);
             })
             .catch(err => {
+              commit("setLoading", false);
               commit("setError", err);
             });
 
@@ -65,6 +66,7 @@ export default {
             id: user.user.uid,
             displayName: user.user.displayName
           };
+          commit("setLoading", false);
           commit("setUser", signedInUser);
         })
         .catch(err => {

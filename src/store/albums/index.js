@@ -35,7 +35,27 @@ export default {
         };
     },
 
-    addAlbum({ commit, getters }, payload) {}
+    addAlbum({ commit, getters }, payload) {
+      commit("setLoading", true);
+
+      firebase
+        .collection("albums")
+        .add({
+          userId: getters.user.id,
+          artist: payload.artist,
+          albumTitle: payload.albumTitle,
+          genre: payload.genre,
+          format: payload.format
+          // dateAdded: n
+        })
+        .then(() => {
+          commit("setLoading", false);
+        })
+        .catch(err => {
+          commit("setLoading", false);
+          commit("setError", err);
+        });
+    }
   },
 
   getters: {
