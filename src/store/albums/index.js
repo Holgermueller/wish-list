@@ -45,8 +45,8 @@ export default {
           artist: payload.artist,
           albumTitle: payload.albumTitle,
           genre: payload.genre,
-          format: payload.format
-          // dateAdded: n
+          format: payload.format,
+          dateAdded: new Date()
         })
         .then(() => {
           commit("setLoading", false);
