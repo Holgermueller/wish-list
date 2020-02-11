@@ -21,6 +21,11 @@ export default {
   actions: {
     clearError({ commit }) {
       commit("clearError");
+    },
+
+    setError({ commit }, payload) {
+      const error = payload.errorFromDom;
+      commit("setError", error);
     }
   },
 

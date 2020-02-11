@@ -2,7 +2,10 @@
   <div id="register">
     <v-layout row v-if="error">
       <v-flex xs12 sm12 md12 lg12 xl12>
-        <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
+        <app-alert
+          @dismissed="onDismissed"
+          :text="error.message || error"
+        ></app-alert>
       </v-flex>
     </v-layout>
 
@@ -48,7 +51,6 @@
           :type="showConfirmPassword ? 'text' : 'password'"
           :append-icon="showConfirmPassword ? 'mdi-eye' : 'mdi-eye-off'"
           @click:append="showConfirmPassword = !showConfirmPassword"
-          :rules="[comparePasswords]"
         ></v-text-field>
       </v-flex>
     </v-form>
@@ -58,7 +60,11 @@
     <v-divider></v-divider>
 
     <v-card-actions>
-      <v-btn color="red" @click="clearRegistrationForm" class="white--text">
+      <v-btn
+        color="red"
+        @click.prevent="clearRegistrationForm"
+        class="white--text"
+      >
         <span class="mdi mdi-close-circle white--text"></span>
         Cancel
       </v-btn>
@@ -90,17 +96,11 @@ export default {
       showPassword: false,
       showConfirmPassword: false,
       valid: true,
-      errors: []
+      errorFromDom: ""
     };
   },
 
   computed: {
-    comparePasswords() {
-      return this.password !== this.confirmPassword
-        ? "Passwords do not match."
-        : "";
-    },
-
     user() {
       return this.$store.getters.user;
     },
@@ -124,8 +124,39 @@ export default {
 
   methods: {
     checkRegistrationData() {
-      this.registerUser();
-      this.clearRegistrationForm();
+      if (
+        !this.displayName &&
+        !this.email &&
+        !this.password &&
+        !this.confirmPassword
+      ) {
+        this.$store.dispatch("setError", {
+          errorFromDom: "Please fill out all of the fields."
+        });
+      } else if (!this.displayName) {
+        this.$store.dispatch("setError", {
+          errorFromDom: "Please provide a username."
+        });
+      } else if (!this.email) {
+        this.$store.dispatch("setError", {
+          errorFromDom: "Please provide an email."
+        });
+      } else if (!this.password) {
+        this.$store.dispatch("setError", {
+          errorFromDom: "Please provide a password."
+        });
+      } else if (!this.confirmPassword) {
+        this.$store.dispatch("setError", {
+          errorFromDom: "Please confirm your email."
+        });
+      } else if (this.password !== this.confirmPassword) {
+        this.$store.dispatch("setError", {
+          errorFromDom: "Passwords do no match."
+        });
+      } else {
+        this.registerUser();
+        this.clearRegistrationForm();
+      }
     },
 
     registerUser() {

@@ -54,7 +54,7 @@ export default {
 
     login({ commit }, payload) {
       commit("setLoading", true);
-      commit("clearError", true);
+      commit("clearError");
 
       firebase
         .auth()
@@ -76,6 +76,7 @@ export default {
     },
 
     autoSignIn({ commit }, payload) {
+      commit("setLoading", false);
       commit("setUser", {
         id: payload.uid,
         email: payload.email,

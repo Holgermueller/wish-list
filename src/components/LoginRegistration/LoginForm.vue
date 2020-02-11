@@ -1,8 +1,14 @@
 <template>
   <div id="login">
     <v-layout row v-if="error">
-      <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
+      <v-flex xs12 sm12 md12 lg12 xl12>
+        <app-alert
+          @dismissed="onDismissed"
+          :text="error.message || error"
+        ></app-alert>
+      </v-flex>
     </v-layout>
+
     <v-form ref="form">
       <v-flex xs12 sm12 md12 lg12 xl12>
         <v-text-field
@@ -27,14 +33,14 @@
 
     <v-divider></v-divider>
     <v-card-actions>
-      <v-btn color="red" @click="clearLoginForm" class="white--text">
+      <v-btn color="red" @click.prevent="clearLoginForm" class="white--text">
         <span class="mdi mdi-close-circle"></span>Cancel
       </v-btn>
       <v-spacer></v-spacer>
       <v-btn
         color="blue"
         class="white--text"
-        @click.prevent="loginUser"
+        @click.prevent="checkLoginForm"
         :loading="loading"
         :disabled="loading"
         >Submit</v-btn
@@ -53,7 +59,7 @@ export default {
       showPassword: false,
       currentUser: false,
       userId: null,
-      errors: []
+      errorFromDom: ""
     };
   },
 
@@ -80,6 +86,25 @@ export default {
   },
 
   methods: {
+    checkLoginForm() {
+      if (!this.email && !this.password) {
+        this.$store.dispatch("setError", {
+          errorFromDom: "Please fill out all of the fields."
+        });
+      } else if (!this.email) {
+        this.$store.dispatch("setError", {
+          errorFromDom: "You must provide an email to log in."
+        });
+      } else if (!this.password) {
+        this.$store.dispatch("setError", {
+          errorFromDom: "You must provide a password to log in."
+        });
+      } else {
+        this.loginUser();
+        this.clearLoginForm();
+      }
+    },
+
     loginUser() {
       this.$store.dispatch("login", {
         email: this.email,
@@ -87,8 +112,6 @@ export default {
         userId: this.userId,
         currentUser: this.currentUser
       });
-
-      this.clearLoginForm();
     },
 
     clearLoginForm() {

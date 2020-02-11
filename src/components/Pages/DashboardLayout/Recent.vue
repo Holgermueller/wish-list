@@ -6,15 +6,29 @@
       </v-card-title>
     </v-card>
 
-    <RecentsCard
-      v-for="(singleAlbum, index) in albumsList"
-      :key="singleAlbum.albumId"
-      :index="index"
-      :albumTitle="singleAlbum.albumTitle"
-      :artist="singleAlbum.artist"
-      :genre="singleAlbum.genre"
-      :format="singleAlbum.format"
-    />
+    <div>
+      <v-layout class="progress">
+        <v-flex class="text-xs-center">
+          <v-progress-circular
+            indeterminate
+            :width="7"
+            :size="70"
+            class="primary--text"
+            v-if="loading"
+          ></v-progress-circular>
+        </v-flex>
+      </v-layout>
+
+      <RecentsCard
+        v-for="(singleAlbum, index) in albumsList"
+        :key="singleAlbum.albumId"
+        :index="index"
+        :albumTitle="singleAlbum.albumTitle"
+        :artist="singleAlbum.artist"
+        :genre="singleAlbum.genre"
+        :format="singleAlbum.format"
+      />
+    </div>
   </div>
 </template>
 
@@ -35,6 +49,10 @@ export default {
   computed: {
     albumsList() {
       return this.$store.getters.albums;
+    },
+
+    loading() {
+      return this.$store.getters.loading;
     }
   }
 };
