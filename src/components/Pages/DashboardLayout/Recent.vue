@@ -19,15 +19,17 @@
         </v-flex>
       </v-layout>
 
-      <RecentsCard
-        v-for="(singleAlbum, index) in albumsList"
-        :key="singleAlbum.albumId"
-        :index="index"
-        :albumTitle="singleAlbum.albumTitle"
-        :artist="singleAlbum.artist"
-        :genre="singleAlbum.genre"
-        :format="singleAlbum.format"
-      />
+      <v-list style="max-height: 100px" class="scroll-y">
+        <RecentsCard
+          v-for="(singleAlbum, index) in albumsList"
+          :key="singleAlbum.albumId"
+          :index="index"
+          :albumTitle="singleAlbum.albumTitle"
+          :artist="singleAlbum.artist"
+          :genre="singleAlbum.genre"
+          :format="singleAlbum.format"
+        />
+      </v-list>
     </div>
   </div>
 </template>
@@ -68,5 +70,8 @@ export default {
 }
 .recent-header {
   margin-bottom: 2%;
+}
+.progress {
+  text-align: center;
 }
 </style>
