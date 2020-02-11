@@ -2,10 +2,29 @@
   <div id="header">
     <v-card class="app-header" tile>
       <h1>My Record Collection</h1>
-      <v-btn @click="logout" :loading="loading" :disabled="loading">
-        <span class="mdi mdi-exit-to-app"></span>
-        Sign Out
-      </v-btn>
+
+      <div class="nav">
+        <router-link
+          v-for="link in menuLinks"
+          :key="link.title"
+          :to="link.link"
+        >
+          <v-btn>
+            <span :class="link.icon"></span>
+            {{ link.title }}
+          </v-btn></router-link
+        >
+
+        <v-btn
+          v-if="userIsAuthenticated"
+          @click="logout"
+          :loading="loading"
+          :disabled="loading"
+        >
+          <span class="mdi mdi-exit-to-app"></span>
+          Sign Out
+        </v-btn>
+      </div>
     </v-card>
   </div>
 </template>
@@ -23,6 +42,35 @@ export default {
   computed: {
     loading() {
       return this.$store.getters.loading;
+    },
+
+    userIsAuthenticated() {
+      return (
+        this.$store.getters.user !== null &&
+        this.$store.getters.user !== undefined
+      );
+    },
+
+    menuLinks() {
+      let menuLinks = [{ icon: "mdi mdi-home", title: "Home", link: "/" }];
+      if (this.userIsAuthenticated) {
+        menuLinks = [
+          {
+            icon: "mdi mdi-account",
+            title: "Dashboard",
+            link: "/user"
+          },
+          {
+            icon: "mdi mdi-guitar-electric",
+            title: "Artists",
+            link: "/artists"
+          },
+          { icon: "mdi mdi-album", title: "Albums", link: "/albums" },
+          { icon: "mdi mdi-record-player", title: "Formats", link: "/formats" },
+          { icon: "mdi mdi-drama-masks", title: "Genres", link: "/genres" }
+        ];
+      }
+      return menuLinks;
     }
   },
 
@@ -40,3 +88,13 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.nav {
+  background-color: green;
+  text-align: center;
+}
+a {
+  text-decoration: none;
+}
+</style>
