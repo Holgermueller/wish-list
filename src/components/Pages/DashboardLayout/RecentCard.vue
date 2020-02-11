@@ -1,14 +1,18 @@
 <template>
-  <div>
-    <v-card>
-      <v-card-title>{{ albumTitle }}</v-card-title>
-      <v-divider></v-divider>
-      <v-card-text>
-        {{ artist }}
-        {{ format }}
-        {{ genre }}
-      </v-card-text>
-    </v-card>
+  <div id="recentCard">
+    <v-hover v-slot:default="{ hover }">
+      <v-card
+        class="recent-card {'on-hover':hover}"
+        :elevation="hover ? 12 : 2"
+      >
+        <v-card-title>{{ artist }}: {{ albumTitle }}</v-card-title>
+        <v-divider></v-divider>
+        <v-card-text>
+          {{ format }}
+          {{ genre }}
+        </v-card-text>
+      </v-card>
+    </v-hover>
   </div>
 </template>
 
@@ -39,3 +43,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.recent-card {
+  margin-bottom: 2%;
+}
+</style>

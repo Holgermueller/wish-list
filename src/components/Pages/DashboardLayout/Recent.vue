@@ -1,6 +1,6 @@
 <template>
   <div id="recent">
-    <v-card class="recent-card">
+    <v-card class="recent-header">
       <v-card-title>
         <h1>Recent Albums:</h1>
       </v-card-title>
@@ -45,6 +45,10 @@ export default {
   width: 45%;
   float: right;
   margin-top: 2%;
+
   margin-right: 3%;
+}
+.recent-header {
+  margin-bottom: 2%;
 }
 </style>

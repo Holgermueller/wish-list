@@ -22,7 +22,10 @@ export default {
         querySnapshot.forEach(doc => {
           let albumData = {
             albumId: doc.id,
-            albumTitle: doc.data().albumTitle
+            artist: doc.data().artist,
+            albumTitle: doc.data().albumTitle,
+            genre: doc.data().genre,
+            format: doc.data().format
           };
           albumsFromDB.push(albumData);
         });

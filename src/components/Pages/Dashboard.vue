@@ -1,7 +1,5 @@
 <template>
   <div id="dashboard">
-    <h1>This is the dashboard.</h1>
-
     <Form />
 
     <Recents />
