@@ -16,22 +16,28 @@ export default {
   },
 
   actions: {
-    getAlbumsFromDb({ commit }) {
-      firebase.collection("albums").onSnapshot(querySnapshot => {
-        let albumsFromDB = [];
-        querySnapshot.forEach(doc => {
-          let albumData = {
-            albumId: doc.id,
-            artist: doc.data().artist,
-            albumTitle: doc.data().albumTitle,
-            genre: doc.data().genre,
-            format: doc.data().format
-          };
-          albumsFromDB.push(albumData);
-        });
-        commit("setAlbumsList", albumsFromDB);
-        commit("setLoading", false);
-      }),
+    getAlbumsFromDb({ commit, getters }) {
+      commit("setLoading", true);
+
+      firebase
+        .collection("albums")
+        .where("userId", "==", getters.user.id)
+        .orderBy("dateAdded")
+        .onSnapshot(querySnapshot => {
+          let albumsFromDB = [];
+          querySnapshot.forEach(doc => {
+            let albumData = {
+              albumId: doc.id,
+              artist: doc.data().artist,
+              albumTitle: doc.data().albumTitle,
+              genre: doc.data().genre,
+              format: doc.data().format
+            };
+            albumsFromDB.push(albumData);
+          });
+          commit("setAlbumsList", albumsFromDB);
+          commit("setLoading", false);
+        }),
         err => {
           commit("setLoading", true);
           commit("setError", err);
