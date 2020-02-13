@@ -2,7 +2,8 @@ import firebase from "../../firebase/firebaseInit";
 
 export default {
   state: {
-    albums: []
+    albums: [],
+    infoToFilter: []
   },
 
   mutations: {
@@ -11,6 +12,14 @@ export default {
         state.albums = payload;
       } else {
         state.albums = [];
+      }
+    },
+
+    setInfoToFilter(state, payload) {
+      if (payload) {
+        state.infoToFilter = payload;
+      } else {
+        state.infoToFilter = [];
       }
     }
   },
@@ -22,7 +31,8 @@ export default {
       firebase
         .collection("albums")
         .where("userId", "==", getters.user.id)
-        .orderBy("dateAdded")
+        .orderBy("dateAdded", "desc")
+        .limit(5)
         .onSnapshot(querySnapshot => {
           let albumsFromDB = [];
           querySnapshot.forEach(doc => {
@@ -64,12 +74,45 @@ export default {
           commit("setLoading", false);
           commit("setError", err);
         });
+    },
+
+    getAllInfoFromDb({ commit, getters }) {
+      commit("setLoading", true);
+
+      firebase
+        .collection("albums")
+        .where("userId", "==", getters.user.id)
+        //.orderBy("artist", "asc")
+        .get()
+        .then(querySnapshot => {
+          let albumsFromDB = [];
+          querySnapshot.forEach(doc => {
+            let albumData = {
+              albumId: doc.id,
+              artist: doc.data().artist,
+              albumTitle: doc.data().albumTitle,
+              genre: doc.data().genre,
+              format: doc.data().format
+            };
+            albumsFromDB.push(albumData);
+          });
+          commit("setInfoToFilter", albumsFromDB);
+          commit("setLoading", false);
+        })
+        .catch(err => {
+          commit("setLoading", false);
+          commit("setError", err);
+        });
     }
   },
 
   getters: {
     albums(state) {
       return state.albums;
+    },
+
+    infoToFilter(state) {
+      return state.infoToFilter;
     }
   }
 };
