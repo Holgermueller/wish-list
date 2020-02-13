@@ -4,6 +4,7 @@
       <v-text-field
         ref="filter"
         class="filter"
+        v-model="search"
         placeholder="Type here to filter through the artists in your collection..."
         append-icon="mdi-close-circle"
         @click:append="clearFilter"
@@ -27,7 +28,7 @@
       <v-list>
         <v-card
           class="list-card"
-          v-for="(singleArtist, index) in artistsList"
+          v-for="(singleArtist, index) in filteredArtistsList"
           :key="index"
         >
           <h1>
@@ -54,9 +55,20 @@ export default {
 
     loading() {
       return this.$store.getters.loading;
-    }
+    },
 
-    //filterList() {}
+    filteredArtistsList() {
+      if (this.search) {
+        return this.artistsList.filter(singleArtist => {
+          return this.search
+            .toLowerCase()
+            .split("")
+            .every(l => singleArtist.artist.toLowerCase().includes(l));
+        });
+      } else {
+        return this.artistsList;
+      }
+    }
   },
 
   data() {
@@ -85,7 +97,9 @@ export default {
 .form-button {
   float: right;
 }
-
+.progress {
+  text-align: center;
+}
 .list-card {
   width: 55%;
   margin: 1% auto;
