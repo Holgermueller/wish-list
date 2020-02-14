@@ -12,7 +12,7 @@
       ></v-text-field>
     </v-form>
 
-    <div class="artist-list">
+    <div class="album-list">
       <v-layout class="progress">
         <v-flex class="text-xs-center">
           <v-progress-circular
@@ -93,9 +93,6 @@ export default {
 .filter {
   width: 95%;
   margin: auto;
-}
-.form-button {
-  float: right;
 }
 .progress {
   text-align: center;

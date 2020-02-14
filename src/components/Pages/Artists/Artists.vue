@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="artists">
     <v-form class="filter-form">
       <v-text-field
         ref="filter"
@@ -93,9 +93,6 @@ export default {
 .filter {
   width: 95%;
   margin: auto;
-}
-.form-button {
-  float: right;
 }
 .progress {
   text-align: center;
