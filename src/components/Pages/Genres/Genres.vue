@@ -19,7 +19,7 @@
         </v-flex>
       </v-layout>
 
-      <v-list>
+      <v-list style="max-height:600px;" class="overflow-y-auto">
         <v-card
           class="list-card"
           v-for="(singleGenre, index) in genreList"
@@ -61,5 +61,8 @@ export default {
 .list-card {
   width: 55%;
   margin: 1% auto;
+}
+.list-card:last-child {
+  margin-bottom: 15%;
 }
 </style>

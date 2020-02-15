@@ -84,7 +84,7 @@ export default {
         artist: this.artist,
         albumTitle: this.albumTitle,
         genre: this.genre,
-        format: this.format
+        format: this.format.toUpperCase()
       });
 
       this.clearForm();

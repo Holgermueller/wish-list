@@ -48,4 +48,7 @@ export default {
 .recent-card {
   margin-bottom: 2%;
 }
+#recentCard:last-child {
+  margin-bottom: 15%;
+}
 </style>

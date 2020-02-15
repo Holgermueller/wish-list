@@ -19,7 +19,7 @@
         </v-flex>
       </v-layout>
 
-      <v-list style="max-height: 100px" class="scroll-y">
+      <v-list style="max-height: 500px;" class="overflow-y-auto">
         <RecentsCard
           v-for="(singleAlbum, index) in albumsList"
           :key="singleAlbum.albumId"
@@ -65,7 +65,6 @@ export default {
   width: 45%;
   float: right;
   margin-top: 2%;
-
   margin-right: 3%;
 }
 .recent-header {
