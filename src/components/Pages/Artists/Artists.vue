@@ -25,7 +25,7 @@
         </v-flex>
       </v-layout>
 
-      <v-list>
+      <v-list style="max-height:600px;" class="overflow-y-auto">
         <v-card
           class="list-card"
           v-for="(singleArtist, index) in filteredArtistsList"
@@ -88,7 +88,7 @@ export default {
 <style scoped>
 .filter-form {
   width: 85%;
-  margin: 7% auto;
+  margin: 2% auto;
 }
 .filter {
   width: 95%;
@@ -100,5 +100,8 @@ export default {
 .list-card {
   width: 55%;
   margin: 1% auto;
+}
+.list-card:last-child {
+  margin-bottom: 20%;
 }
 </style>
