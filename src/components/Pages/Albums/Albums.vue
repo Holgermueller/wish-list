@@ -91,7 +91,7 @@ export default {
 <style scoped>
 .filter-form {
   width: 85%;
-  margin: 2% auto;
+  margin: 2% auto 0%;
 }
 .filter {
   width: 95%;
