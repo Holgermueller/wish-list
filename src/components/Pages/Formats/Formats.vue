@@ -16,23 +16,24 @@
       </v-layout>
 
       <v-list style="max-height:600px;" class="overflow-y-auto">
-        <v-card
+        <FormatCard
           class="list-card"
           v-for="(singleFormat, index) in formatList"
           :key="index"
-        >
-          <h1>
-            {{ singleFormat.format }}
-          </h1>
-        </v-card>
+          :format="singleFormat.format"
+        />
       </v-list>
     </div>
   </div>
 </template>
 
 <script>
+import FormatCard from "./FormatCard";
+
 export default {
   name: "Formats",
+
+  components: { FormatCard },
 
   created() {
     return this.$store.dispatch("getAllInfoFromDb");

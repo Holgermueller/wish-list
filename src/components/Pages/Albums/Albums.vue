@@ -26,23 +26,26 @@
       </v-layout>
 
       <v-list style="max-height:600px;" class="overflow-y-auto">
-        <v-card
+        <AlbumCard
           class="list-card"
           v-for="(singleAlbum, index) in filteredAlbumsList"
           :key="index"
-        >
-          <h1>
-            {{ singleAlbum.albumTitle }}
-          </h1>
-        </v-card>
+          :albumTitle="singleAlbum.albumTitle"
+        />
       </v-list>
     </div>
   </div>
 </template>
 
 <script>
+import AlbumCard from "./AlbumCard";
+
 export default {
   name: "Albums",
+
+  components: {
+    AlbumCard
+  },
 
   data() {
     return {

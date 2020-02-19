@@ -82,7 +82,6 @@ export default {
       firebase
         .collection("albums")
         .where("userId", "==", getters.user.id)
-        //.orderBy("artist", "asc")
         .get()
         .then(querySnapshot => {
           let albumsFromDB = [];

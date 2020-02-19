@@ -26,23 +26,26 @@
       </v-layout>
 
       <v-list style="max-height:600px;" class="overflow-y-auto">
-        <v-card
-          class="list-card"
+        <ArtistCard
           v-for="(singleArtist, index) in filteredArtistsList"
           :key="index"
-        >
-          <h1>
-            {{ singleArtist.artist }}
-          </h1>
-        </v-card>
+          :artist="singleArtist.artist"
+          class="list-card"
+        />
       </v-list>
     </div>
   </div>
 </template>
 
 <script>
+import ArtistCard from "./ArtistCard";
+
 export default {
   name: "Artists",
+
+  components: {
+    ArtistCard
+  },
 
   created() {
     return this.$store.dispatch("getAllInfoFromDb");
@@ -97,11 +100,11 @@ export default {
 .progress {
   text-align: center;
 }
+.list-card:last-child {
+  margin-bottom: 20%;
+}
 .list-card {
   width: 55%;
   margin: 1% auto;
-}
-.list-card:last-child {
-  margin-bottom: 20%;
 }
 </style>

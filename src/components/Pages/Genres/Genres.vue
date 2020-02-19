@@ -20,23 +20,24 @@
       </v-layout>
 
       <v-list style="max-height:600px;" class="overflow-y-auto">
-        <v-card
+        <GenreCard
           class="list-card"
           v-for="(singleGenre, index) in genreList"
           :key="index"
-        >
-          <h1>
-            {{ singleGenre.genre }}
-          </h1>
-        </v-card>
+          :genre="singleGenre.genre"
+        />
       </v-list>
     </div>
   </div>
 </template>
 
 <script>
+import GenreCard from "./GenreCard";
+
 export default {
   name: "Genres",
+
+  components: { GenreCard },
 
   created() {
     return this.$store.dispatch("getAllInfoFromDb");
