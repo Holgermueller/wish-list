@@ -22,7 +22,16 @@
           :key="index"
           :format="singleFormat.format"
         /> -->
-        <h2>{{ groupedFormats }}</h2>
+        <h2>{{}}</h2>
+        <div v-for="(format, index) in formats" :key="index">
+          <p>{{ format }}</p>
+          <div
+            v-for="(artist, innerIndex) in artists(format)"
+            :key="innerIndex"
+          >
+            {{ artist }}
+          </div>
+        </div>
       </v-list>
     </div>
   </div>
@@ -49,11 +58,18 @@ export default {
       return this.$store.getters.loading;
     },
 
-    groupedFormats() {
-      return this.formatList.reduce((r, a) => {
-        r[a.format] = [...(r[a.format] || []), a];
-        return r;
-      }, {});
+    formats() {
+      const formats = new Set();
+      this.formatList.forEach(format => formats.add(format.format));
+      return Array.from(formats);
+    }
+  },
+
+  methods: {
+    artists(format) {
+      return this.formatList
+        .filter(format => format.artist === format)
+        .map(format => format.artist);
     }
   }
 };
