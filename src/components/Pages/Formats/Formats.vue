@@ -16,24 +16,25 @@
       </v-layout>
 
       <v-list style="max-height:600px;" class="overflow-y-auto">
-        <FormatCard
+        <!-- <FormatCard
           class="list-card"
-          v-for="(singleFormat, index) in formatList"
+          v-for="(singleFormat, index) in groupedFormats"
           :key="index"
           :format="singleFormat.format"
-        />
+        /> -->
+        <h2>{{ groupedFormats }}</h2>
       </v-list>
     </div>
   </div>
 </template>
 
 <script>
-import FormatCard from "./FormatCard";
+//import FormatCard from "./FormatCard";
 
 export default {
   name: "Formats",
 
-  components: { FormatCard },
+  //components: { FormatCard },
 
   created() {
     return this.$store.dispatch("getAllInfoFromDb");
@@ -46,6 +47,13 @@ export default {
 
     loading() {
       return this.$store.getters.loading;
+    },
+
+    groupedFormats() {
+      return this.formatList.reduce((r, a) => {
+        r[a.format] = [...(r[a.format] || []), a];
+        return r;
+      }, {});
     }
   }
 };
