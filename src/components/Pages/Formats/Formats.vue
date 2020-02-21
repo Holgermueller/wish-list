@@ -22,11 +22,11 @@
           :key="index"
           :format="singleFormat.format"
         /> -->
-        <h2>{{}}</h2>
-        <div v-for="(format, index) in formats" :key="index">
+
+        <div v-for="(format, index) in Object.keys(formats)" :key="index">
           <p>{{ format }}</p>
           <div
-            v-for="(artist, innerIndex) in artists(format)"
+            v-for="(artist, innerIndex) in formats[format]"
             :key="innerIndex"
           >
             {{ artist }}
@@ -59,17 +59,17 @@ export default {
     },
 
     formats() {
-      const formats = new Set();
-      this.formatList.forEach(format => formats.add(format.format));
-      return Array.from(formats);
-    }
-  },
-
-  methods: {
-    artists(format) {
-      return this.formatList
-        .filter(format => format.artist === format)
-        .map(format => format.artist);
+      return this.formatList.reduce((carry, current) => {
+        if (
+          carry.hasOwnProperty(current.format) &&
+          Array.isArray(carry[current.format])
+        ) {
+          carry[current.format].push(current.artist);
+        } else {
+          Object.assign(carry, { [current.format]: [current.artist] });
+        }
+        return carry;
+      }, {});
     }
   }
 };
