@@ -16,34 +16,37 @@
       </v-layout>
 
       <v-list style="max-height:600px;" class="overflow-y-auto">
-        <!-- <FormatCard
-          class="list-card"
-          v-for="(singleFormat, index) in groupedFormats"
-          :key="index"
-          :format="singleFormat.format"
-        /> -->
-
-        <div v-for="(format, index) in Object.keys(formats)" :key="index">
-          <p>{{ format }}</p>
-          <div
-            v-for="(artist, innerIndex) in formats[format]"
-            :key="innerIndex"
+        <v-expansion-panels
+          class="expansion-panel-header"
+          inset
+          hover
+          focusable
+        >
+          <v-expansion-panel
+            v-for="(format, index) in Object.keys(formats)"
+            :key="index"
           >
-            {{ artist }}
-          </div>
-        </div>
+            <v-expansion-panel-header>
+              {{ format }}
+            </v-expansion-panel-header>
+
+            <v-expansion-panel-content
+              v-for="(artist, albumTitle, innerIndex) in formats[format]"
+              :key="innerIndex"
+            >
+              <p>{{ artist }}:</p>
+              <p>{{ albumTitle }}</p>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
       </v-list>
     </div>
   </div>
 </template>
 
 <script>
-//import FormatCard from "./FormatCard";
-
 export default {
   name: "Formats",
-
-  //components: { FormatCard },
 
   created() {
     return this.$store.dispatch("getAllInfoFromDb");
@@ -64,9 +67,11 @@ export default {
           carry.hasOwnProperty(current.format) &&
           Array.isArray(carry[current.format])
         ) {
-          carry[current.format].push(current.artist);
+          carry[current.format].push(current.artist, current.albumTitle);
         } else {
-          Object.assign(carry, { [current.format]: [current.artist] });
+          Object.assign(carry, {
+            [current.format]: [current.artist, current.albumTitle]
+          });
         }
         return carry;
       }, {});
@@ -79,11 +84,11 @@ export default {
 .progress {
   text-align: center;
 }
-.list-card {
+.expansion-panel-header {
   width: 55%;
   margin: 1% auto;
 }
-.list-card:last-child {
+.expansion-panel-header:last-child {
   margin-bottom: 15%;
 }
 </style>
