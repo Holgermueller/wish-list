@@ -1,5 +1,20 @@
 <template>
   <div>
-    <h1>Info or a single artist will appear here.</h1>
+    <h1>
+      {{ artist }}
+    </h1>
   </div>
 </template>
+
+<script>
+export default {
+  name: "SingleArtist",
+
+  props: {
+    artist: {
+      type: String,
+      required: true
+    }
+  }
+};
+</script>

@@ -7,6 +7,16 @@
       >
         <v-card-text class="display-1 card-text">
           {{ artist }}
+          <router-link
+            :to="{
+              name: 'SingleArtist',
+              params: { artist: artist, albumId: albumId }
+            }"
+          >
+            <v-btn class="display-1">
+              <span class="mdi mdi-arrow-right-bold"></span>
+            </v-btn>
+          </router-link>
         </v-card-text>
       </v-card>
     </v-hover>
@@ -21,6 +31,11 @@ export default {
     artist: {
       type: String,
       required: true
+    },
+
+    albumId: {
+      type: String,
+      required: true
     }
   }
 };
@@ -29,5 +44,9 @@ export default {
 <style scoped>
 .artist-card:hover {
   background-color: darkgray;
+}
+a {
+  text-decoration: none;
+  float: right;
 }
 </style>

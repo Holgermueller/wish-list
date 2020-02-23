@@ -31,6 +31,7 @@
           :key="index"
           :artist="singleArtist.artist"
           class="list-card"
+          :albumId="singleArtist.albumId"
         />
       </v-list>
     </div>

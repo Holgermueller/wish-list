@@ -31,11 +31,11 @@
             </v-expansion-panel-header>
 
             <v-expansion-panel-content
-              v-for="(artist, albumTitle, innerIndex) in formats[format]"
+              v-for="(artist, innerIndex) in formats[format]"
               :key="innerIndex"
             >
-              <p>{{ artist }}:</p>
-              <p>{{ albumTitle }}</p>
+              <p>{{ artist }}</p>
+              <p></p>
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -67,10 +67,10 @@ export default {
           carry.hasOwnProperty(current.format) &&
           Array.isArray(carry[current.format])
         ) {
-          carry[current.format].push(current.artist, current.albumTitle);
+          carry[current.format].push(current.artist);
         } else {
           Object.assign(carry, {
-            [current.format]: [current.artist, current.albumTitle]
+            [current.format]: [current.artist]
           });
         }
         return carry;
