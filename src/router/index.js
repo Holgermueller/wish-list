@@ -8,6 +8,7 @@ import Artists from "../components/Pages/Artists/Artists";
 import Albums from "../components/Pages/Albums/Albums";
 import Formats from "../components/Pages/Formats/Formats";
 import SingleArtist from "../components/Pages/SingleAlbumOrArtist/SingleArtist";
+import SingleAlbum from "../components/Pages/SingleAlbumOrArtist/SingleAlbum";
 
 Vue.use(VueRouter);
 
@@ -64,6 +65,15 @@ let router = new VueRouter({
       path: "/singleArtist/:albumId",
       name: "SingleArtist",
       component: SingleArtist,
+      props: true,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/singleAlbum/:albumId",
+      name: "SingleAlbum",
+      component: SingleAlbum,
       props: true,
       meta: {
         requiresAuth: true

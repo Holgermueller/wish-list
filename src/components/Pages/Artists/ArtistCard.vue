@@ -10,7 +10,11 @@
           <router-link
             :to="{
               name: 'SingleArtist',
-              params: { artist: artist, albumId: albumId }
+              params: {
+                artist: artist,
+                albumId: albumId,
+                albumTitle: albumTitle
+              }
             }"
           >
             <v-btn class="display-1">
@@ -34,6 +38,11 @@ export default {
     },
 
     albumId: {
+      type: String,
+      required: true
+    },
+
+    albumTitle: {
       type: String,
       required: true
     }
