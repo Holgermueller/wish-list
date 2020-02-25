@@ -21,7 +21,7 @@
         }"
       >
         <v-btn class="display-1">
-          <span class="mdi mdi-arrow-right-bold"></span>
+          <span class="mdi mdi-arrow-left-bold"></span>
         </v-btn>
       </router-link>
     </v-card>
@@ -50,3 +50,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+a {
+  float: right;
+}
+</style>

@@ -102,6 +102,32 @@ export default {
           commit("setLoading", false);
           commit("setError", err);
         });
+    },
+
+    getAllAlbumsBySingleArtist({ commit }, payload) {
+      commit("setLoading", true);
+
+      firebase
+        .collection("albums")
+        .where("artist", "==", payload.artist)
+        .get()
+        .then(querySnapshot => {
+          let albumsBySingleArtist = [];
+          querySnapshot.forEach(doc => {
+            let albumsData = {
+              albumId: doc.id,
+              albumTitle: doc.data().albumTitle,
+              format: doc.data().format
+            };
+            albumsBySingleArtist.push(albumsData);
+          });
+          commit("setAlbumsList", albumsBySingleArtist);
+          commit("setLoading", false);
+        })
+        .catch(err => {
+          commit("setLoading", false);
+          commit("setError", err);
+        });
     }
   },
 

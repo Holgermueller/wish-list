@@ -51,4 +51,7 @@ export default {
 #recentCard:last-child {
   margin-bottom: 15%;
 }
+.recent-card:hover {
+  background-color: lightslategray;
+}
 </style>
