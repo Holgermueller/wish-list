@@ -30,9 +30,9 @@
           v-for="(singleArtist, index) in filteredArtistsList"
           :key="index"
           :artist="singleArtist.artist"
-          class="list-card"
           :albumId="singleArtist.albumId"
           :albumTitle="singleArtist.albumTitle"
+          class="list-card"
         />
       </v-list>
     </div>

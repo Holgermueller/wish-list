@@ -49,7 +49,7 @@ export default {
   margin-bottom: 2%;
 }
 #recentCard:last-child {
-  margin-bottom: 15%;
+  margin-bottom: 25%;
 }
 .recent-card:hover {
   background-color: lightslategray;

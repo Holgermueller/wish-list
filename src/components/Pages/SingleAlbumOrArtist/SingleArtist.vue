@@ -1,8 +1,10 @@
 <template>
-  <div>
-    <h1>
-      {{ artist }}
-    </h1>
+  <div id="singleArtist">
+    <v-card class="page-header">
+      <h1>
+        {{ artist }}
+      </h1>
+    </v-card>
 
     <SingleArtistAlbumListCard
       v-for="(singleAlbum, index) in albumsToDisplay"
@@ -13,8 +15,6 @@
       :artist="artist"
       class="list-card"
     />
-
-    <v-card> </v-card>
   </div>
 </template>
 
@@ -54,6 +54,11 @@ export default {
 </script>
 
 <style scoped>
+.page-header {
+  margin: 2% auto;
+  width: fit-content;
+  padding: 2%;
+}
 .list-card {
   width: 55%;
   margin: 1% auto;

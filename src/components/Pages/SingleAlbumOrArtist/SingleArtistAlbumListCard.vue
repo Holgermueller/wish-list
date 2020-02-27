@@ -1,8 +1,8 @@
 <template>
   <div>
-    <v-card>
+    <v-card class="list-card-for-single-album">
       <v-card-text>
-        <h2>
+        <h2 class="display-1 card-text">
           {{ albumTitle }}
         </h2>
         <h3>
@@ -55,8 +55,11 @@ export default {
 </script>
 
 <style scoped>
+.list-card-for-single-album:hover {
+  background-color: darkgray;
+}
 a {
-  float: right;
   text-decoration: none;
+  float: right;
 }
 </style>
