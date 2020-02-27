@@ -37,14 +37,21 @@
         <span class="mdi mdi-close-circle"></span>Cancel
       </v-btn>
       <v-spacer></v-spacer>
-      <v-btn
-        color="blue"
-        class="white--text"
-        @click.prevent="checkLoginForm"
-        :loading="loading"
-        :disabled="loading"
-        >Submit</v-btn
+      <router-link
+        :to="{
+          name: 'Profile',
+          params: { currentUser: currentUser, userId: userId }
+        }"
       >
+        <v-btn
+          color="blue"
+          class="white--text"
+          @click.prevent="checkLoginForm"
+          :loading="loading"
+          :disabled="loading"
+          >Submit</v-btn
+        >
+      </router-link>
     </v-card-actions>
   </div>
 </template>
