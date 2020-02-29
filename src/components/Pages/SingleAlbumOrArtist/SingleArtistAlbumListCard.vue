@@ -1,13 +1,17 @@
 <template>
   <div>
     <v-card class="list-card-for-single-album">
+      <v-card-title class="display-1 card-text">
+        {{ albumTitle }}
+      </v-card-title>
       <v-card-text>
-        <h2 class="display-1 card-text">
-          {{ albumTitle }}
-        </h2>
-        <h3>
-          {{ format }}
-        </h3>
+        {{ genre }}
+        {{ format }}
+      </v-card-text>
+      <v-divider></v-divider>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+
         <router-link
           :to="{
             name: 'SingleAlbum',
@@ -21,7 +25,7 @@
             <span class="mdi mdi-arrow-right-bold"></span>
           </v-btn>
         </router-link>
-      </v-card-text>
+      </v-card-actions>
     </v-card>
   </div>
 </template>
@@ -47,6 +51,11 @@ export default {
     },
 
     artist: {
+      type: String,
+      required: true
+    },
+
+    genre: {
       type: String,
       required: true
     }

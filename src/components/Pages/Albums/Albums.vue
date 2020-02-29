@@ -31,6 +31,10 @@
           v-for="(singleAlbum, index) in filteredAlbumsList"
           :key="index"
           :albumTitle="singleAlbum.albumTitle"
+          :artist="singleAlbum.artist"
+          :format="singleAlbum.format"
+          :genre="singleAlbum.genre"
+          :albumId="singleAlbum.albumId"
         />
       </v-list>
     </div>
