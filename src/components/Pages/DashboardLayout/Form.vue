@@ -1,43 +1,16 @@
 <template>
   <div id="form">
     <v-card class="form-card">
-      <v-card-title> <h1>Add an album:</h1> </v-card-title>
-
       <v-card-text>
         <v-form ref="form">
           <v-flex xs12 sm12 md12 lg12 xl12>
             <v-text-field
-              label="Artist"
-              v-model="artist"
+              placeholder="Say something..."
+              v-model="message"
               type="text"
               outlined
-            ></v-text-field>
-          </v-flex>
-
-          <v-flex xs12 sm12 md12 lg12 xl12>
-            <v-text-field
-              label="Album Title"
-              v-model="albumTitle"
-              type="text"
-              outlined
-            ></v-text-field>
-          </v-flex>
-
-          <v-flex xs12 sm12 md12 lg12 xl12>
-            <v-text-field
-              label="Genre"
-              v-model="genre"
-              type="text"
-              outlined
-            ></v-text-field>
-          </v-flex>
-
-          <v-flex xs12 sm12 md12 lg12 xl12>
-            <v-text-field
-              label="Format"
-              v-model="format"
-              type="text"
-              outlined
+              append-icon="mdi-close-circle"
+              @click:append="clearform"
             ></v-text-field>
           </v-flex>
         </v-form>
@@ -46,8 +19,6 @@
       <v-divider></v-divider>
 
       <v-card-actions>
-        <v-btn>Clear</v-btn>
-        <v-spacer></v-spacer>
         <v-btn
           @click.prevent="submitAlbum"
           :loading="loading"
@@ -65,10 +36,7 @@ export default {
 
   data() {
     return {
-      artist: "",
-      albumTitle: "",
-      genre: "",
-      format: ""
+      message: ""
     };
   },
 
@@ -81,10 +49,7 @@ export default {
   methods: {
     submitAlbum() {
       this.$store.dispatch("addAlbum", {
-        artist: this.artist,
-        albumTitle: this.albumTitle,
-        genre: this.genre,
-        format: this.format.toUpperCase()
+        artist: this.artist
       });
 
       this.clearForm();
@@ -99,8 +64,8 @@ export default {
 
 <style scoped>
 .form-card {
-  width: 45%;
+  width: 100%;
   position: absolute;
-  margin: 2% 0 7% 5%;
+  bottom: 0;
 }
 </style>

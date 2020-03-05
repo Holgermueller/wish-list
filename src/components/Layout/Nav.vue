@@ -1,9 +1,7 @@
 <template>
   <div id="header">
-    <v-card class="app-header" tile>
-      <h1>My Record Collection</h1>
-
-      <div class="nav">
+    <v-card class="nav" tile>
+      <v-navigation-drawer>
         <router-link
           v-for="link in menuLinks"
           :key="link.title"
@@ -24,7 +22,11 @@
           <span class="mdi mdi-exit-to-app"></span>
           Sign Out
         </v-btn>
-      </div>
+
+        <div class="footer">
+          2020 Holger Mueller
+        </div>
+      </v-navigation-drawer>
     </v-card>
   </div>
 </template>
@@ -59,15 +61,7 @@ export default {
             icon: "mdi mdi-account",
             title: "Dashboard",
             link: "/user"
-          },
-          {
-            icon: "mdi mdi-guitar-electric",
-            title: "Artists",
-            link: "/artists"
-          },
-          { icon: "mdi mdi-album", title: "Albums", link: "/albums" },
-          { icon: "mdi mdi-record-player", title: "Formats", link: "/formats" },
-          { icon: "mdi mdi-drama-masks", title: "Genres", link: "/genres" }
+          }
         ];
       }
       return menuLinks;
@@ -92,9 +86,15 @@ export default {
 <style scoped>
 .nav {
   background-color: green;
-  text-align: center;
+  height: 100%;
+  width: 256px;
+  position: fixed;
 }
 a {
   text-decoration: none;
+}
+.footer {
+  bottom: 0;
+  text-align: center;
 }
 </style>

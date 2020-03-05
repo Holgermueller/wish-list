@@ -2,57 +2,21 @@
   <div id="recent">
     <v-card class="recent-header">
       <v-card-title>
-        <h1>Recent Albums:</h1>
+        <h1>Recent Messages appera here:</h1>
       </v-card-title>
     </v-card>
-
-    <div>
-      <v-layout class="progress">
-        <v-flex class="text-xs-center">
-          <v-progress-circular
-            indeterminate
-            :width="7"
-            :size="70"
-            class="primary--text"
-            v-if="loading"
-          ></v-progress-circular>
-        </v-flex>
-      </v-layout>
-
-      <v-list style="max-height: 500px;" class="overflow-y-auto">
-        <RecentsCard
-          v-for="(singleAlbum, index) in albumsList"
-          :key="singleAlbum.albumId"
-          :index="index"
-          :albumTitle="singleAlbum.albumTitle"
-          :artist="singleAlbum.artist"
-          :genre="singleAlbum.genre"
-          :format="singleAlbum.format"
-        />
-      </v-list>
-    </div>
   </div>
 </template>
 
 <script>
-import RecentsCard from "./RecentCard";
-
 export default {
   name: "Recents",
 
-  components: {
-    RecentsCard
-  },
+  components: {},
 
-  created() {
-    return this.$store.dispatch("getAlbumsFromDb");
-  },
+  created() {},
 
   computed: {
-    albumsList() {
-      return this.$store.getters.albums;
-    },
-
     loading() {
       return this.$store.getters.loading;
     }
