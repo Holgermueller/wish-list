@@ -2,7 +2,8 @@
   <div id="header">
     <v-card class="nav" tile>
       <v-navigation-drawer>
-        <Welcome class="welcome-in-nav" />
+        <Welcome />
+
         <router-link
           v-for="link in menuLinks"
           :key="link.title"
