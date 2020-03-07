@@ -20,11 +20,10 @@ export default {
 
 <style scoped>
 #Welcome {
-  margin-top: 2%;
-  margin-left: 5%;
+  margin: 2% auto;
 }
 .welcome {
   width: fit-content;
-  padding: 1%;
+  padding: 2%;
 }
 </style>

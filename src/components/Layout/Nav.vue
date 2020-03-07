@@ -2,6 +2,7 @@
   <div id="header">
     <v-card class="nav" tile>
       <v-navigation-drawer>
+        <Welcome class="welcome-in-nav" />
         <router-link
           v-for="link in menuLinks"
           :key="link.title"
@@ -32,8 +33,14 @@
 </template>
 
 <script>
+import Welcome from "./Welcome";
+
 export default {
   name: "Header",
+
+  components: {
+    Welcome
+  },
 
   data() {
     return {
@@ -84,11 +91,15 @@ export default {
 </script>
 
 <style scoped>
+.welcome-in-nav {
+  margin-left: auto;
+  margin-right: auto;
+}
 .nav {
-  background-color: green;
   height: 100%;
   width: 256px;
   position: fixed;
+  text-align: center;
 }
 a {
   text-decoration: none;

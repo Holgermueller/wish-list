@@ -8,24 +8,16 @@
               placeholder="Say something..."
               v-model="message"
               type="text"
+              ref="message"
               outlined
               append-icon="mdi-close-circle"
-              @click:append="clearform"
+              @click:append="clearForm"
+              append-outer-icon="mdi-send"
+              @click:append-outer="postMessage"
             ></v-text-field>
           </v-flex>
         </v-form>
       </v-card-text>
-
-      <v-divider></v-divider>
-
-      <v-card-actions>
-        <v-btn
-          @click.prevent="submitAlbum"
-          :loading="loading"
-          :disabled="loading"
-          >Submit</v-btn
-        >
-      </v-card-actions>
     </v-card>
   </div>
 </template>
@@ -47,16 +39,12 @@ export default {
   },
 
   methods: {
-    submitAlbum() {
-      this.$store.dispatch("addAlbum", {
-        artist: this.artist
-      });
-
+    postMessage() {
       this.clearForm();
     },
 
     clearForm() {
-      this.$refs.form.reset();
+      this.$refs.message.reset();
     }
   }
 };
