@@ -7,7 +7,6 @@
             <v-text-field
               placeholder="Say something..."
               v-model="message"
-              type="text"
               ref="message"
               outlined
               append-icon="mdi-close-circle"
@@ -39,7 +38,12 @@ export default {
   },
 
   methods: {
-    postMessage() {
+    postMessage(e) {
+      e.preventDefault();
+
+      this.$store.dispatch("submitMessage", {
+        message: this.message
+      });
       this.clearForm();
     },
 

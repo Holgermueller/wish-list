@@ -1,7 +1,7 @@
 <template>
   <div id="header">
     <v-card class="nav" tile>
-      <v-navigation-drawer>
+      <v-navigation-drawer permanent>
         <Welcome />
 
         <router-link
