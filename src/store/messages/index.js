@@ -16,6 +16,30 @@ export default {
   },
 
   actions: {
+    getMessages({ commit, getters }) {
+      firebase
+        .collection("chatMessages")
+        .where("userId", "==", getters.user.id)
+        .onSnapshot(
+          querySnapshot => {
+            let messagesFromDb = [];
+            querySnapshot.forEach(doc => {
+              let messagesData = {
+                messageId: doc.id,
+                message: doc.data().message
+              };
+              messagesFromDb.push(messagesData);
+            });
+            commit("setMessages", messagesFromDb);
+            commit("setLoading", false);
+          },
+          err => {
+            commit("setLoading", true);
+            commit("setError", err);
+          }
+        );
+    },
+
     submitMessage({ commit, getters }, payload) {
       commit("setLoading", true);
 

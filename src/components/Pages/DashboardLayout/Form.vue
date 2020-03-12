@@ -38,9 +38,7 @@ export default {
   },
 
   methods: {
-    postMessage(e) {
-      e.preventDefault();
-
+    postMessage() {
       this.$store.dispatch("submitMessage", {
         message: this.message
       });
