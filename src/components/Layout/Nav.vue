@@ -2,7 +2,7 @@
   <div id="header">
     <v-card class="nav" tile>
       <v-navigation-drawer permanent>
-        <Welcome />
+        <Welcome v-if="userIsAuthenticated" />
 
         <router-link
           v-for="link in menuLinks"
@@ -69,6 +69,11 @@ export default {
             icon: "mdi mdi-account",
             title: "Dashboard",
             link: "/user"
+          },
+          {
+            icon: "mdi mdi-account-details",
+            title: "Profile",
+            link: "/profile"
           }
         ];
       }

@@ -2,7 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import firebase from "firebase";
 import Home from "../components/index";
-import Profile from "../components/Pages/Dashboard";
+import Dashboard from "../components/Pages/Dashboard";
+import Profile from "../components/Pages/Profile/Profile";
 
 Vue.use(VueRouter);
 
@@ -12,6 +13,15 @@ let router = new VueRouter({
     { path: "/", name: "Home", component: Home },
     {
       path: "/user",
+      name: "Dashboard",
+      component: Dashboard,
+      props: true,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/profile",
       name: "Profile",
       component: Profile,
       props: true,
