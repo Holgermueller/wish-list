@@ -1,33 +1,41 @@
 <template>
-  <div id="header">
+  <div id="nav">
     <v-card class="nav" tile>
-      <v-navigation-drawer permanent>
-        <Welcome v-if="userIsAuthenticated" />
+      <v-navigation-drawer class="nav-drawer" permanent>
+        <v-list>
+          <v-list-item>
+            <Welcome v-if="userIsAuthenticated" />
+          </v-list-item>
 
-        <router-link
-          v-for="link in menuLinks"
-          :key="link.title"
-          :to="link.link"
-        >
-          <v-btn>
-            <span :class="link.icon"></span>
-            {{ link.title }}
-          </v-btn></router-link
-        >
+          <router-link
+            v-for="link in menuLinks"
+            :key="link.title"
+            :to="link.link"
+          >
+            <v-btn>
+              <span :class="link.icon"></span>
+              {{ link.title }}
+            </v-btn></router-link
+          >
 
-        <v-btn
-          v-if="userIsAuthenticated"
-          @click="logout"
-          :loading="loading"
-          :disabled="loading"
-        >
-          <span class="mdi mdi-exit-to-app"></span>
-          Sign Out
-        </v-btn>
+          <v-list-item>
+            <v-btn
+              v-if="userIsAuthenticated"
+              @click="logout"
+              :loading="loading"
+              :disabled="loading"
+            >
+              <span class="mdi mdi-exit-to-app"></span>
+              Sign Out
+            </v-btn>
+          </v-list-item>
 
-        <div class="footer">
-          2020 Holger Mueller
-        </div>
+          <v-list-item>
+            <div class="footer">
+              2020 Holger Mueller
+            </div>
+          </v-list-item>
+        </v-list>
       </v-navigation-drawer>
     </v-card>
   </div>
@@ -37,7 +45,7 @@
 import Welcome from "./Welcome";
 
 export default {
-  name: "Header",
+  name: "Nav",
 
   components: {
     Welcome
@@ -97,10 +105,6 @@ export default {
 </script>
 
 <style scoped>
-.welcome-in-nav {
-  margin-left: auto;
-  margin-right: auto;
-}
 .nav {
   height: 100%;
   width: 256px;
@@ -109,9 +113,5 @@ export default {
 }
 a {
   text-decoration: none;
-}
-.footer {
-  bottom: 0;
-  text-align: center;
 }
 </style>

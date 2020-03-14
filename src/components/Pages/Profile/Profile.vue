@@ -1,23 +1,32 @@
 <template>
   <div id="profile">
-    <v-card class="profile-container">
-      <h5>All user info will appear here.</h5>
+    <v-card>
+      <EditUserInfo />
+
+      <v-divider></v-divider>
+
+      <DeleteAccnt />
     </v-card>
   </div>
 </template>
 
 <script>
+import DeleteAccnt from "./DeleteAccount";
+import EditUserInfo from "./EditUserInfo";
+
 export default {
   name: "Profile",
 
-  data() {
-    return {};
+  components: {
+    DeleteAccnt,
+    EditUserInfo
   }
 };
 </script>
 
 <style scoped>
-.profile-container {
+#profile {
+  width: 45%;
   float: right;
 }
 </style>
