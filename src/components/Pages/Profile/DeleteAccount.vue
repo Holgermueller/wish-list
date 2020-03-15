@@ -17,8 +17,10 @@
         </v-card-subtitle>
 
         <v-card-actions>
-          <v-btn @click="dialog = false">NO</v-btn>
-          <v-btn @click="dialog = false">YES</v-btn>
+          <v-btn @click="closeDialog">NO</v-btn>
+          <v-btn @click="deleteUser" :loading="loading" :disabled="loading"
+            >YES</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -27,10 +29,32 @@
 
 <script>
 export default {
+  name: "DeleteUser",
+
   data() {
     return {
       dialog: false
     };
+  },
+
+  computed: {
+    error() {
+      return this.$store.getters.error;
+    },
+
+    loading() {
+      return this.$store.getters.loading;
+    }
+  },
+
+  methods: {
+    deleteUser() {
+      this.$store.dispatch("deleteUser");
+    },
+
+    closeDialog() {
+      this.dialog = false;
+    }
   }
 };
 </script>

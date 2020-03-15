@@ -84,6 +84,21 @@ export default {
       });
     },
 
+    deleteUser({ commit }) {
+      commit("setLoading", true);
+
+      firebase
+        .auth()
+        .currentUser.delete()
+        .then(() => {
+          commit("setLoading", false);
+        })
+        .catch(err => {
+          commit("setLoading", false);
+          commit("setError", err);
+        });
+    },
+
     logout({ commit }) {
       commit("setLoading", true);
 
