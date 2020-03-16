@@ -92,6 +92,7 @@ export default {
         .currentUser.delete()
         .then(() => {
           commit("setLoading", false);
+          commit("setUser", null);
         })
         .catch(err => {
           commit("setLoading", false);

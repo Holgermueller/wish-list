@@ -26,7 +26,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.user-info {
-}
-</style>
+<style scoped></style>

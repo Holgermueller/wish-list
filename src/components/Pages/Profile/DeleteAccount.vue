@@ -1,6 +1,6 @@
 <template>
   <div id="dltAcct">
-    <v-dialog>
+    <v-dialog v-model="dialog" class="delete-account" width="500">
       <template v-slot:activator="{ on }">
         <v-btn v-on="on">
           Delete Account
@@ -17,8 +17,15 @@
         </v-card-subtitle>
 
         <v-card-actions>
-          <v-btn @click="closeDialog">NO</v-btn>
-          <v-btn @click="deleteUser" :loading="loading" :disabled="loading"
+          <v-btn @click="dialog = false">
+            <span class="mdi mdi-cancel"></span>
+            NO</v-btn
+          >
+          <v-spacer></v-spacer>
+          <v-btn
+            @click.prevent="deleteUser"
+            :loading="loading"
+            :disabled="loading"
             >YES</v-btn
           >
         </v-card-actions>
@@ -59,7 +66,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.delete-account {
-}
-</style>
+<style scoped></style>
