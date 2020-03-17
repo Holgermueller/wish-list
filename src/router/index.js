@@ -4,6 +4,7 @@ import firebase from "firebase";
 import Home from "../components/index";
 import Dashboard from "../components/Pages/Dashboard";
 import Profile from "../components/Pages/Profile/Profile";
+import DirectMessages from "../components/Pages/DirectMessages/DirectMessages";
 
 Vue.use(VueRouter);
 
@@ -24,6 +25,15 @@ let router = new VueRouter({
       path: "/profile",
       name: "Profile",
       component: Profile,
+      props: true,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/directMessages",
+      name: "DirectMessages",
+      component: DirectMessages,
       props: true,
       meta: {
         requiresAuth: true

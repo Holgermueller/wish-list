@@ -2,7 +2,6 @@
   <div id="Welcome">
     <v-card class="welcome">
       <h1>Hello, {{ displayName }}</h1>
-      <h2>Hello</h2>
     </v-card>
   </div>
 </template>
@@ -24,8 +23,9 @@ export default {
   margin: 2% auto;
 }
 .welcome {
-  width: fit-content;
+  width: 100%;
   padding: 2%;
   margin: 5% auto;
+  text-align: center;
 }
 </style>

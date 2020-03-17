@@ -2,40 +2,35 @@
   <div id="nav">
     <v-card class="nav" tile>
       <v-navigation-drawer class="nav-drawer" permanent>
-        <v-list>
-          <v-list-item>
-            <Welcome v-if="userIsAuthenticated" />
-          </v-list-item>
+        <Welcome v-if="userIsAuthenticated" />
 
-          <router-link
+        <v-divider></v-divider>
+
+        <v-list nav>
+          <v-list-item
             v-for="link in menuLinks"
             :key="link.title"
             :to="link.link"
+            link
           >
-            <v-btn>
-              <span :class="link.icon"></span>
-              {{ link.title }}
-            </v-btn></router-link
-          >
-
-          <v-list-item>
-            <v-btn
-              v-if="userIsAuthenticated"
-              @click="logout"
-              :loading="loading"
-              :disabled="loading"
-            >
-              <span class="mdi mdi-exit-to-app"></span>
-              Sign Out
-            </v-btn>
-          </v-list-item>
-
-          <v-list-item>
-            <div class="footer">
-              2020 Holger Mueller
-            </div>
+            <v-list-item-icon>
+              <v-icon>
+                {{ link.icon }}
+              </v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title> {{ link.title }}</v-list-item-title>
+            </v-list-item-content>
           </v-list-item>
         </v-list>
+
+        <SignOut v-if="userIsAuthenticated" />
+
+        <div>
+          <v-footer class="font-weight-medium ">
+            &copy; 2020 Holger Mueller
+          </v-footer>
+        </div>
       </v-navigation-drawer>
     </v-card>
   </div>
@@ -43,12 +38,14 @@
 
 <script>
 import Welcome from "./Welcome";
+import SignOut from "./SignOut";
 
 export default {
   name: "Nav",
 
   components: {
-    Welcome
+    Welcome,
+    SignOut
   },
 
   data() {
@@ -82,6 +79,11 @@ export default {
             icon: "mdi mdi-account-details",
             title: "Profile",
             link: "/profile"
+          },
+          {
+            icon: "mdi mdi-email",
+            title: "Messages",
+            link: "/directMessages"
           }
         ];
       }
@@ -95,12 +97,7 @@ export default {
     }
   },
 
-  methods: {
-    logout() {
-      this.$store.dispatch("logout");
-      this.$router.go({ path: this.$router.path });
-    }
-  }
+  methods: {}
 };
 </script>
 
@@ -109,9 +106,11 @@ export default {
   height: 100%;
   width: 256px;
   position: fixed;
-  text-align: center;
 }
 a {
   text-decoration: none;
+}
+.footer {
+  text-align: center;
 }
 </style>
