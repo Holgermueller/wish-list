@@ -2,7 +2,7 @@
   <div id="recent">
     <v-card class="recent-header">
       <v-card-title>
-        <h1>Recent Messages appera here:</h1>
+        <h1>Recent Messages appear here:</h1>
       </v-card-title>
     </v-card>
   </div>
@@ -26,10 +26,8 @@ export default {
 
 <style scoped>
 #recent {
-  width: 45%;
-  float: right;
-  margin-top: 2%;
-  margin-right: 3%;
+  width: 75%;
+  margin: 2% auto;
 }
 .recent-header {
   margin-bottom: 2%;

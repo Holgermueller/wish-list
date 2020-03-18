@@ -2,7 +2,7 @@
   <div id="dltAcct">
     <v-dialog v-model="dialog" class="delete-account" width="500">
       <template v-slot:activator="{ on }">
-        <v-btn v-on="on">
+        <v-btn v-on="on" block="">
           Delete Account
         </v-btn>
       </template>

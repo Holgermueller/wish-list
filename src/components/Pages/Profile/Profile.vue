@@ -1,9 +1,7 @@
 <template>
   <div id="profile">
-    <v-card>
+    <v-card class="profile-actions">
       <EditUserInfo />
-
-      <v-divider></v-divider>
 
       <DeleteAccnt />
     </v-card>
@@ -25,8 +23,8 @@ export default {
 </script>
 
 <style scoped>
-#profile {
+.profile-actions {
   width: 45%;
-  float: right;
+  margin: 10% auto;
 }
 </style>

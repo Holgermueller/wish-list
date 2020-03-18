@@ -1,38 +1,46 @@
 <template>
   <div id="nav">
-    <v-card class="nav" tile>
-      <v-navigation-drawer class="nav-drawer" permanent>
-        <Welcome v-if="userIsAuthenticated" />
+    <v-btn @click.stop="drawer = !drawer">
+      <span class="mdi mdi-compass-rose"></span>
+    </v-btn>
 
-        <v-divider></v-divider>
+    <v-navigation-drawer class="nav-drawer" v-model="drawer" absolute temporary>
+      <div class="pa-2">
+        <v-btn @click.stop="drawer = !drawer" block>
+          <span class="mdi mdi-compass-rose"></span>Nav
+        </v-btn>
+      </div>
 
-        <v-list nav>
-          <v-list-item
-            v-for="link in menuLinks"
-            :key="link.title"
-            :to="link.link"
-            link
-          >
-            <v-list-item-icon>
-              <v-icon>
-                {{ link.icon }}
-              </v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title> {{ link.title }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
+      <Welcome v-if="userIsAuthenticated" />
 
-        <SignOut v-if="userIsAuthenticated" />
+      <v-divider></v-divider>
 
-        <div>
-          <v-footer class="font-weight-medium ">
-            &copy; 2020 Holger Mueller
-          </v-footer>
-        </div>
-      </v-navigation-drawer>
-    </v-card>
+      <v-list nav>
+        <v-list-item
+          v-for="link in menuLinks"
+          :key="link.title"
+          :to="link.link"
+          link
+        >
+          <v-list-item-icon>
+            <v-icon>
+              {{ link.icon }}
+            </v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title> {{ link.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+
+      <SignOut v-if="userIsAuthenticated" />
+
+      <div>
+        <v-footer class="font-weight-medium ">
+          &copy; 2020 Holger Mueller
+        </v-footer>
+      </div>
+    </v-navigation-drawer>
   </div>
 </template>
 
@@ -50,7 +58,8 @@ export default {
 
   data() {
     return {
-      userId: null
+      userId: null,
+      drawer: false
     };
   },
 
@@ -84,6 +93,11 @@ export default {
             icon: "mdi mdi-email",
             title: "Messages",
             link: "/directMessages"
+          },
+          {
+            icon: "mdi mdi-pin",
+            title: "Pinned",
+            link: "/pinned"
           }
         ];
       }
@@ -102,10 +116,14 @@ export default {
 </script>
 
 <style scoped>
+#nav {
+  z-index: 1;
+}
 .nav {
   height: 100%;
-  width: 256px;
+  width: 25%;
   position: fixed;
+  z-index: 2;
 }
 a {
   text-decoration: none;

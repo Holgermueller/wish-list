@@ -5,6 +5,7 @@ import Home from "../components/index";
 import Dashboard from "../components/Pages/Dashboard";
 import Profile from "../components/Pages/Profile/Profile";
 import DirectMessages from "../components/Pages/DirectMessages/DirectMessages";
+import Pins from "../components/Pages/Pins/Pins";
 
 Vue.use(VueRouter);
 
@@ -34,6 +35,15 @@ let router = new VueRouter({
       path: "/directMessages",
       name: "DirectMessages",
       component: DirectMessages,
+      props: true,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/pinned",
+      name: "Pinned",
+      component: Pins,
       props: true,
       meta: {
         requiresAuth: true

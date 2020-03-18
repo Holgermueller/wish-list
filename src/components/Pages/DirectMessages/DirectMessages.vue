@@ -1,5 +1,5 @@
 <template>
-  <div><h1>Direct messages will appear here.</h1></div>
+  <div id="directMessages"><h1>Direct messages will appear here.</h1></div>
 </template>
 
 <script>
@@ -11,3 +11,5 @@ export default {
   }
 };
 </script>
+
+<style scoped></style>
