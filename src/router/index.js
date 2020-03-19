@@ -6,6 +6,7 @@ import Dashboard from "../components/Pages/Dashboard";
 import Profile from "../components/Pages/Profile/Profile";
 import DirectMessages from "../components/Pages/DirectMessages/DirectMessages";
 import Pins from "../components/Pages/Pins/Pins";
+import Goodbye from "../components/Pages/Goodbye/Goodbye";
 
 Vue.use(VueRouter);
 
@@ -48,6 +49,11 @@ let router = new VueRouter({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: "/goodbye",
+      name: "Goodbye",
+      component: Goodbye
     }
   ]
 });

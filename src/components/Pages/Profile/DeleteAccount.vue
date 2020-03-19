@@ -16,6 +16,15 @@
           This action cannot be reversed.
         </v-card-subtitle>
 
+        <v-layout row v-if="error">
+          <v-flex xs12 sm12 md12 lg12 xl12>
+            <app-alert
+              @dismissed="onDismissed"
+              :text="error.message || error"
+            ></app-alert>
+          </v-flex>
+        </v-layout>
+
         <v-card-actions>
           <v-btn @click="dialog = false">
             <span class="mdi mdi-cancel"></span>
@@ -57,6 +66,17 @@ export default {
   methods: {
     deleteUser() {
       this.$store.dispatch("deleteUser");
+      this.closeDialog();
+      this.goToGoodbyePage();
+    },
+
+    goToGoodbyePage() {
+      this.$router.push({
+        name: "Goodbye",
+        query: {
+          redirect: "/goodbye"
+        }
+      });
     },
 
     closeDialog() {
