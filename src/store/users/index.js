@@ -60,7 +60,21 @@ export default {
         .auth()
         .signInWithEmailAndPassword(payload.email, payload.password)
         .then(user => {
-          commit("setLoading", true);
+          firebase
+            .collection("users")
+            .add({
+              displayName: payload.displayName,
+              id: user.user.uid
+            })
+            .then(() => {
+              commit("setLoading", false);
+            })
+            .catch(err => {
+              commit("setLoading", false);
+              commit("setError", err);
+            });
+
+          commit("setLoading", false);
           const signedInUser = {
             email: user.user.email,
             id: user.user.uid,
