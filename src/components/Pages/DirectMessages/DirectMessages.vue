@@ -1,5 +1,9 @@
 <template>
-  <div id="directMessages"><h1>Direct messages will appear here.</h1></div>
+  <div id="directMessages">
+    <v-card class="direct-messages">
+      <h1>Direct messages will appear here.</h1>
+    </v-card>
+  </div>
 </template>
 
 <script>
@@ -12,4 +16,11 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.direct-messages {
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+</style>

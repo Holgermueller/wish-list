@@ -81,6 +81,10 @@ export default {
 
     closeDialog() {
       this.dialog = false;
+    },
+
+    onDismissed() {
+      this.$store.dispatch("clearError");
     }
   }
 };

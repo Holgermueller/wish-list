@@ -1,6 +1,6 @@
 <template>
   <div id="nav">
-    <v-btn @click.stop="drawer = !drawer">
+    <v-btn v-if="userIsAuthenticated" @click.stop="drawer = !drawer">
       <span class="mdi mdi-compass-rose"></span>
     </v-btn>
 

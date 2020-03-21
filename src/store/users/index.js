@@ -84,7 +84,7 @@ export default {
           commit("setUser", signedInUser);
         })
         .catch(err => {
-          commit("setloading", false);
+          commit("setLoading", false);
           commit("setError", err);
         });
     },
@@ -109,7 +109,7 @@ export default {
       //     });
       //   })
       //   .catch(err => {
-      //     commit("setloading", false);
+      //     commit("setLoading", false);
       //     commit("setError", err);
       //   });
     },
