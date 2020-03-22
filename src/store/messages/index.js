@@ -16,10 +16,10 @@ export default {
   },
 
   actions: {
-    getMessages({ commit, getters }) {
+    getMessages({ commit }) {
       firebase
         .collection("chatMessages")
-        .where("userId", "==", getters.user.id)
+        //.where("userId", "==", getters.user.id)
         .onSnapshot(
           querySnapshot => {
             let messagesFromDb = [];
@@ -40,14 +40,14 @@ export default {
         );
     },
 
-    submitMessage({ commit, getters }, payload) {
+    submitMessage({ commit }, payload) {
       commit("setLoading", true);
 
       firebase
         .collection("chatMessages")
         .add({
-          message: payload.message,
-          userId: getters.user.id
+          message: payload.message
+          //userId: getters.user.id
         })
         .then(() => {
           commit("setLoading", false);

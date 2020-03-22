@@ -1,4 +1,5 @@
 import * as firebase from "firebase/app";
+import db from "../../firebase/firebaseInit";
 
 export default {
   state: {
@@ -30,6 +31,20 @@ export default {
               displayName: payload.displayName
             })
             .then(() => {
+              db.collection("users")
+                .add({
+                  displayName: payload.displayName,
+                  email: user.email,
+                  id: user.user.uid
+                })
+                .then(() => {
+                  commit("setLoading", false);
+                })
+                .catch(err => {
+                  commit("setLoading", false);
+                  commit("setError", err);
+                });
+
               commit("setLoading", false);
             })
             .catch(err => {
@@ -60,20 +75,6 @@ export default {
         .auth()
         .signInWithEmailAndPassword(payload.email, payload.password)
         .then(user => {
-          firebase
-            .collection("users")
-            .add({
-              displayName: payload.displayName,
-              id: user.user.uid
-            })
-            .then(() => {
-              commit("setLoading", false);
-            })
-            .catch(err => {
-              commit("setLoading", false);
-              commit("setError", err);
-            });
-
           commit("setLoading", false);
           const signedInUser = {
             email: user.user.email,

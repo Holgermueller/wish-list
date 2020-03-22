@@ -5,6 +5,10 @@
         <h1>Recent Messages appear here:</h1>
       </v-card-title>
     </v-card>
+
+    <v-card v-for="(message, index) in getMessages" :key="index">{{
+      message.message
+    }}</v-card>
   </div>
 </template>
 
@@ -14,11 +18,17 @@ export default {
 
   components: {},
 
-  created() {},
+  created() {
+    return this.$store.dispatch("getMessages");
+  },
 
   computed: {
     loading() {
       return this.$store.getters.loading;
+    },
+
+    getMessages() {
+      return this.$store.getters.messages;
     }
   }
 };
