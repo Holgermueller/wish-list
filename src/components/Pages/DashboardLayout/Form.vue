@@ -55,7 +55,8 @@ export default {
 <style scoped>
 .form-card {
   width: 100%;
-  position: absolute;
+  position: fixed;
   bottom: 0;
+  z-index: 1;
 }
 </style>

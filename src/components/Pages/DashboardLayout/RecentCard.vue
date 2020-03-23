@@ -4,6 +4,7 @@
       <v-card
         class="recent-card {'on-hover':hover}"
         :elevation="hover ? 12 : 2"
+        shaped
       >
         <v-card-title
           >Name of poster goes here <v-spacer></v-spacer>
@@ -13,11 +14,19 @@
         <v-card-text> {{ message }} </v-card-text>
         <v-divider></v-divider>
         <v-card-actions>
-          <v-btn>Repost</v-btn>
+          <v-btn color="primary">
+            <span class="mdi mdi-forwardburger"></span>
+            Repost</v-btn
+          >
           <v-spacer></v-spacer>
-          <v-btn>Reply</v-btn>
+
+          <ReplyDialog />
+
           <v-spacer></v-spacer>
-          <v-btn>Like</v-btn>
+          <v-btn color="primary">
+            <span class="mdi mdi-heart-pulse"></span>
+            Like</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-hover>
@@ -25,8 +34,14 @@
 </template>
 
 <script>
+import ReplyDialog from "./ChatActions/Reply";
+
 export default {
   name: "RecentCard",
+
+  components: {
+    ReplyDialog
+  },
 
   props: {
     message: {
@@ -40,11 +55,12 @@ export default {
 <style scoped>
 .recent-card {
   margin-bottom: 2%;
+  background-color: mediumblue;
 }
 #recentCard:last-child {
   margin-bottom: 25%;
 }
 .recent-card:hover {
-  background-color: lightslategray;
+  background-color: #0066ff;
 }
 </style>

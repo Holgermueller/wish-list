@@ -117,7 +117,7 @@ export default {
 
 <style scoped>
 #nav {
-  z-index: 1;
+  z-index: 2;
 }
 .nav {
   height: 100%;

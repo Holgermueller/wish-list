@@ -19,7 +19,7 @@ export default {
     getMessages({ commit }) {
       firebase
         .collection("chatMessages")
-        //.where("userId", "==", getters.user.id)
+        .orderBy("dateAdded", "desc")
         .onSnapshot(
           querySnapshot => {
             let messagesFromDb = [];
@@ -46,7 +46,8 @@ export default {
       firebase
         .collection("chatMessages")
         .add({
-          message: payload.message
+          message: payload.message,
+          dateAdded: new Date()
           //userId: getters.user.id
         })
         .then(() => {
