@@ -5,12 +5,20 @@
         class="recent-card {'on-hover':hover}"
         :elevation="hover ? 12 : 2"
       >
-        <v-card-title>{{ artist }}: {{ albumTitle }}</v-card-title>
+        <v-card-title
+          >Name of poster goes here <v-spacer></v-spacer>
+          <p>Time posted goes here.</p>
+        </v-card-title>
         <v-divider></v-divider>
-        <v-card-text>
-          {{ format }}
-          {{ genre }}
-        </v-card-text>
+        <v-card-text> {{ message }} </v-card-text>
+        <v-divider></v-divider>
+        <v-card-actions>
+          <v-btn>Repost</v-btn>
+          <v-spacer></v-spacer>
+          <v-btn>Reply</v-btn>
+          <v-spacer></v-spacer>
+          <v-btn>Like</v-btn>
+        </v-card-actions>
       </v-card>
     </v-hover>
   </div>
@@ -21,22 +29,7 @@ export default {
   name: "RecentCard",
 
   props: {
-    albumTitle: {
-      type: String,
-      required: true
-    },
-
-    artist: {
-      type: String,
-      required: true
-    },
-
-    format: {
-      type: String,
-      required: true
-    },
-
-    genre: {
+    message: {
       type: String,
       required: true
     }

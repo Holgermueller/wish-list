@@ -6,17 +6,23 @@
       </v-card-title>
     </v-card>
 
-    <v-card v-for="(message, index) in getMessages" :key="index">{{
-      message.message
-    }}</v-card>
+    <RecentCard
+      v-for="(message, index) in getMessages"
+      :key="index"
+      :message="message.message"
+    />
   </div>
 </template>
 
 <script>
+import RecentCard from "./RecentCard";
+
 export default {
   name: "Recents",
 
-  components: {},
+  components: {
+    RecentCard
+  },
 
   created() {
     return this.$store.dispatch("getMessages");
