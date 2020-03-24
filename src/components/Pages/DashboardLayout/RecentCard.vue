@@ -23,6 +23,21 @@
           <ReplyDialog :messageId="messageId" />
 
           <v-spacer></v-spacer>
+
+          <router-link
+            :to="{
+              name: 'MessagesWithReplies',
+              params: {
+                message: message
+              }
+            }"
+          >
+            <v-btn color="primary">
+              <span class="mdi mdi-message-reply-text"></span>Conversation
+            </v-btn>
+          </router-link>
+
+          <v-spacer></v-spacer>
           <v-btn color="primary">
             <span class="mdi mdi-heart-pulse"></span>
             Like</v-btn

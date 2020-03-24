@@ -7,6 +7,7 @@ import Profile from "../components/Pages/Profile/Profile";
 import DirectMessages from "../components/Pages/DirectMessages/DirectMessages";
 import Pins from "../components/Pages/Pins/Pins";
 import Goodbye from "../components/Pages/Goodbye/Goodbye";
+import MessagesWithReplies from "../components/Pages/MessagesWithReplies/MessagesWithReplies";
 
 Vue.use(VueRouter);
 
@@ -45,6 +46,15 @@ let router = new VueRouter({
       path: "/pinned",
       name: "Pinned",
       component: Pins,
+      props: true,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/messagesWithReplies",
+      name: "MessagesWithReplies",
+      component: MessagesWithReplies,
       props: true,
       meta: {
         requiresAuth: true
