@@ -20,7 +20,7 @@
           >
           <v-spacer></v-spacer>
 
-          <ReplyDialog />
+          <ReplyDialog :messageId="messageId" />
 
           <v-spacer></v-spacer>
           <v-btn color="primary">
@@ -45,6 +45,11 @@ export default {
 
   props: {
     message: {
+      type: String,
+      required: true
+    },
+
+    messageId: {
       type: String,
       required: true
     }

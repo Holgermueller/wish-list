@@ -2,7 +2,8 @@ import firebase from "../../firebase/firebaseInit";
 
 export default {
   state: {
-    messages: []
+    messages: [],
+    replies: []
   },
 
   mutations: {

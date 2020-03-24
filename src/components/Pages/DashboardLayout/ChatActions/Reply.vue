@@ -11,12 +11,28 @@
       </template>
 
       <v-card>
-        <v-card-title>Type your reply here...</v-card-title>
-        <v-card-text>Form will go here... </v-card-text>
+        <v-card-title>Reply</v-card-title>
+        <v-card-text>
+          <v-form ref="form">
+            <v-container fluid>
+              <v-layout wrap>
+                <v-flex xs12 sm12 md13 lg12 xl12>
+                  <v-textarea
+                    outlined
+                    type="text"
+                    v-model="reply"
+                    label="Reply..."
+                  >
+                  </v-textarea>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-form>
+        </v-card-text>
         <v-card-actions>
           <v-btn @click="dialog = false"> Cancel</v-btn>
           <v-spacer></v-spacer>
-          <v-btn @click="dialog = false">Reply</v-btn>
+          <v-btn :messageId="messageId" @click.prevent="getReply">Reply</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -27,13 +43,34 @@
 export default {
   name: "Reply",
 
+  props: {
+    messageId: {
+      type: String,
+      required: true
+    }
+  },
+
   data() {
     return {
-      dialog: false
+      dialog: false,
+      reply: ""
     };
   },
 
-  methods: {}
+  methods: {
+    getReply() {
+      this.$store.dispatch("replyToMessage", {
+        reply: this.reply,
+        originalMessageId: this.messageId
+      });
+
+      this.closeDialog();
+    },
+
+    closeDialog() {
+      this.dialog = false;
+    }
+  }
 };
 </script>
 

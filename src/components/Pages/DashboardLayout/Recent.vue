@@ -10,6 +10,7 @@
       v-for="(message, index) in getMessages"
       :key="index"
       :message="message.message"
+      :messageId="message.messageId"
     />
   </div>
 </template>
