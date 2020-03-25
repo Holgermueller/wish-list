@@ -28,7 +28,8 @@
             :to="{
               name: 'MessagesWithReplies',
               params: {
-                message: message
+                message: message,
+                originalMessageId: messageId
               }
             }"
           >

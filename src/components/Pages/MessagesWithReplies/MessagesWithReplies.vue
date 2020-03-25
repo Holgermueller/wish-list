@@ -4,6 +4,19 @@
       <v-card-title>
         {{ message }}
       </v-card-title>
+      <v-card-text
+        v-for="(singleReply, index) in repliesForThisMessage"
+        :key="singleReply.replyID"
+        :index="index"
+      >
+        {{ singleReply.replyForDOM }}
+      </v-card-text>
+
+      <v-divider></v-divider>
+
+      <v-card-actions>
+        A form will go here.
+      </v-card-actions>
     </v-card>
   </div>
 </template>
@@ -16,11 +29,26 @@ export default {
     message: {
       type: String,
       required: true
+    },
+
+    originalMessageId: {
+      type: String,
+      required: true
     }
   },
 
   data() {
     return {};
+  },
+
+  created() {
+    return this.$store.dispatch("getReplies");
+  },
+
+  computed: {
+    repliesForThisMessage() {
+      return this.$store.getters.replies;
+    }
   },
 
   messages: {}

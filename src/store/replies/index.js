@@ -16,6 +16,34 @@ export default {
   },
 
   actions: {
+    getReplies({ commit }, payload) {
+      commit("setLoading", true);
+
+      firebase
+        .collection("chatMessages")
+        .doc(payload.originalMessageId)
+        .collection("replies")
+        .orderBy("dateAdded")
+        .onSnapshot(
+          querySnapshot => {
+            let repliesFromDb = [];
+            querySnapshot.forEach(doc => {
+              let replyData = {
+                replyID: doc.id,
+                replyForDOM: doc.data().reply
+              };
+              repliesFromDb.push(replyData);
+            });
+            commit("setReplies", repliesFromDb);
+            commit("setLoading", false);
+          },
+          err => {
+            commit("setLoading", true);
+            commit("setError", err);
+          }
+        );
+    },
+
     replyToMessage({ commit }, payload) {
       commit("setLoading", true);
 
