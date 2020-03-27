@@ -61,7 +61,7 @@ export default {
     getReply() {
       this.$store.dispatch("replyToMessage", {
         reply: this.reply,
-        originalMessageId: this.messageId
+        messageId: this.messageId
       });
 
       this.closeDialog();

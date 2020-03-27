@@ -10,12 +10,27 @@
         :index="index"
       >
         {{ singleReply.replyForDOM }}
+        {{ messageId }}
       </v-card-text>
 
       <v-divider></v-divider>
 
       <v-card-actions>
-        A form will go here.
+        <v-form ref="form">
+          <v-flex xs12 sm12 md13 lg12 xl12>
+            <v-text-field
+              outlined
+              type="text"
+              v-model="reply"
+              label="Reply..."
+              append-icon="mdi-close-circle"
+              @click:append="clearForm"
+              append-outer-icon="mdi-send"
+              @click:append-outer="postReply"
+            >
+            </v-text-field>
+          </v-flex>
+        </v-form>
       </v-card-actions>
     </v-card>
   </div>
@@ -31,14 +46,16 @@ export default {
       required: true
     },
 
-    originalMessageId: {
+    messageId: {
       type: String,
       required: true
     }
   },
 
   data() {
-    return {};
+    return {
+      reply: ""
+    };
   },
 
   created() {
@@ -51,7 +68,19 @@ export default {
     }
   },
 
-  messages: {}
+  methods: {
+    postReply() {
+      this.$store.dispatch("replyToMessage", {
+        reply: this.reply,
+        messageId: this.messageId
+      });
+      this.clearForm();
+    },
+
+    clearForm() {
+      this.$refs.message.reset();
+    }
+  }
 };
 </script>
 

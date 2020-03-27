@@ -29,7 +29,7 @@
               name: 'MessagesWithReplies',
               params: {
                 message: message,
-                originalMessageId: messageId
+                messageId: messageId
               }
             }"
           >

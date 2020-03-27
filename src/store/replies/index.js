@@ -21,7 +21,7 @@ export default {
 
       firebase
         .collection("chatMessages")
-        .doc(payload.originalMessageId)
+        .doc(payload.messageId)
         .collection("replies")
         .orderBy("dateAdded")
         .onSnapshot(
@@ -30,7 +30,8 @@ export default {
             querySnapshot.forEach(doc => {
               let replyData = {
                 replyID: doc.id,
-                replyForDOM: doc.data().reply
+                replyForDOM: doc.data().reply,
+                messageId: doc.data().messageId
               };
               repliesFromDb.push(replyData);
             });
@@ -49,12 +50,12 @@ export default {
 
       firebase
         .collection("chatMessages")
-        .doc(payload.originalMessageId)
+        .doc(payload.messageId)
         .collection("replies")
         .add({
           reply: payload.reply,
           dateAdded: new Date(),
-          originalMessageId: payload.originalMessageId
+          messageId: payload.messageId
         })
         .then(() => {
           commit("setLoading", false);
