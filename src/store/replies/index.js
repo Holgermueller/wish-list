@@ -16,12 +16,12 @@ export default {
   },
 
   actions: {
-    getReplies({ commit }, payload) {
+    getReplies({ commit }) {
       commit("setLoading", true);
 
       firebase
-        .collection("chatMessages")
-        .doc(payload.messageId)
+        // .collection("chatMessages")
+        // .doc(payload.messageId)
         .collection("replies")
         .orderBy("dateAdded")
         .onSnapshot(
@@ -49,8 +49,6 @@ export default {
       commit("setLoading", true);
 
       firebase
-        .collection("chatMessages")
-        .doc(payload.messageId)
         .collection("replies")
         .add({
           reply: payload.reply,
