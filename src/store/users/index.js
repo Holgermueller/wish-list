@@ -31,20 +31,6 @@ export default {
               displayName: payload.displayName
             })
             .then(() => {
-              db.collection("users")
-                .add({
-                  displayName: payload.displayName,
-                  email: user.email,
-                  id: user.user.uid
-                })
-                .then(() => {
-                  commit("setLoading", false);
-                })
-                .catch(err => {
-                  commit("setLoading", false);
-                  commit("setError", err);
-                });
-
               commit("setLoading", false);
             })
             .catch(err => {
@@ -60,6 +46,18 @@ export default {
           };
 
           commit("setUser", newUser);
+
+          db.collection("users")
+            .add({
+              displayName: payload.displayName,
+              email: user.email,
+              id: user.uid
+            })
+            .then(() => {})
+            .catch(err => {
+              commit("setLoading", false);
+              commit("setError", err);
+            });
         })
         .catch(err => {
           commit("setLoading", false);
