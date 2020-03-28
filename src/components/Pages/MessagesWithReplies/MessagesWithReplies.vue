@@ -1,23 +1,20 @@
 <template>
   <div id="messagesWithReplies">
     <v-card class="messages-with-replies">
-      <v-card-title>
-        {{ message }}
-      </v-card-title>
+      <v-card-title> {{ message }} {{ messageId }} </v-card-title>
       <v-card-text
         v-for="(singleReply, index) in repliesForThisMessage"
         :key="singleReply.replyID"
         :index="index"
       >
         {{ singleReply.replyForDOM }}
-        {{ messageId }}
       </v-card-text>
 
       <v-divider></v-divider>
 
       <v-card-actions>
         <v-form ref="form">
-          <v-flex xs12 sm12 md13 lg12 xl12>
+          <v-flex xs12 sm12 md12 lg12 xl12>
             <v-text-field
               outlined
               type="text"
@@ -59,7 +56,9 @@ export default {
   },
 
   created() {
-    return this.$store.dispatch("getReplies");
+    return this.$store.dispatch("getReplies", {
+      messageId: this.messageId
+    });
   },
 
   computed: {
@@ -78,7 +77,7 @@ export default {
     },
 
     clearForm() {
-      this.$refs.message.reset();
+      this.$refs.form.reset();
     }
   }
 };
