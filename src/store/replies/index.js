@@ -16,13 +16,12 @@ export default {
   },
 
   actions: {
-    getReplies({ commit }) {
+    getReplies({ commit }, payload) {
       commit("setLoading", true);
 
       firebase
-        // .collection("chatMessages")
-        // .doc(payload.messageId)
         .collection("replies")
+        .where("messageId", "==", payload.messageId)
         .orderBy("dateAdded")
         .onSnapshot(
           querySnapshot => {

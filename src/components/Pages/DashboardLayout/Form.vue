@@ -13,6 +13,8 @@
               @click:append="clearForm"
               append-outer-icon="mdi-send"
               @click:append-outer="postMessage"
+              :loading="loading"
+              :disabled="loading"
             ></v-text-field>
           </v-flex>
         </v-form>

@@ -1,5 +1,16 @@
 <template>
   <div id="messagesWithReplies">
+    <div>
+      <v-layout row v-if="error">
+        <v-flex xs12 sm12 md12 lg12 xl12>
+          <app-alert
+            @dismissed="onDismissed"
+            :text="error.message || error"
+          ></app-alert>
+        </v-flex>
+      </v-layout>
+    </div>
+
     <v-card class="messages-with-replies">
       <v-card-title> {{ message }} {{ messageId }} </v-card-title>
       <v-card-text
@@ -24,6 +35,8 @@
               @click:append="clearForm"
               append-outer-icon="mdi-send"
               @click:append-outer="postReply"
+              :loading="loading"
+              :disabled="loading"
             >
             </v-text-field>
           </v-flex>
@@ -64,6 +77,14 @@ export default {
   computed: {
     repliesForThisMessage() {
       return this.$store.getters.replies;
+    },
+
+    loading() {
+      return this.$store.getters.loading;
+    },
+
+    error() {
+      return this.$store.getters.error;
     }
   },
 

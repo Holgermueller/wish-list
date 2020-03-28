@@ -19,7 +19,7 @@
       <v-divider></v-divider>
 
       <v-card-actions>
-        <v-btn block>SUBMIT</v-btn>
+        <v-btn :loading="loading" :disabled="loading" block>SUBMIT</v-btn>
       </v-card-actions>
     </v-card>
   </div>
@@ -34,6 +34,10 @@ export default {
   computed: {
     userInfoToDisplay() {
       return this.$store.getters.user;
+    },
+
+    loading() {
+      return this.$store.getters.loading;
     }
   }
 };
