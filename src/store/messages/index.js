@@ -27,7 +27,8 @@ export default {
             querySnapshot.forEach(doc => {
               let messagesData = {
                 messageId: doc.id,
-                message: doc.data().message
+                message: doc.data().message,
+                dateAdded: doc.data().dateAdded
               };
               messagesFromDb.push(messagesData);
             });

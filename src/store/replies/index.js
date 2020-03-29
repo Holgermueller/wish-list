@@ -30,7 +30,8 @@ export default {
               let replyData = {
                 replyID: doc.id,
                 replyForDOM: doc.data().reply,
-                messageId: doc.data().messageId
+                messageId: doc.data().messageId,
+                dateAdded: doc.data().dateAdded
               };
               repliesFromDb.push(replyData);
             });

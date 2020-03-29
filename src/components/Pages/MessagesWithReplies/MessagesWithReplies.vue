@@ -12,13 +12,23 @@
     </div>
 
     <v-card class="messages-with-replies">
-      <v-card-title> {{ message }} {{ messageId }} </v-card-title>
+      <v-card-title>
+        {{ message }}
+
+        <v-spacer></v-spacer>
+
+        {{ dateMessageAdded }}
+      </v-card-title>
       <v-card-text
         v-for="(singleReply, index) in repliesForThisMessage"
         :key="singleReply.replyID"
         :index="index"
       >
         {{ singleReply.replyForDOM }}
+
+        <v-spacer></v-spacer>
+
+        {{ singleReply.dateAdded.toDate().toDateString() }}
       </v-card-text>
 
       <v-divider></v-divider>
@@ -57,6 +67,11 @@ export default {
     },
 
     messageId: {
+      type: String,
+      required: true
+    },
+
+    dateMessageAdded: {
       type: String,
       required: true
     }

@@ -11,6 +11,7 @@
       :key="index"
       :message="message.message"
       :messageId="message.messageId"
+      :dateAdded="message.dateAdded.toDate().toDateString()"
     />
   </div>
 </template>

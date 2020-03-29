@@ -8,7 +8,9 @@
       >
         <v-card-title
           >Name of poster goes here <v-spacer></v-spacer>
-          <p>Time posted goes here.</p>
+          <p>
+            {{ dateAdded }}
+          </p>
         </v-card-title>
         <v-divider></v-divider>
         <v-card-text> {{ message }} </v-card-text>
@@ -29,7 +31,8 @@
               name: 'MessagesWithReplies',
               params: {
                 message: message,
-                messageId: messageId
+                messageId: messageId,
+                dateMessageAdded: dateAdded
               }
             }"
           >
@@ -66,6 +69,11 @@ export default {
     },
 
     messageId: {
+      type: String,
+      required: true
+    },
+
+    dateAdded: {
       type: String,
       required: true
     }
