@@ -6,8 +6,8 @@
         :elevation="hover ? 12 : 2"
         shaped
       >
-        <v-card-title
-          >Name of poster goes here <v-spacer></v-spacer>
+        <v-card-title>
+          {{ displayNameOfPoster }} <v-spacer></v-spacer>
           <p>
             {{ dateAdded }}
           </p>
@@ -76,6 +76,10 @@ export default {
     dateAdded: {
       type: String,
       required: true
+    },
+
+    displayNameOfPoster: {
+      type: String
     }
   }
 };

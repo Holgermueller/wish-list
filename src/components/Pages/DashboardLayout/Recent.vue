@@ -12,6 +12,7 @@
       :message="message.message"
       :messageId="message.messageId"
       :dateAdded="message.dateAdded.toDate().toDateString()"
+      :displayNameOfPoster="message.displayNameOfPoster"
     />
   </div>
 </template>

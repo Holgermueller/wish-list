@@ -2,8 +2,7 @@ import firebase from "../../firebase/firebaseInit";
 
 export default {
   state: {
-    messages: [],
-    replies: []
+    messages: []
   },
 
   mutations: {
@@ -28,7 +27,8 @@ export default {
               let messagesData = {
                 messageId: doc.id,
                 message: doc.data().message,
-                dateAdded: doc.data().dateAdded
+                dateAdded: doc.data().dateAdded,
+                displayNameOfPoster: doc.data().displayName
               };
               messagesFromDb.push(messagesData);
             });
@@ -49,8 +49,8 @@ export default {
         .collection("chatMessages")
         .add({
           message: payload.message,
-          dateAdded: new Date()
-          //userId: getters.user.id
+          dateAdded: new Date(),
+          displayName: payload.displayName
         })
         .then(() => {
           commit("setLoading", false);
