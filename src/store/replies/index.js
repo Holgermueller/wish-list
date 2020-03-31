@@ -31,7 +31,8 @@ export default {
                 replyID: doc.id,
                 replyForDOM: doc.data().reply,
                 messageId: doc.data().messageId,
-                dateAdded: doc.data().dateAdded
+                dateAdded: doc.data().dateAdded,
+                replierName: doc.data().replierName
               };
               repliesFromDb.push(replyData);
             });
@@ -53,7 +54,8 @@ export default {
         .add({
           reply: payload.reply,
           dateAdded: new Date(),
-          messageId: payload.messageId
+          messageId: payload.messageId,
+          replierName: payload.replierName
         })
         .then(() => {
           commit("setLoading", false);

@@ -15,7 +15,8 @@
               @click:append-outer="postMessage"
               :loading="loading"
               :disabled="loading"
-              :displayName="displayName"
+              :displayName="userInfo.displayName"
+              :userId="userInfo.id"
             ></v-text-field>
           </v-flex>
         </v-form>
@@ -39,8 +40,8 @@ export default {
       return this.$store.getters.loading;
     },
 
-    displayName() {
-      return this.$store.getters.user.displayName;
+    userInfo() {
+      return this.$store.getters.user;
     }
   },
 
@@ -48,7 +49,7 @@ export default {
     postMessage() {
       this.$store.dispatch("submitMessage", {
         message: this.message,
-        displayName: this.displayName
+        displayName: this.userInfo.displayName
       });
       this.clearForm();
     },

@@ -24,6 +24,7 @@
         :key="singleReply.replyID"
         :index="index"
       >
+        {{ singleReply.replierName }}
         {{ singleReply.replyForDOM }}
 
         <v-spacer></v-spacer>
@@ -47,6 +48,7 @@
               @click:append-outer="postReply"
               :loading="loading"
               :disabled="loading"
+              :replierName="replierName.displayName"
             >
             </v-text-field>
           </v-flex>
@@ -100,6 +102,10 @@ export default {
 
     error() {
       return this.$store.getters.error;
+    },
+
+    replierName() {
+      return this.$store.getters.user;
     }
   },
 
@@ -107,7 +113,8 @@ export default {
     postReply() {
       this.$store.dispatch("replyToMessage", {
         reply: this.reply,
-        messageId: this.messageId
+        messageId: this.messageId,
+        replierName: this.replierName.displayName
       });
       this.clearForm();
     },

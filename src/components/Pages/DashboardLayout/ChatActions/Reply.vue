@@ -32,7 +32,12 @@
         <v-card-actions>
           <v-btn @click="dialog = false"> Cancel</v-btn>
           <v-spacer></v-spacer>
-          <v-btn :messageId="messageId" @click.prevent="getReply">Reply</v-btn>
+          <v-btn
+            :messageId="messageId"
+            :replierName="replierName.displayName"
+            @click.prevent="getReply"
+            >Reply</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -57,11 +62,18 @@ export default {
     };
   },
 
+  computed: {
+    replierName() {
+      return this.$store.getters.user;
+    }
+  },
+
   methods: {
     getReply() {
       this.$store.dispatch("replyToMessage", {
         reply: this.reply,
-        messageId: this.messageId
+        messageId: this.messageId,
+        replierName: this.replierName.displayName
       });
 
       this.closeDialog();
