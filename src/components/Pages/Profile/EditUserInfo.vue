@@ -16,14 +16,34 @@
           <v-form class="form">
             <v-text-field
               label="Username"
-              :value="displayName"
+              :placeholder="displayName"
+              v-model="displayNameForEdit"
               outlined
             ></v-text-field>
-            <v-text-field label="email" :value="email" outlined></v-text-field>
+            <v-text-field
+              label="email"
+              :placeholder="email"
+              v-model="emailForEdit"
+              outlined
+            ></v-text-field>
 
-            <v-textarea outlined label="Bio"></v-textarea>
+            <v-textarea
+              label="Bio"
+              v-model="bioForEdit"
+              :placeholder="bioForEdit"
+              outlined
+            ></v-textarea>
           </v-form>
         </v-card-text>
+
+        <v-layout row v-if="error">
+          <v-flex xs12 sm12 md12 lg12 xl12>
+            <app-alert
+              @dismissed="onDismissed"
+              :text="error.message || error"
+            ></app-alert>
+          </v-flex>
+        </v-layout>
 
         <v-divider></v-divider>
 
@@ -32,7 +52,9 @@
 
           <v-spacer></v-spacer>
 
-          <v-btn :loading="loading" :disabled="loading">SUBMIT</v-btn>
+          <v-btn :loading="loading" :disabled="loading" @click="updateUserInfo"
+            >SUBMIT</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -57,7 +79,10 @@ export default {
 
   data() {
     return {
-      dialog: false
+      dialog: false,
+      displayNameForEdit: this.displayName,
+      emailForEdit: this.email,
+      bioForEdit: String(this.bio || "Bio")
     };
   },
 
@@ -66,6 +91,30 @@ export default {
   computed: {
     loading() {
       return this.$store.getters.loading;
+    },
+
+    error() {
+      return this.$store.getters.error;
+    },
+
+    bio() {
+      if (this.bio) {
+        return this.bio;
+      } else {
+        return null;
+      }
+    }
+  },
+
+  methods: {
+    updateUserInfo() {
+      this.$store.dispatch("editUserProfile", {
+        displayName: this.displayNameForEdit,
+        email: this.emailForEdit,
+        bio: this.bioForEdit
+      });
+
+      this.dialog = false;
     }
   }
 };

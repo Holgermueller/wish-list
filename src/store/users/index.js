@@ -13,6 +13,18 @@ export default {
 
     updateUsername(state, payload) {
       state.user = payload;
+    },
+
+    updateUserInfo(state, payload) {
+      if (payload.displayName) {
+        state.displayName = payload.displayName;
+      }
+      if (payload.email) {
+        state.email = payload.email;
+      }
+      if (payload.bio) {
+        state.bio = payload.bio;
+      }
     }
   },
 
@@ -111,6 +123,26 @@ export default {
       //     commit("setLoading", false);
       //     commit("setError", err);
       //   });
+    },
+
+    editUserProfile({ commit }, payload) {
+      commit("setLoading", true);
+
+      db.collection("users")
+        .doc(payload.displayName)
+        .update({
+          displayName: payload.displayName,
+          email: payload.email,
+          bio: payload.bio
+        })
+        .then(() => {
+          commit("updateUserInfo");
+          commit("setLoading", false);
+        })
+        .catch(err => {
+          commit("setLoading", true);
+          commit("setError", err);
+        });
     },
 
     deleteUser({ commit }) {

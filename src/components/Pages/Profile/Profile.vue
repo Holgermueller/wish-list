@@ -4,9 +4,15 @@
       <v-card-title> Hello, {{ userInfoToDisplay.displayName }}</v-card-title>
 
       <v-card-text>
-        {{ userInfoToDisplay.displayName }}
+        <div>
+          {{ userInfoToDisplay.displayName }}
+        </div>
 
-        {{ userInfoToDisplay.email }}
+        <div>
+          {{ userInfoToDisplay.email }}
+        </div>
+
+        <div>Bio will appear here</div>
       </v-card-text>
 
       <v-card-actions>
@@ -19,7 +25,9 @@
       </v-card-actions>
     </v-card>
 
-    <v-card>List of user posts will appear here.</v-card>
+    <section class="message-display">
+      <v-card>List of user posts will appear here.</v-card>
+    </section>
   </div>
 </template>
 
@@ -47,5 +55,10 @@ export default {
 .profile-actions {
   width: 45%;
   margin: 10% auto;
+}
+
+.message-display {
+  width: 75%;
+  margin: 7% auto;
 }
 </style>
