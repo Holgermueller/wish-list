@@ -19,6 +19,7 @@
         <EditUserInfo
           :displayName="userInfoToDisplay.displayName"
           :email="userInfoToDisplay.email"
+          :userId="userInfoToDisplay.userId"
         />
 
         <DeleteAccnt />

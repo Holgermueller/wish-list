@@ -21,7 +21,7 @@
               outlined
             ></v-text-field>
             <v-text-field
-              label="email"
+              label="Email"
               :placeholder="email"
               v-model="emailForEdit"
               outlined
@@ -29,21 +29,12 @@
 
             <v-textarea
               label="Bio"
-              v-model="bioForEdit"
               :placeholder="bioForEdit"
+              v-model="bioForEdit"
               outlined
             ></v-textarea>
           </v-form>
         </v-card-text>
-
-        <v-layout row v-if="error">
-          <v-flex xs12 sm12 md12 lg12 xl12>
-            <app-alert
-              @dismissed="onDismissed"
-              :text="error.message || error"
-            ></app-alert>
-          </v-flex>
-        </v-layout>
 
         <v-divider></v-divider>
 
@@ -72,6 +63,11 @@ export default {
     },
 
     email: {
+      type: String,
+      required: true
+    },
+
+    userId: {
       type: String,
       required: true
     }
@@ -115,6 +111,10 @@ export default {
       });
 
       this.dialog = false;
+    },
+
+    onDismissed() {
+      this.$store.dispatch("clearError");
     }
   }
 };

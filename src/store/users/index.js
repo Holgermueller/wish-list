@@ -54,7 +54,7 @@ export default {
           const newUser = {
             displayName: payload.displayName,
             email: user.email,
-            id: user.id
+            userId: user.id
           };
 
           commit("setUser", newUser);
@@ -63,7 +63,7 @@ export default {
             .add({
               displayName: payload.displayName,
               email: user.email,
-              id: user.uid
+              userId: user.uid
             })
             .then(() => {})
             .catch(err => {
@@ -103,7 +103,7 @@ export default {
     autoSignIn({ commit }, payload) {
       commit("setLoading", false);
       commit("setUser", {
-        id: payload.id,
+        userId: payload.id,
         email: payload.email,
         displayName: payload.displayName
       });
@@ -130,6 +130,7 @@ export default {
 
       db.collection("users")
         .doc(payload.displayName)
+        .where()
         .update({
           displayName: payload.displayName,
           email: payload.email,
