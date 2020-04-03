@@ -65,11 +65,6 @@ export default {
     email: {
       type: String,
       required: true
-    },
-
-    userId: {
-      type: String,
-      required: true
     }
   },
 
@@ -91,14 +86,6 @@ export default {
 
     error() {
       return this.$store.getters.error;
-    },
-
-    bio() {
-      if (this.bio) {
-        return this.bio;
-      } else {
-        return null;
-      }
     }
   },
 

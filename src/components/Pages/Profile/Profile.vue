@@ -27,7 +27,19 @@
     </v-card>
 
     <section class="message-display">
-      <v-card>List of user posts will appear here.</v-card>
+      <v-card>
+        <v-card-title>
+          Your messages:
+        </v-card-title>
+        <v-card-text
+          v-for="(message, index) in getMessagesForSingleUser"
+          :key="index"
+        >
+          {{ message.displayNameOfPoster }}
+
+          {{ message.message }}
+        </v-card-text>
+      </v-card>
     </section>
   </div>
 </template>
@@ -44,9 +56,17 @@ export default {
     EditUserInfo
   },
 
+  created() {
+    return this.$store.dispatch("getMessagesForSingleUser");
+  },
+
   computed: {
     userInfoToDisplay() {
       return this.$store.getters.user;
+    },
+
+    getMessagesForSingleUser() {
+      return this.$store.getters.messages;
     }
   }
 };
