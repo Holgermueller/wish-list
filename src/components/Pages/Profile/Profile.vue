@@ -26,6 +26,18 @@
       </v-card-actions>
     </v-card>
 
+    <v-layout class="progress">
+      <v-flex class="tet-xs-center">
+        <v-progress-circular
+          indeterminate
+          class="primary--text"
+          :width="7"
+          :size="70"
+          v-if="loading"
+        ></v-progress-circular>
+      </v-flex>
+    </v-layout>
+
     <section class="message-display">
       <v-card>
         <v-card-title>
@@ -67,6 +79,13 @@ export default {
 
     getMessagesForSingleUser() {
       return this.$store.getters.messages;
+    },
+
+    loading() {
+      return this.$store.getters.loading;
+    },
+    error() {
+      return this.$store.getters.error;
     }
   }
 };

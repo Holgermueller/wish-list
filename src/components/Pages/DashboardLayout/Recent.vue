@@ -6,6 +6,18 @@
       </v-card-title>
     </v-card>
 
+    <v-layout class="progress">
+      <v-flex class="tet-xs-center">
+        <v-progress-circular
+          indeterminate
+          class="primary--text"
+          :width="7"
+          :size="70"
+          v-if="loading"
+        ></v-progress-circular>
+      </v-flex>
+    </v-layout>
+
     <RecentCard
       v-for="(message, index) in getMessages"
       :key="index"

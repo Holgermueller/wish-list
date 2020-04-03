@@ -12,6 +12,10 @@
 
         <v-divider></v-divider>
 
+        <v-layout row v-if="error">
+          <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
+        </v-layout>
+
         <v-card-text>
           <v-form class="form">
             <v-text-field
