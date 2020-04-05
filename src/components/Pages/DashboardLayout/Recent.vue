@@ -25,6 +25,7 @@
       :messageId="message.messageId"
       :dateAdded="message.dateAdded.toDate().toDateString()"
       :displayNameOfPoster="message.displayNameOfPoster"
+      :likes="message.likes"
     />
   </div>
 </template>
@@ -36,7 +37,7 @@ export default {
   name: "Recents",
 
   components: {
-    RecentCard
+    RecentCard,
   },
 
   created() {
@@ -50,8 +51,8 @@ export default {
 
     getMessages() {
       return this.$store.getters.messages;
-    }
-  }
+    },
+  },
 };
 </script>
 

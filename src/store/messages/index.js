@@ -2,7 +2,7 @@ import firebase from "../../firebase/firebaseInit";
 
 export default {
   state: {
-    messages: []
+    messages: [],
   },
 
   mutations: {
@@ -12,7 +12,16 @@ export default {
       } else {
         state.messages = [];
       }
-    }
+    },
+
+    updateLikes(state, payload) {
+      const thisMessagesLikes = state.messages.find((thisMessage) => {
+        return thisMessage.id === payload.messageId;
+      });
+      if (payload.likes) {
+        thisMessagesLikes.likes = payload.likes++;
+      }
+    },
   },
 
   actions: {
@@ -23,21 +32,22 @@ export default {
         .collection("chatMessages")
         .orderBy("dateAdded", "desc")
         .onSnapshot(
-          querySnapshot => {
+          (querySnapshot) => {
             let messagesFromDb = [];
-            querySnapshot.forEach(doc => {
+            querySnapshot.forEach((doc) => {
               let messagesData = {
                 messageId: doc.id,
                 message: doc.data().message,
                 dateAdded: doc.data().dateAdded,
-                displayNameOfPoster: doc.data().displayName
+                displayNameOfPoster: doc.data().displayName,
+                likes: doc.data().likes,
               };
               messagesFromDb.push(messagesData);
             });
             commit("setMessages", messagesFromDb);
             commit("setLoading", false);
           },
-          err => {
+          (err) => {
             commit("setLoading", true);
             commit("setError", err);
           }
@@ -51,21 +61,22 @@ export default {
         .collection("chatMessages")
         .where("displayName", "==", getters.user.displayName)
         .onSnapshot(
-          querySnapshot => {
+          (querySnapshot) => {
             let thisUsersMessages = [];
-            querySnapshot.forEach(doc => {
+            querySnapshot.forEach((doc) => {
               let usersMessages = {
                 messageId: doc.id,
                 message: doc.data().message,
                 dateAdded: doc.data().dateAdded,
-                displayNameOfPoster: doc.data().displayName
+                displayNameOfPoster: doc.data().displayName,
+                likes: doc.data().likes,
               };
               thisUsersMessages.push(usersMessages);
             });
             commit("setMessages", thisUsersMessages);
             commit("setLoading", false);
           },
-          err => {
+          (err) => {
             commit("setLoading", true);
             commit("setError", err);
           }
@@ -80,21 +91,37 @@ export default {
         .add({
           message: payload.message,
           dateAdded: new Date(),
-          displayName: payload.displayName
+          displayName: payload.displayName,
+          likes: 0,
         })
         .then(() => {
           commit("setLoading", false);
         })
-        .catch(err => {
+        .catch((err) => {
           commit("setLoading", false);
           commit("setError", err);
         });
-    }
+    },
+
+    incrementLikes({ commit }, payload) {
+      firebase
+        .collection("chatMessages")
+        .doc(payload.messageId)
+        .update({
+          likes: payload.incrementedLikes,
+        })
+        .then(() => {
+          commit("updateLikes");
+        })
+        .catch((err) => {
+          commit("setError", err);
+        });
+    },
   },
 
   getters: {
     messages(state) {
       return state.messages;
-    }
-  }
+    },
+  },
 };

@@ -32,8 +32,8 @@
               params: {
                 message: message,
                 messageId: messageId,
-                dateMessageAdded: dateAdded
-              }
+                dateMessageAdded: dateAdded,
+              },
             }"
           >
             <v-btn color="primary">
@@ -42,7 +42,13 @@
           </router-link>
 
           <v-spacer></v-spacer>
-          <v-btn color="primary">
+
+          <v-btn
+            color="primary"
+            :messageId="messageId"
+            :incrementedLikes="incrementedLikes"
+            @click.prevent="incrementLikes"
+            >{{ incrementedLikes }}
             <span class="mdi mdi-heart-pulse"></span>
             Like</v-btn
           >
@@ -59,29 +65,52 @@ export default {
   name: "RecentCard",
 
   components: {
-    ReplyDialog
+    ReplyDialog,
   },
 
   props: {
     message: {
       type: String,
-      required: true
+      required: true,
     },
 
     messageId: {
       type: String,
-      required: true
+      required: true,
     },
 
     dateAdded: {
       type: String,
-      required: true
+      required: true,
     },
 
     displayNameOfPoster: {
-      type: String
-    }
-  }
+      type: String,
+    },
+
+    likes: {
+      type: Number,
+    },
+  },
+
+  data() {
+    return {
+      incrementedLikes: this.likes,
+    };
+  },
+
+  methods: {
+    incrementLikes() {
+      return this.incrementedLikes++;
+    },
+
+    sendLikesToDb() {
+      return this.$store.dispatch("incrementLikes", {
+        messageId: this.messageId,
+        likes: this.incrementedLikes,
+      });
+    },
+  },
 };
 </script>
 
