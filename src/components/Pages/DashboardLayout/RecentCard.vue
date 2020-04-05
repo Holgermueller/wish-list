@@ -101,15 +101,14 @@ export default {
 
   methods: {
     incrementLikes() {
-      return this.incrementedLikes++;
-    },
-
-    sendLikesToDb() {
-      return this.$store.dispatch("incrementLikes", {
+      this.incrementedLikes++;
+      this.$store.dispatch("incrementLikes", {
         messageId: this.messageId,
-        likes: this.incrementedLikes,
+        incrementedLikes: this.incrementedLikes,
       });
     },
+
+    sendLikesToDb() {},
   },
 };
 </script>
