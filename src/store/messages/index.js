@@ -60,6 +60,7 @@ export default {
       firebase
         .collection("chatMessages")
         .where("displayName", "==", getters.user.displayName)
+        .orderBy("dateAdded", "desc")
         .onSnapshot(
           (querySnapshot) => {
             let thisUsersMessages = [];

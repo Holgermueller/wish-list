@@ -2,7 +2,7 @@ import firebase from "../../firebase/firebaseInit";
 
 export default {
   state: {
-    replies: []
+    replies: [],
   },
 
   mutations: {
@@ -12,7 +12,16 @@ export default {
       } else {
         state.replies = [];
       }
-    }
+    },
+
+    addLikesToReplies(state, payload) {
+      const thisReplysLikes = state.message.find((thisReply) => {
+        return thisReply.id === payload.replyId;
+      });
+      if (payload.likes) {
+        thisReplysLikes.likes = payload.likes++;
+      }
+    },
   },
 
   actions: {
@@ -24,22 +33,23 @@ export default {
         .where("messageId", "==", payload.messageId)
         .orderBy("dateAdded")
         .onSnapshot(
-          querySnapshot => {
+          (querySnapshot) => {
             let repliesFromDb = [];
-            querySnapshot.forEach(doc => {
+            querySnapshot.forEach((doc) => {
               let replyData = {
-                replyID: doc.id,
+                replyId: doc.id,
                 replyForDOM: doc.data().reply,
                 messageId: doc.data().messageId,
                 dateAdded: doc.data().dateAdded,
-                replierName: doc.data().replierName
+                replierName: doc.data().replierName,
+                likes: doc.data().likes,
               };
               repliesFromDb.push(replyData);
             });
             commit("setReplies", repliesFromDb);
             commit("setLoading", false);
           },
-          err => {
+          (err) => {
             commit("setLoading", true);
             commit("setError", err);
           }
@@ -55,21 +65,35 @@ export default {
           reply: payload.reply,
           dateAdded: new Date(),
           messageId: payload.messageId,
-          replierName: payload.replierName
+          replierName: payload.replierName,
+          likes: 0,
         })
         .then(() => {
           commit("setLoading", false);
         })
-        .catch(err => {
+        .catch((err) => {
           commit("setLoading", false);
           commit("setError", err);
         });
-    }
+    },
+
+    incrementLikes({ commit }, payload) {
+      firebase
+        .collection("replies")
+        .doc(payload.replyId)
+        .update({ likes: payload.incrementLikes })
+        .then(() => {
+          commit("addLikesToReplies");
+        })
+        .catch((err) => {
+          commit("setError", err);
+        });
+    },
   },
 
   getters: {
     replies(state) {
       return state.replies;
-    }
-  }
+    },
+  },
 };

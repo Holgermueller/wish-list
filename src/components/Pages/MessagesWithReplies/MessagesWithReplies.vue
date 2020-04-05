@@ -11,17 +11,29 @@
       </v-layout>
     </div>
 
+    <div>
+      <v-card class="page-header">
+        <v-card-title>
+          {{ displayNameOfPoster }}
+        </v-card-title>
+
+        <v-card-subtitle> </v-card-subtitle>
+
+        <v-card-text>
+          {{ message }}
+
+          <v-spacer></v-spacer>
+
+          {{ dateMessageAdded }}
+        </v-card-text>
+      </v-card>
+    </div>
+
     <v-card class="messages-with-replies">
-      <v-card-title>
-        {{ message }}
-
-        <v-spacer></v-spacer>
-
-        {{ dateMessageAdded }}
-      </v-card-title>
+      <v-card-title>Replies:</v-card-title>
       <v-card-text
         v-for="(singleReply, index) in repliesForThisMessage"
-        :key="singleReply.replyID"
+        :key="index"
         :index="index"
       >
         {{ singleReply.replierName }}
@@ -35,59 +47,52 @@
       <v-divider></v-divider>
 
       <v-card-actions>
-        <v-form ref="form">
-          <v-flex xs12 sm12 md12 lg12 xl12>
-            <v-text-field
-              outlined
-              type="text"
-              v-model="reply"
-              label="Reply..."
-              append-icon="mdi-close-circle"
-              @click:append="clearForm"
-              append-outer-icon="mdi-send"
-              @click:append-outer="postReply"
-              :loading="loading"
-              :disabled="loading"
-              :replierName="replierName.displayName"
-            >
-            </v-text-field>
-          </v-flex>
-        </v-form>
+        <v-btn>Like</v-btn>
       </v-card-actions>
     </v-card>
+
+    <ReplyForm
+      :replyId="singleReply.replyId"
+      :replierName="replierName.displayName"
+      :messageId="messageId"
+    />
   </div>
 </template>
 
 <script>
+import ReplyForm from "./ReplyForm";
+
 export default {
   name: "MessagesWithReplies",
+
+  components: {
+    ReplyForm,
+  },
 
   props: {
     message: {
       type: String,
-      required: true
+      required: true,
     },
 
     messageId: {
       type: String,
-      required: true
+      required: true,
     },
 
     dateMessageAdded: {
       type: String,
-      required: true
-    }
-  },
+      required: true,
+    },
 
-  data() {
-    return {
-      reply: ""
-    };
+    displayNameOfPoster: {
+      type: String,
+    },
   },
 
   created() {
     return this.$store.dispatch("getReplies", {
-      messageId: this.messageId
+      messageId: this.messageId,
     });
   },
 
@@ -106,29 +111,19 @@ export default {
 
     replierName() {
       return this.$store.getters.user;
-    }
-  },
-
-  methods: {
-    postReply() {
-      this.$store.dispatch("replyToMessage", {
-        reply: this.reply,
-        messageId: this.messageId,
-        replierName: this.replierName.displayName
-      });
-      this.clearForm();
     },
-
-    clearForm() {
-      this.$refs.form.reset();
-    }
-  }
+  },
 };
 </script>
 
 <style scoped>
+.page-header {
+  width: 75%;
+  margin: 7% auto 0;
+}
+
 .messages-with-replies {
   width: 85%;
-  margin: 15% auto;
+  margin: 7% auto;
 }
 </style>

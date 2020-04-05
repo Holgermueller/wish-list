@@ -33,6 +33,7 @@
                 message: message,
                 messageId: messageId,
                 dateMessageAdded: dateAdded,
+                displayNameOfPoster: displayNameOfPoster,
               },
             }"
           >
