@@ -11,62 +11,37 @@
       </v-layout>
     </div>
 
-    <div>
-      <v-card class="page-header">
-        <v-card-title>
-          {{ displayNameOfPoster }}
-        </v-card-title>
-
-        <v-card-subtitle> </v-card-subtitle>
-
-        <v-card-text>
-          {{ message }}
-
-          <v-spacer></v-spacer>
-
-          {{ dateMessageAdded }}
-        </v-card-text>
-      </v-card>
-    </div>
-
-    <v-card class="messages-with-replies">
-      <v-card-title>Replies:</v-card-title>
-      <v-card-text
-        v-for="(singleReply, index) in repliesForThisMessage"
-        :key="index"
-        :index="index"
-      >
-        {{ singleReply.replierName }}
-        {{ singleReply.replyForDOM }}
-
-        <v-spacer></v-spacer>
-
-        {{ singleReply.dateAdded.toDate().toDateString() }}
-      </v-card-text>
-
-      <v-divider></v-divider>
-
-      <v-card-actions>
-        <v-btn>Like</v-btn>
-      </v-card-actions>
-    </v-card>
-
-    <ReplyForm
-      :replyId="singleReply.replyId"
-      :replierName="replierName.displayName"
-      :messageId="messageId"
+    <PageHeader
+      :message="message"
+      :displayNameOfPoster="displayNameOfPoster"
+      :dateMessageAdded="dateMessageAdded"
     />
+
+    <ReplyCard
+      v-for="(singleReply, index) in repliesForThisMessage"
+      :key="index"
+      :index="index"
+      :replierName="singleReply.replierName"
+      :replyForDOM="singleReply.replyForDOM"
+      :replyDate="singleReply.dateAdded.toDate().toDateString()"
+    />
+
+    <ReplyForm :replierName="replierName.displayName" :messageId="messageId" />
   </div>
 </template>
 
 <script>
+import PageHeader from "./PageHeader";
 import ReplyForm from "./ReplyForm";
+import ReplyCard from "./ReplyCard";
 
 export default {
   name: "MessagesWithReplies",
 
   components: {
     ReplyForm,
+    ReplyCard,
+    PageHeader,
   },
 
   props: {
@@ -116,14 +91,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.page-header {
-  width: 75%;
-  margin: 7% auto 0;
-}
-
-.messages-with-replies {
-  width: 85%;
-  margin: 7% auto;
-}
-</style>
+<style scoped></style>

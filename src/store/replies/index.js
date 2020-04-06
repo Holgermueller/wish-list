@@ -31,7 +31,7 @@ export default {
       firebase
         .collection("replies")
         .where("messageId", "==", payload.messageId)
-        .orderBy("dateAdded")
+        .orderBy("dateAdded", "desc")
         .onSnapshot(
           (querySnapshot) => {
             let repliesFromDb = [];
