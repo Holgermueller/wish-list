@@ -19,7 +19,7 @@ export default {
         return thisMessage.id === payload.messageId;
       });
       if (payload.likes) {
-        thisMessagesLikes.likes = payload.likes++;
+        thisMessagesLikes.likes = payload.likes;
       }
     },
   },

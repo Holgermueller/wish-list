@@ -48,7 +48,7 @@
             color="primary"
             :messageId="messageId"
             :incrementedLikes="incrementedLikes"
-            @click.prevent="incrementLikes"
+            @click="incrementLikes"
             >{{ incrementedLikes }}
             <span class="mdi mdi-heart-pulse"></span>
             Like</v-btn
@@ -108,8 +108,6 @@ export default {
         incrementedLikes: this.incrementedLikes,
       });
     },
-
-    sendLikesToDb() {},
   },
 };
 </script>

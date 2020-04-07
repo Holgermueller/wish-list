@@ -13,7 +13,13 @@
       <v-divider></v-divider>
 
       <v-card-actions>
-        <v-btn>Like</v-btn>
+        <v-btn
+          :replyId="replyId"
+          :incrementedLikes="incrementedLikes"
+          @click.prevent="incrementLikes"
+        >
+          {{ incrementedLikes }} Like</v-btn
+        >
       </v-card-actions>
     </v-card>
   </div>
@@ -35,9 +41,31 @@ export default {
     replyDate: {
       type: String,
     },
+
+    replyId: {
+      type: String,
+    },
+
+    likes: {
+      type: Number,
+    },
   },
 
-  methods: {},
+  data() {
+    return {
+      incrementedLikes: this.likes,
+    };
+  },
+
+  methods: {
+    incrementLikes() {
+      this.incrementedLikes++;
+      this.$store.dispatch("incrementLikes", {
+        replyId: this.replyId,
+        incrementedLikes: this.incrementedLikes,
+      });
+    },
+  },
 };
 </script>
 

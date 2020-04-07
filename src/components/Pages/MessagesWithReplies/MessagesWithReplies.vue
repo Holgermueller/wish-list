@@ -24,6 +24,8 @@
       :replierName="singleReply.replierName"
       :replyForDOM="singleReply.replyForDOM"
       :replyDate="singleReply.dateAdded.toDate().toDateString()"
+      :replyId="singleReply.replyId"
+      :likes="singleReply.likes"
     />
 
     <ReplyForm :replierName="replierName.displayName" :messageId="messageId" />

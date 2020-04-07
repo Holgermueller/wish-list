@@ -19,7 +19,7 @@ export default {
         return thisReply.id === payload.replyId;
       });
       if (payload.likes) {
-        thisReplysLikes.likes = payload.likes++;
+        thisReplysLikes.likes = payload.likes;
       }
     },
   },
@@ -81,7 +81,9 @@ export default {
       firebase
         .collection("replies")
         .doc(payload.replyId)
-        .update({ likes: payload.incrementLikes })
+        .update({
+          likes: payload.incrementLikes,
+        })
         .then(() => {
           commit("addLikesToReplies");
         })
