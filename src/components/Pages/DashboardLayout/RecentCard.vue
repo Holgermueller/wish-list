@@ -45,6 +45,7 @@
           <v-spacer></v-spacer>
 
           <v-btn
+            v-if="clicked"
             color="primary"
             :messageId="messageId"
             :incrementedLikes="incrementedLikes"
@@ -52,6 +53,15 @@
             >{{ incrementedLikes }}
             <span class="mdi mdi-heart-pulse"></span>
             Like</v-btn
+          >
+          <v-btn
+            v-else
+            :messageId="messageId"
+            :incrementedLikes="incrementedLikes"
+            @click="decrementLikes"
+          >
+            <span class="mdi mdi-heart-off"></span>
+            {{ incrementedLikes }} Dislike</v-btn
           >
         </v-card-actions>
       </v-card>
@@ -103,7 +113,15 @@ export default {
   methods: {
     incrementLikes() {
       this.incrementedLikes++;
-      this.$store.dispatch("incrementLikes", {
+      this.$store.dispatch("updateLikes", {
+        messageId: this.messageId,
+        incrementedLikes: this.incrementedLikes,
+      });
+    },
+
+    decrementLikes() {
+      this.incrementedLikes--;
+      this.$store.dispatch("updateLikes", {
         messageId: this.messageId,
         incrementedLikes: this.incrementedLikes,
       });

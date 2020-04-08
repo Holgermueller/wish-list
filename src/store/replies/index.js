@@ -77,7 +77,7 @@ export default {
         });
     },
 
-    incrementLikes({ commit }, payload) {
+    updateLikes({ commit }, payload) {
       firebase
         .collection("replies")
         .doc(payload.replyId)

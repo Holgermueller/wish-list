@@ -104,7 +104,7 @@ export default {
         });
     },
 
-    incrementLikes({ commit }, payload) {
+    updateLikes({ commit }, payload) {
       firebase
         .collection("chatMessages")
         .doc(payload.messageId)

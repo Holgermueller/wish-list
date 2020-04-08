@@ -14,11 +14,21 @@
 
       <v-card-actions>
         <v-btn
+          v-if="clicked"
           :replyId="replyId"
           :incrementedLikes="incrementedLikes"
           @click.prevent="incrementLikes"
         >
           {{ incrementedLikes }} Like</v-btn
+        >
+        <v-btn
+          v-else
+          :replyId="replyId"
+          :incrementedLikes="incrementedLikes"
+          @click="decrementLikes"
+        >
+          <span class="mdi mdi-heart-off"></span>
+          {{ incrementedLikes }} Dislike</v-btn
         >
       </v-card-actions>
     </v-card>
@@ -60,7 +70,15 @@ export default {
   methods: {
     incrementLikes() {
       this.incrementedLikes++;
-      this.$store.dispatch("incrementLikes", {
+      this.$store.dispatch("updateLikes", {
+        replyId: this.replyId,
+        incrementedLikes: this.incrementedLikes,
+      });
+    },
+
+    decrementLikes() {
+      this.incrementedLikes--;
+      this.$store.dispatch("updateLikes", {
         replyId: this.replyId,
         incrementedLikes: this.incrementedLikes,
       });
