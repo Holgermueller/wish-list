@@ -45,17 +45,15 @@
           <v-spacer></v-spacer>
 
           <v-btn
-            v-if="clicked"
             color="primary"
             :messageId="messageId"
             :incrementedLikes="incrementedLikes"
-            @click="incrementLikes"
+            @click="incrementLikes()"
             >{{ incrementedLikes }}
             <span class="mdi mdi-heart-pulse"></span>
             Like</v-btn
           >
           <v-btn
-            v-else
             :messageId="messageId"
             :incrementedLikes="incrementedLikes"
             @click="decrementLikes"
@@ -107,6 +105,7 @@ export default {
   data() {
     return {
       incrementedLikes: this.likes,
+      isHidden: false,
     };
   },
 
