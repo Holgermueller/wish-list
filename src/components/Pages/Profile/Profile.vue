@@ -43,6 +43,13 @@
         <v-card-title>
           Your messages:
         </v-card-title>
+
+        <v-card-text>
+          <UserPosts />
+        </v-card-text>
+      </v-card>
+
+      <!-- <v-card>
         <v-card-text
           v-for="(message, index) in getMessagesForSingleUser"
           :key="index"
@@ -51,7 +58,13 @@
 
           {{ message.message }}
         </v-card-text>
-      </v-card>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-btn>Delete Post</v-btn>
+        </v-card-actions>
+      </v-card> -->
     </section>
   </div>
 </template>
@@ -59,13 +72,15 @@
 <script>
 import DeleteAccnt from "./DeleteAccount";
 import EditUserInfo from "./EditUserInfo";
+import UserPosts from "./UserPosts";
 
 export default {
   name: "Profile",
 
   components: {
     DeleteAccnt,
-    EditUserInfo
+    EditUserInfo,
+    UserPosts,
   },
 
   created() {
@@ -86,8 +101,8 @@ export default {
     },
     error() {
       return this.$store.getters.error;
-    }
-  }
+    },
+  },
 };
 </script>
 
