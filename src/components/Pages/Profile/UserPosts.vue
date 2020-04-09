@@ -8,13 +8,17 @@
 
         <v-expansion-panel-content>
           <section class="post-into">
-            {{ displayNameOfPoster }}
+            <h3>{{ displayNameOfPoster }}</h3>
 
-            {{ dateAdded }}
+            <h5>Posted: {{ dateAdded }}</h5>
           </section>
 
+          <v-divider></v-divider>
+
           <div class="post-actions">
-            <v-btn @click="deletePost">Delete Post</v-btn>
+            <v-btn :messageId="messageId" @click="deletePost"
+              >Delete Post</v-btn
+            >
           </div>
         </v-expansion-panel-content>
       </v-expansion-panel>
@@ -36,6 +40,10 @@ export default {
     },
 
     dateAdded: {
+      type: String,
+    },
+
+    messageId: {
       type: String,
     },
   },

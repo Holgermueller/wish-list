@@ -51,6 +51,7 @@
             :message="message.message"
             :displayNameOfPoster="message.displayNameOfPoster"
             :dateAdded="message.dateAdded.toDate().toDateString()"
+            :messageId="message.messageId"
           />
         </v-card-text>
       </v-card>
