@@ -45,18 +45,23 @@
         </v-card-title>
 
         <v-card-text>
-          <UserPosts />
+          <UserPosts
+            v-for="(message, index) in getMessagesForSingleUser"
+            :key="index"
+            :message="message.message"
+            :displayNameOfPoster="message.displayNameOfPoster"
+            :dateAdded="message.dateAdded.toDate().toDateString()"
+          />
         </v-card-text>
       </v-card>
 
       <!-- <v-card>
         <v-card-text
-          v-for="(message, index) in getMessagesForSingleUser"
-          :key="index"
+          
         >
-          {{ message.displayNameOfPoster }}
+          {{ }}
 
-          {{ message.message }}
+          {{  }}
         </v-card-text>
 
         <v-divider></v-divider>
