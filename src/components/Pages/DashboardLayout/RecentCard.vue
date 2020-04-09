@@ -45,6 +45,8 @@
           <v-spacer></v-spacer>
 
           <v-btn
+            v-if="!isHidden"
+            v-on:click="isHidden = true"
             color="primary"
             :messageId="messageId"
             :incrementedLikes="incrementedLikes"
@@ -53,7 +55,10 @@
             <span class="mdi mdi-heart-pulse"></span>
             Like</v-btn
           >
+
           <v-btn
+            v-else
+            v-on:click="isHidden = !isHidden"
             :messageId="messageId"
             :incrementedLikes="incrementedLikes"
             @click="decrementLikes"

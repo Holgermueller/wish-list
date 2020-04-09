@@ -14,15 +14,18 @@
 
       <v-card-actions>
         <v-btn
-          v-if="clicked"
+          v-if="!isHidden"
+          v-on:click="isHidden = true"
           :replyId="replyId"
           :incrementedLikes="incrementedLikes"
           @click.prevent="incrementLikes"
         >
           {{ incrementedLikes }} Like</v-btn
         >
+
         <v-btn
           v-else
+          v-on:click="isHidden = !isHidden"
           :replyId="replyId"
           :incrementedLikes="incrementedLikes"
           @click="decrementLikes"
@@ -64,6 +67,7 @@ export default {
   data() {
     return {
       incrementedLikes: this.likes,
+      isHidden: false,
     };
   },
 
