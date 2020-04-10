@@ -55,29 +55,13 @@
           />
         </v-card-text>
       </v-card>
-
-      <!-- <v-card>
-        <v-card-text
-          
-        >
-          {{ }}
-
-          {{  }}
-        </v-card-text>
-
-        <v-divider></v-divider>
-
-        <v-card-actions>
-          <v-btn>Delete Post</v-btn>
-        </v-card-actions>
-      </v-card> -->
     </section>
   </div>
 </template>
 
 <script>
-import DeleteAccnt from "./DeleteAccount";
-import EditUserInfo from "./EditUserInfo";
+import DeleteAccnt from "./ProfileActions/DeleteAccount";
+import EditUserInfo from "./ProfileActions/EditUserInfo";
 import UserPosts from "./UserPosts";
 
 export default {

@@ -11,14 +11,18 @@
           >Are you sure you want to delete this post?</v-card-subtitle
         >
         <v-card-text>
-          <p>Deleting this post will also delete the corresponding replies.</p>
-          <p>This action cannot be reversed.</p>
+          <h3 class="message-to-delete">{{ message }}</h3>
+          <br />
+          <h3 class="warning">
+            Deleting this post will also delete the corresponding replies.
+          </h3>
+          <h3 class="warning">This action cannot be reversed.</h3>
         </v-card-text>
         <v-divider></v-divider>
         <v-card-actions>
           <v-btn color="red" @click="dialog = false">Cancel</v-btn>
           <v-spacer></v-spacer>
-          <v-btn color="blue">Delete</v-btn>
+          <v-btn :messageId="messageId" color="blue">Delete</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -29,7 +33,15 @@
 export default {
   name: "DeletePostDialog",
 
-  props: {},
+  props: {
+    message: {
+      type: String,
+    },
+
+    messageId: {
+      type: String,
+    },
+  },
 
   data() {
     return {
@@ -42,3 +54,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.message-to-delete {
+  text-align: center;
+}
+
+.warning {
+  color: red;
+}
+</style>

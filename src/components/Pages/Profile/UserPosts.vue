@@ -1,6 +1,6 @@
 <template>
   <div class="UserPosts">
-    <v-expansion-panels inset focusable>
+    <v-expansion-panels popout focusable>
       <v-expansion-panel>
         <v-expansion-panel-header>
           {{ message }}
@@ -20,9 +20,9 @@
             <v-divider></v-divider>
 
             <v-card-actions class="post-actions">
-              <DeletePost />
+              <DeletePost :message="message" :messageId="messageId" />
               <v-spacer></v-spacer>
-              <EditPost />
+              <EditPost :message="message" :messageId="messageId" />
             </v-card-actions>
           </v-card>
         </v-expansion-panel-content>
@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import DeletePost from "./DeletePostDialog";
-import EditPost from "./EditPost";
+import DeletePost from "./UserPostActions/DeletePostDialog";
+import EditPost from "./UserPostActions/EditPost";
 
 export default {
   name: "UserPosts",
@@ -70,3 +70,5 @@ export default {
   },
 };
 </script>
+
+<style scoped></style>
