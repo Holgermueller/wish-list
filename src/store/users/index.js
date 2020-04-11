@@ -63,7 +63,8 @@ export default {
             .add({
               displayName: payload.displayName,
               email: user.email,
-              userId: user.uid
+              userId: user.uid,
+              bio: "Say something about yourself..."
             })
             .then(() => {})
             .catch(err => {
@@ -125,12 +126,17 @@ export default {
       //   });
     },
 
+    getUserProfileFromDB({ commit }, payload) {
+      commit("setLoading", true);
+
+      db.collection("users").doc(payload.userId);
+    },
+
     editUserProfile({ commit }, payload) {
       commit("setLoading", true);
 
       db.collection("users")
-        .doc(payload.displayName)
-        .where()
+        .doc(payload.userId)
         .update({
           displayName: payload.displayName,
           email: payload.email,

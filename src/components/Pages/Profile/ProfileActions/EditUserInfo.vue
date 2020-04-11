@@ -47,7 +47,11 @@
 
           <v-spacer></v-spacer>
 
-          <v-btn :loading="loading" :disabled="loading" @click="updateUserInfo"
+          <v-btn
+            :loading="loading"
+            :userId="userId"
+            :disabled="loading"
+            @click="updateUserInfo"
             >SUBMIT</v-btn
           >
         </v-card-actions>
@@ -69,6 +73,10 @@ export default {
     email: {
       type: String,
       required: true
+    },
+
+    userId: {
+      type: String
     }
   },
 

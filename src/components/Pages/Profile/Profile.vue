@@ -6,6 +6,8 @@
       <v-card-text>
         <div>
           {{ userInfoToDisplay.displayName }}
+
+          {{ userInfoToDisplay.id }}
         </div>
 
         <div>
