@@ -52,6 +52,8 @@
             :displayNameOfPoster="message.displayNameOfPoster"
             :dateAdded="message.dateAdded.toDate().toDateString()"
             :messageId="message.messageId"
+            :messages="getMessagesForSingleUser"
+            :index="index"
           />
         </v-card-text>
       </v-card>
@@ -70,7 +72,7 @@ export default {
   components: {
     DeleteAccnt,
     EditUserInfo,
-    UserPosts,
+    UserPosts
   },
 
   created() {
@@ -91,8 +93,8 @@ export default {
     },
     error() {
       return this.$store.getters.error;
-    },
-  },
+    }
+  }
 };
 </script>
 

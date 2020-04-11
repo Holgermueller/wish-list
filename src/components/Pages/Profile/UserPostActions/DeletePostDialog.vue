@@ -22,7 +22,13 @@
         <v-card-actions>
           <v-btn color="red" @click="dialog = false">Cancel</v-btn>
           <v-spacer></v-spacer>
-          <v-btn :messageId="messageId" color="blue">Delete</v-btn>
+          <v-btn
+            :index="index"
+            :messageId="messageId"
+            color="blue"
+            @click.prevent="deleteMessage(index)"
+            >Delete</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -35,23 +41,39 @@ export default {
 
   props: {
     message: {
-      type: String,
+      type: String
     },
 
     messageId: {
-      type: String,
+      type: String
     },
+
+    messages: {
+      type: Array
+    },
+
+    index: {
+      type: Number
+    }
   },
 
   data() {
     return {
-      dialog: false,
+      dialog: false
     };
   },
 
   methods: {
-    deleteThisPost() {},
-  },
+    deleteMessage(index) {
+      this.$store.dispatch("deleteMessage", {
+        messageId: this.messageId
+      });
+
+      this.messages.splice(index, 1);
+
+      this.dialog = false;
+    }
+  }
 };
 </script>
 

@@ -20,7 +20,12 @@
             <v-divider></v-divider>
 
             <v-card-actions class="post-actions">
-              <DeletePost :message="message" :messageId="messageId" />
+              <DeletePost
+                :messages="messages"
+                :message="message"
+                :messageId="messageId"
+                :index="index"
+              />
               <v-spacer></v-spacer>
               <EditPost :message="message" :messageId="messageId" />
             </v-card-actions>
@@ -40,25 +45,33 @@ export default {
 
   components: {
     DeletePost,
-    EditPost,
+    EditPost
   },
 
   props: {
     message: {
-      type: String,
+      type: String
     },
 
     displayNameOfPoster: {
-      type: String,
+      type: String
     },
 
     dateAdded: {
-      type: String,
+      type: String
     },
 
     messageId: {
-      type: String,
+      type: String
     },
+
+    messages: {
+      type: Array
+    },
+
+    index: {
+      type: Number
+    }
   },
 
   data() {
@@ -66,8 +79,8 @@ export default {
   },
 
   methods: {
-    deletePost() {},
-  },
+    deletePost() {}
+  }
 };
 </script>
 
