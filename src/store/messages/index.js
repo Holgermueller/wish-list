@@ -23,6 +23,16 @@ export default {
       }
     },
 
+    editMessage(state, payload) {
+      const message = state.messages.find(message => {
+        return message.id === payload.messageId;
+      });
+
+      if (payload.message) {
+        message.message = payload.edittedMessage;
+      }
+    },
+
     deleteMessage(state, payload) {
       state.messages.findIndex(message => message.id === payload);
     }
@@ -117,6 +127,23 @@ export default {
         })
         .then(() => {
           commit("updateLikes");
+        })
+        .catch(err => {
+          commit("setError", err);
+        });
+    },
+
+    editMessage({ commit }, payload) {
+      commit("setLoading", true);
+
+      firebase
+        .collection("chatMessages")
+        .doc(payload.messageId)
+        .update({
+          message: payload.edittedMessage
+        })
+        .then(() => {
+          commit("editMessage");
         })
         .catch(err => {
           commit("setError", err);

@@ -10,15 +10,22 @@
         <v-card-subtitle>{{ message }}</v-card-subtitle>
         <v-card-text>
           <v-text-field
+            v-model="edittedMessage"
             :messageId="messageId"
             :placeholder="message"
+            outlined
           ></v-text-field>
         </v-card-text>
         <v-divider></v-divider>
         <v-card-actions>
           <v-btn color="red" @click="dialog = false">Cancel</v-btn>
           <v-spacer></v-spacer>
-          <v-btn color="blue">Submit</v-btn>
+          <v-btn
+            color="blue"
+            :messageId="messageId"
+            @click.prevent="submitEdits"
+            >Submit</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -31,23 +38,31 @@ export default {
 
   props: {
     message: {
-      type: String,
+      type: String
     },
 
     messageId: {
-      type: String,
-    },
+      type: String
+    }
   },
 
   data() {
     return {
       dialog: false,
+      edittedMessage: this.message
     };
   },
 
   methods: {
-    submitEdits() {},
-  },
+    submitEdits() {
+      this.$store.dispatch("editMessage", {
+        edittedMessage: this.edittedMessage,
+        messageId: this.messageId
+      });
+
+      this.dialog = false;
+    }
+  }
 };
 </script>
 
