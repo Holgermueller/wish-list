@@ -36,6 +36,8 @@
             :messageId="messageId"
             :replierName="replierName.displayName"
             @click.prevent="getReply"
+            :loading="loading"
+            :disabled="loading"
             >Reply</v-btn
           >
         </v-card-actions>
@@ -65,6 +67,10 @@ export default {
   computed: {
     replierName() {
       return this.$store.getters.user;
+    },
+
+    loading() {
+      return this.$store.getters.loading;
     }
   },
 

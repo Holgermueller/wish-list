@@ -7,7 +7,9 @@
 
       <v-card>
         <v-card-title>Edit this post</v-card-title>
+
         <v-card-subtitle>{{ message }}</v-card-subtitle>
+
         <v-card-text>
           <v-text-field
             v-model="edittedMessage"
@@ -16,14 +18,20 @@
             outlined
           ></v-text-field>
         </v-card-text>
+
         <v-divider></v-divider>
+
         <v-card-actions>
           <v-btn color="red" @click="dialog = false">Cancel</v-btn>
+
           <v-spacer></v-spacer>
+
           <v-btn
             color="blue"
             :messageId="messageId"
             @click.prevent="submitEdits"
+            :loading="loading"
+            :disabled="loading"
             >Submit</v-btn
           >
         </v-card-actions>
@@ -51,6 +59,12 @@ export default {
       dialog: false,
       edittedMessage: this.message
     };
+  },
+
+  computed: {
+    loading() {
+      return this.$store.getters.loading;
+    }
   },
 
   methods: {

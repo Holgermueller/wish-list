@@ -129,7 +129,28 @@ export default {
     getUserProfileFromDB({ commit }, payload) {
       commit("setLoading", true);
 
-      db.collection("users").doc(payload.userId);
+      db.collection("users")
+        .doc(payload.userId)
+        .onSnapshot(
+          querySnapshot => {
+            let userInfo = [];
+            querySnapshot.forEach(doc => {
+              let userDataFromDB = {
+                displayName: doc.data().displayName,
+                email: doc.data().email,
+                bio: doc.data().bio,
+                userId: doc.data().userId
+              };
+              userInfo.push(userDataFromDB);
+            });
+            commit("setUser");
+            commit("setLoading", false);
+          },
+          err => {
+            commit("setLoading", true);
+            commit("setError", err);
+          }
+        );
     },
 
     editUserProfile({ commit }, payload) {

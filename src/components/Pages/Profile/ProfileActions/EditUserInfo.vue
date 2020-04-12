@@ -77,6 +77,10 @@ export default {
 
     userId: {
       type: String
+    },
+
+    bio: {
+      type: String
     }
   },
 
@@ -85,7 +89,7 @@ export default {
       dialog: false,
       displayNameForEdit: this.displayName,
       emailForEdit: this.email,
-      bioForEdit: String(this.bio || "Bio")
+      bioForEdit: this.bio
     };
   },
 

@@ -18,15 +18,21 @@
           </h3>
           <h3 class="warning">This action cannot be reversed.</h3>
         </v-card-text>
+
         <v-divider></v-divider>
+
         <v-card-actions>
           <v-btn color="red" @click="dialog = false">Cancel</v-btn>
+
           <v-spacer></v-spacer>
+
           <v-btn
             :index="index"
             :messageId="messageId"
             color="blue"
             @click.prevent="deleteMessage(index)"
+            :loading="loading"
+            :disabled="loading"
             >Delete</v-btn
           >
         </v-card-actions>
@@ -61,6 +67,12 @@ export default {
     return {
       dialog: false
     };
+  },
+
+  computed: {
+    loading() {
+      return this.$store.getters.loading;
+    }
   },
 
   methods: {
