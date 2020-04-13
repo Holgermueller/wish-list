@@ -7,11 +7,7 @@ export default {
 
   mutations: {
     setMessages(state, payload) {
-      if (payload) {
-        state.messages = payload;
-      } else {
-        state.messages = [];
-      }
+      state.messages = payload;
     },
 
     updateLikes(state, payload) {

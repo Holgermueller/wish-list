@@ -3,12 +3,17 @@ import db from "../../firebase/firebaseInit";
 
 export default {
   state: {
-    user: null
+    user: null,
+    userDisplayInfo: null
   },
 
   mutations: {
     setUser(state, payload) {
       state.user = payload;
+    },
+
+    setUserDisplayInfo(state, payload) {
+      state.userDisplayInfo = payload;
     },
 
     updateUsername(state, payload) {
@@ -104,7 +109,7 @@ export default {
     autoSignIn({ commit }, payload) {
       commit("setLoading", false);
       commit("setUser", {
-        userId: payload.id,
+        userId: payload.uid,
         email: payload.email,
         displayName: payload.displayName
       });
@@ -130,20 +135,21 @@ export default {
       commit("setLoading", true);
 
       db.collection("users")
-        .doc(payload.userId)
+        .where("userId", "==", payload.uid)
         .onSnapshot(
           querySnapshot => {
-            let userInfo = [];
+            let userInfoToDOM = [];
             querySnapshot.forEach(doc => {
-              let userDataFromDB = {
+              let userData = {
+                idNotUsed: doc.id,
                 displayName: doc.data().displayName,
                 email: doc.data().email,
                 bio: doc.data().bio,
                 userId: doc.data().userId
               };
-              userInfo.push(userDataFromDB);
+              userInfoToDOM.push(userData);
             });
-            commit("setUser");
+            commit("setUserDisplayInfo", userInfoToDOM);
             commit("setLoading", false);
           },
           err => {
@@ -209,6 +215,10 @@ export default {
   getters: {
     user(state) {
       return state.user;
+    },
+
+    userDisplayInfo(state) {
+      return state.userDisplayInfo;
     }
   }
 };

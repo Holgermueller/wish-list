@@ -4,17 +4,13 @@
       <v-card-title> Hello, {{ userInfoToDisplay.displayName }}</v-card-title>
 
       <v-card-text>
-        <div>
-          {{ userInfoToDisplay.displayName }}
+        <div>Username: {{ userInfoToDisplay.displayName }}</div>
 
-          {{ userInfoToDisplay.id }}
-        </div>
-
-        <div>
-          {{ userInfoToDisplay.email }}
-        </div>
+        <div>Email: {{ userInfoToDisplay.email }}</div>
 
         <div>Bio will appear here</div>
+
+        <div>Bio: {{ getUserInfoFromDB }}</div>
       </v-card-text>
 
       <v-card-actions>
@@ -86,6 +82,10 @@ export default {
       return this.$store.getters.user;
     },
 
+    getUserInfoFromDB() {
+      return this.$store.getters.userDisplayInfo;
+    },
+
     getMessagesForSingleUser() {
       return this.$store.getters.messages;
     },
@@ -93,6 +93,7 @@ export default {
     loading() {
       return this.$store.getters.loading;
     },
+
     error() {
       return this.$store.getters.error;
     }
