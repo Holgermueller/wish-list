@@ -108,6 +108,7 @@ export default {
   methods: {
     updateUserInfo() {
       this.$store.dispatch("editUserProfile", {
+        userId: this.userId,
         displayName: this.displayNameForEdit,
         email: this.emailForEdit,
         bio: this.bioForEdit

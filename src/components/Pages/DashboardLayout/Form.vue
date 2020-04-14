@@ -49,7 +49,8 @@ export default {
     postMessage() {
       this.$store.dispatch("submitMessage", {
         message: this.message,
-        displayName: this.userInfo.displayName
+        displayName: this.userInfo.displayName,
+        userIdOfPoster: this.userInfo.userId
       });
       this.clearForm();
     },

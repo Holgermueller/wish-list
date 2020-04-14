@@ -103,6 +103,7 @@ export default {
           message: payload.message,
           dateAdded: new Date(),
           displayName: payload.displayName,
+          userIdOfPoster: payload.userIdOfPoster,
           likes: 0
         })
         .then(() => {

@@ -4,7 +4,7 @@ import db from "../../firebase/firebaseInit";
 export default {
   state: {
     user: null,
-    userDisplayInfo: null
+    userDisplayInfo: {}
   },
 
   mutations: {
@@ -131,11 +131,11 @@ export default {
       //   });
     },
 
-    getUserProfileFromDB({ commit }, payload) {
+    getUserProfileFromDB({ commit, state }) {
       commit("setLoading", true);
 
       db.collection("users")
-        .where("userId", "==", payload.uid)
+        .doc(state.user.userId)
         .onSnapshot(
           querySnapshot => {
             let userInfoToDOM = [];
@@ -163,7 +163,7 @@ export default {
       commit("setLoading", true);
 
       db.collection("users")
-        .doc(payload.userId)
+        .doc(payload.uid)
         .update({
           displayName: payload.displayName,
           email: payload.email,

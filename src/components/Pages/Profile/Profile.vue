@@ -1,14 +1,12 @@
 <template>
   <div id="profile">
     <v-card class="profile-actions">
-      <v-card-title> Hello, {{ userInfoToDisplay.displayName }}</v-card-title>
+      <v-card-title>Hello, {{ userInfoToDisplay.displayName }}</v-card-title>
 
       <v-card-text>
         <div>Username: {{ userInfoToDisplay.displayName }}</div>
 
         <div>Email: {{ userInfoToDisplay.email }}</div>
-
-        <div>Bio will appear here</div>
 
         <div>Bio: {{ getUserInfoFromDB }}</div>
       </v-card-text>
