@@ -3,8 +3,7 @@ import db from "../../firebase/firebaseInit";
 
 export default {
   state: {
-    user: null,
-    userDisplayInfo: {}
+    user: null
   },
 
   mutations: {
@@ -12,24 +11,8 @@ export default {
       state.user = payload;
     },
 
-    setUserDisplayInfo(state, payload) {
-      state.userDisplayInfo = payload;
-    },
-
     updateUsername(state, payload) {
       state.user = payload;
-    },
-
-    updateUserInfo(state, payload) {
-      if (payload.displayName) {
-        state.displayName = payload.displayName;
-      }
-      if (payload.email) {
-        state.email = payload.email;
-      }
-      if (payload.bio) {
-        state.bio = payload.bio;
-      }
     }
   },
 
@@ -131,54 +114,6 @@ export default {
       //   });
     },
 
-    getUserProfileFromDB({ commit, state }) {
-      commit("setLoading", true);
-
-      db.collection("users")
-        .doc(state.user.userId)
-        .onSnapshot(
-          querySnapshot => {
-            let userInfoToDOM = [];
-            querySnapshot.forEach(doc => {
-              let userData = {
-                idNotUsed: doc.id,
-                displayName: doc.data().displayName,
-                email: doc.data().email,
-                bio: doc.data().bio,
-                userId: doc.data().userId
-              };
-              userInfoToDOM.push(userData);
-            });
-            commit("setUserDisplayInfo", userInfoToDOM);
-            commit("setLoading", false);
-          },
-          err => {
-            commit("setLoading", true);
-            commit("setError", err);
-          }
-        );
-    },
-
-    editUserProfile({ commit }, payload) {
-      commit("setLoading", true);
-
-      db.collection("users")
-        .doc(payload.uid)
-        .update({
-          displayName: payload.displayName,
-          email: payload.email,
-          bio: payload.bio
-        })
-        .then(() => {
-          commit("updateUserInfo");
-          commit("setLoading", false);
-        })
-        .catch(err => {
-          commit("setLoading", true);
-          commit("setError", err);
-        });
-    },
-
     deleteUser({ commit }) {
       commit("setLoading", true);
 
@@ -215,10 +150,6 @@ export default {
   getters: {
     user(state) {
       return state.user;
-    },
-
-    userDisplayInfo(state) {
-      return state.userDisplayInfo;
     }
   }
 };
