@@ -2,12 +2,12 @@ import firebase from "../../firebase/firebaseInit";
 
 export default {
   state: {
-    userDisplayInfo: []
+    userProfile: null,
   },
 
   mutations: {
-    setUserDisplayInfo(state, payload) {
-      state.userDisplayInfo = payload;
+    setUserProfile(state, payload) {
+      state.userProfile = payload;
     },
 
     updateUserInfo(state, payload) {
@@ -20,30 +20,30 @@ export default {
       if (payload.bio) {
         state.bio = payload.bio;
       }
-    }
+    },
   },
 
   actions: {
     getUserProfileFromDB({ commit }) {
       commit("setLoading", true);
 
-      firebase.collection("users").onSnapshot(
-        querySnapshot => {
-          let userInfoFromDb = [];
-          querySnapshot.forEach(doc => {
+      firebase.collection("userProfiles").onSnapshot(
+        (querySnapshot) => {
+          let userProfileFromDb = [];
+          querySnapshot.forEach((doc) => {
             let userData = {
-              idNotUsed: doc.id,
+              docId: doc.id,
               displayName: doc.data().displayName,
               email: doc.data().email,
+              userId: doc.data().userId,
               bio: doc.data().bio,
-              userId: doc.data().userId
             };
-            userInfoFromDb.push(userData);
+            userProfileFromDb.push(userData);
           });
-          commit("setUserDisplayInfo", userInfoFromDb);
+          commit("setUserProfile", userProfileFromDb);
           commit("setLoading", false);
         },
-        err => {
+        (err) => {
           commit("setLoading", true);
           commit("setError", err);
         }
@@ -54,27 +54,27 @@ export default {
       commit("setLoading", true);
 
       firebase
-        .collection("users")
+        .collection("userProfiles")
         .doc(payload.uid)
         .update({
           displayName: payload.displayName,
           email: payload.email,
-          bio: payload.bio
+          bio: payload.bio,
         })
         .then(() => {
           commit("updateUserInfo");
           commit("setLoading", false);
         })
-        .catch(err => {
+        .catch((err) => {
           commit("setLoading", true);
           commit("setError", err);
         });
-    }
+    },
   },
 
   getters: {
-    userDisplayInfo(state) {
-      return state.userDisplayInfo;
-    }
-  }
+    userProfileInfo(state) {
+      return state.userProfile;
+    },
+  },
 };

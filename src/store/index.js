@@ -15,6 +15,6 @@ export const store = new Vuex.Store({
     userProfiles: userProfiles,
     shared: shared,
     messages: messages,
-    replies: replies
-  }
+    replies: replies,
+  },
 });

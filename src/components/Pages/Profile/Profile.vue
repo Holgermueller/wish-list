@@ -68,7 +68,7 @@ export default {
   components: {
     DeleteAccnt,
     EditUserInfo,
-    UserPosts
+    UserPosts,
   },
 
   created() {
@@ -80,9 +80,9 @@ export default {
       return this.$store.getters.user;
     },
 
-    getUserInfoFromDB() {
-      return this.$store.getters.userDisplayInfo;
-    },
+    // getUserInfoFromDB() {
+    //   return this.$store.getters.userProfile;
+    // },
 
     getMessagesForSingleUser() {
       return this.$store.getters.messages;
@@ -94,8 +94,8 @@ export default {
 
     error() {
       return this.$store.getters.error;
-    }
-  }
+    },
+  },
 };
 </script>
 

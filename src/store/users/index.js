@@ -3,7 +3,7 @@ import db from "../../firebase/firebaseInit";
 
 export default {
   state: {
-    user: null
+    user: null,
   },
 
   mutations: {
@@ -13,7 +13,7 @@ export default {
 
     updateUsername(state, payload) {
       state.user = payload;
-    }
+    },
   },
 
   actions: {
@@ -24,16 +24,16 @@ export default {
       firebase
         .auth()
         .createUserWithEmailAndPassword(payload.email, payload.password)
-        .then(userCredential => {
+        .then((userCredential) => {
           const userToUpdate = firebase.auth().currentUser;
           userToUpdate
             .updateProfile({
-              displayName: payload.displayName
+              displayName: payload.displayName,
             })
             .then(() => {
               commit("setLoading", false);
             })
-            .catch(err => {
+            .catch((err) => {
               commit("setLoading", false);
               commit("setError", err);
             });
@@ -42,25 +42,25 @@ export default {
           const newUser = {
             displayName: payload.displayName,
             email: user.email,
-            userId: user.id
+            userId: user.uid,
           };
 
           commit("setUser", newUser);
 
-          db.collection("users")
+          db.collection("userProfiles")
             .add({
               displayName: payload.displayName,
               email: user.email,
               userId: user.uid,
-              bio: "Say something about yourself..."
+              bio: "Say something about yourself...",
             })
             .then(() => {})
-            .catch(err => {
+            .catch((err) => {
               commit("setLoading", false);
               commit("setError", err);
             });
         })
-        .catch(err => {
+        .catch((err) => {
           commit("setLoading", false);
           commit("setError", err);
         });
@@ -73,17 +73,17 @@ export default {
       firebase
         .auth()
         .signInWithEmailAndPassword(payload.email, payload.password)
-        .then(user => {
+        .then((user) => {
           commit("setLoading", false);
           const signedInUser = {
             email: user.user.email,
             id: user.user.uid,
-            displayName: user.user.displayName
+            displayName: user.user.displayName,
           };
           commit("setLoading", false);
           commit("setUser", signedInUser);
         })
-        .catch(err => {
+        .catch((err) => {
           commit("setLoading", false);
           commit("setError", err);
         });
@@ -94,7 +94,7 @@ export default {
       commit("setUser", {
         userId: payload.uid,
         email: payload.email,
-        displayName: payload.displayName
+        displayName: payload.displayName,
       });
 
       // firebase
@@ -124,7 +124,7 @@ export default {
           commit("setLoading", false);
           commit("setUser", null);
         })
-        .catch(err => {
+        .catch((err) => {
           commit("setLoading", false);
           commit("setError", err);
         });
@@ -140,16 +140,16 @@ export default {
           commit("setLoading", false);
           commit("setUser", null);
         })
-        .catch(err => {
+        .catch((err) => {
           commit("setLoading", false);
           commit("setError", err);
         });
-    }
+    },
   },
 
   getters: {
     user(state) {
       return state.user;
-    }
-  }
+    },
+  },
 };

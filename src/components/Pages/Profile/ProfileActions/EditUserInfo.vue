@@ -67,21 +67,21 @@ export default {
   props: {
     displayName: {
       type: String,
-      required: true
+      required: true,
     },
 
     email: {
       type: String,
-      required: true
+      required: true,
     },
 
     userId: {
-      type: String
+      type: String,
     },
 
     bio: {
-      type: String
-    }
+      type: String,
+    },
   },
 
   data() {
@@ -89,11 +89,15 @@ export default {
       dialog: false,
       displayNameForEdit: this.displayName,
       emailForEdit: this.email,
-      bioForEdit: this.bio
+      bioForEdit: this.bio,
     };
   },
 
   components: {},
+
+  created() {
+    return this.$store.dispatch("getUserProfileFromDB");
+  },
 
   computed: {
     loading() {
@@ -102,7 +106,7 @@ export default {
 
     error() {
       return this.$store.getters.error;
-    }
+    },
   },
 
   methods: {
@@ -111,7 +115,7 @@ export default {
         userId: this.userId,
         displayName: this.displayNameForEdit,
         email: this.emailForEdit,
-        bio: this.bioForEdit
+        bio: this.bioForEdit,
       });
 
       this.dialog = false;
@@ -119,8 +123,8 @@ export default {
 
     onDismissed() {
       this.$store.dispatch("clearError");
-    }
-  }
+    },
+  },
 };
 </script>
 
