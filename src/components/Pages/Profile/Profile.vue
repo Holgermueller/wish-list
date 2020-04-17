@@ -6,9 +6,9 @@
       <v-card-text>
         <div>Username: {{ userInfoToDisplay.displayName }}</div>
 
-        <div>Email: {{ userInfoToDisplay.email }}</div>
+        <div>Email: {{ getUserInfoFromDB.email }}</div>
 
-        <div>Bio: {{ getUserInfoFromDB }}</div>
+        <div>Bio: {{ getUserInfoFromDB.bio }}</div>
       </v-card-text>
 
       <v-card-actions>
@@ -80,9 +80,9 @@ export default {
       return this.$store.getters.user;
     },
 
-    // getUserInfoFromDB() {
-    //   return this.$store.getters.userProfile;
-    // },
+    getUserInfoFromDB() {
+      return this.$store.getters.userProfileInfo;
+    },
 
     getMessagesForSingleUser() {
       return this.$store.getters.messages;

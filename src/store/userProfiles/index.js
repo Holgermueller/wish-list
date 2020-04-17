@@ -24,30 +24,33 @@ export default {
   },
 
   actions: {
-    getUserProfileFromDB({ commit }) {
+    getUserProfileFromDB({ commit, getters }) {
       commit("setLoading", true);
 
-      firebase.collection("userProfiles").onSnapshot(
-        (querySnapshot) => {
-          let userProfileFromDb = [];
-          querySnapshot.forEach((doc) => {
-            let userData = {
-              docId: doc.id,
-              displayName: doc.data().displayName,
-              email: doc.data().email,
-              userId: doc.data().userId,
-              bio: doc.data().bio,
-            };
-            userProfileFromDb.push(userData);
-          });
-          commit("setUserProfile", userProfileFromDb);
-          commit("setLoading", false);
-        },
-        (err) => {
-          commit("setLoading", true);
-          commit("setError", err);
-        }
-      );
+      firebase
+        .collection("userProfiles")
+        .where("userId", "==", getters.user.userId)
+        .onSnapshot(
+          (querySnapshot) => {
+            let userProfileFromDb = [];
+            querySnapshot.forEach((doc) => {
+              let userData = {
+                docId: doc.id,
+                displayName: doc.data().displayName,
+                email: doc.data().email,
+                userId: doc.data().userId,
+                bio: doc.data().bio,
+              };
+              userProfileFromDb.push(userData);
+            });
+            commit("setUserProfile", userProfileFromDb);
+            commit("setLoading", false);
+          },
+          (err) => {
+            commit("setLoading", true);
+            commit("setError", err);
+          }
+        );
     },
 
     editUserProfile({ commit }, payload) {
