@@ -58,7 +58,7 @@ export default {
 
       firebase
         .collection("userProfiles")
-        .doc(payload.uid)
+        .doc(payload.userId)
         .update({
           displayName: payload.displayName,
           email: payload.email,

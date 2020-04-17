@@ -6,9 +6,9 @@
       <v-card-text>
         <div>Username: {{ userInfoToDisplay.displayName }}</div>
 
-        <div>Email: {{ getUserInfoFromDB.email }}</div>
+        <div>Email: {{ userInfoToDisplay.email }}</div>
 
-        <div>Bio: {{ getUserInfoFromDB.bio }}</div>
+        <div>Bio: {{ getUserInfoFromDB }}</div>
       </v-card-text>
 
       <v-card-actions>

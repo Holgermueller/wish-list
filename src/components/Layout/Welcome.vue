@@ -13,8 +13,8 @@ export default {
   computed: {
     displayName() {
       return this.$store.getters.user.displayName;
-    }
-  }
+    },
+  },
 };
 </script>
 

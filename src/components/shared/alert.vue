@@ -1,6 +1,6 @@
 <template>
   <div id="alert">
-    <v-alert type="error" dark dismissible=" tile @input=" onClose>
+    <v-alert type="error" dark dismissible tile @input="onClose">
       {{ text }}
     </v-alert>
   </div>
@@ -14,14 +14,14 @@ export default {
 
   data() {
     return {
-      alert: true
+      alert: true,
     };
   },
 
   methods: {
     onClose() {
       this.$emit("dismissed");
-    }
-  }
+    },
+  },
 };
 </script>
