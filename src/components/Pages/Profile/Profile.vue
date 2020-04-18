@@ -1,21 +1,26 @@
 <template>
   <div id="profile">
-    <v-card class="profile-actions">
-      <v-card-title>Hello, {{ userInfoToDisplay.displayName }}</v-card-title>
+    <v-card
+      class="profile-actions"
+      v-for="(userProfile, index) in getUserInfoFromDB"
+      :key="index"
+    >
+      <v-card-title>Hello, {{ userProfile.displayName }}</v-card-title>
 
       <v-card-text>
-        <div>Username: {{ userInfoToDisplay.displayName }}</div>
+        <div>Username: {{ userProfile.displayName }}</div>
 
-        <div>Email: {{ userInfoToDisplay.email }}</div>
+        <div>Email: {{ userProfile.email }}</div>
 
-        <div>Bio: {{ getUserInfoFromDB }}</div>
+        <div>Bio: {{ userProfile.bio }}</div>
       </v-card-text>
 
       <v-card-actions>
         <EditUserInfo
-          :displayName="userInfoToDisplay.displayName"
-          :email="userInfoToDisplay.email"
-          :userId="userInfoToDisplay.userId"
+          :displayName="userProfile.displayName"
+          :email="userProfile.email"
+          :userId="userProfile.userId"
+          :bio="userProfile.bio"
         />
 
         <DeleteAccnt />
