@@ -2,15 +2,16 @@
   <div id="profile">
     <v-card
       class="profile-actions"
-      v-for="(userProfile, index) in getUserInfoFromDB"
+      v-for="(userProfile, index) in getUserProfileFromDB"
       :key="index"
+      :userId="userAuthInfo.userId"
     >
-      <v-card-title>Hello, {{ userProfile.displayName }}</v-card-title>
+      <v-card-title>Hello, {{ userAuthInfo.displayName }}</v-card-title>
 
       <v-card-text>
-        <div>Username: {{ userProfile.displayName }}</div>
+        <div>Username: {{ userAuthInfo.displayName }}</div>
 
-        <div>Email: {{ userProfile.email }}</div>
+        <div>Email: {{ userAuthInfo.email }}</div>
 
         <div>Bio: {{ userProfile.bio }}</div>
       </v-card-text>
@@ -21,6 +22,7 @@
           :email="userProfile.email"
           :userId="userProfile.userId"
           :bio="userProfile.bio"
+          :userProfileId="userProfile.userProfileId"
         />
 
         <DeleteAccnt />
@@ -80,12 +82,16 @@ export default {
     return this.$store.dispatch("getMessagesForSingleUser");
   },
 
+  mounted() {
+    return this.$store.dispatch("getUserProfileFromDB");
+  },
+
   computed: {
-    userInfoToDisplay() {
+    userAuthInfo() {
       return this.$store.getters.user;
     },
 
-    getUserInfoFromDB() {
+    getUserProfileFromDB() {
       return this.$store.getters.userProfileInfo;
     },
 

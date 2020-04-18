@@ -82,6 +82,10 @@ export default {
     bio: {
       type: String,
     },
+
+    userProfileId: {
+      type: String,
+    },
   },
 
   data() {
@@ -112,7 +116,7 @@ export default {
   methods: {
     updateUserInfo() {
       this.$store.dispatch("editUserProfile", {
-        userId: this.userId,
+        userId: this.userProfileId,
         displayName: this.displayNameForEdit,
         email: this.emailForEdit,
         bio: this.bioForEdit,

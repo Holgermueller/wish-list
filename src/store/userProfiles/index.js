@@ -38,7 +38,7 @@ export default {
                 docId: doc.id,
                 displayName: doc.data().displayName,
                 email: doc.data().email,
-                userId: doc.data().userId,
+                userProfileId: doc.data().userId,
                 bio: doc.data().bio,
               };
               userProfileFromDb.push(userData);
