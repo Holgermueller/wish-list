@@ -1,8 +1,9 @@
 <template>
   <div id="nav">
-    <v-btn v-if="userIsAuthenticated" @click.stop="drawer = !drawer">
-      <span class="mdi mdi-compass-rose"></span>
+    <v-btn to="/">
+      Home
     </v-btn>
+    <v-btn to="user"> Dashboard</v-btn>
 
     <v-navigation-drawer class="nav-drawer" v-model="drawer" absolute temporary>
       <div class="pa-2">
@@ -79,21 +80,6 @@ export default {
             icon: "mdi mdi-account",
             title: "Dashboard",
             link: "/user",
-          },
-          {
-            icon: "mdi mdi-account-details",
-            title: "Profile",
-            link: "/profile",
-          },
-          {
-            icon: "mdi mdi-email",
-            title: "Messages",
-            link: "/directMessages",
-          },
-          {
-            icon: "mdi mdi-pin",
-            title: "Pinned",
-            link: "/pinned",
           },
         ];
       }

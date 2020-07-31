@@ -1,9 +1,9 @@
 <template>
   <v-app>
-    <v-content>
+    <v-main>
       <Nav />
       <router-view></router-view>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
@@ -14,11 +14,11 @@ export default {
   name: "App",
 
   components: {
-    Nav
+    Nav,
   },
 
   data() {
     return {};
-  }
+  },
 };
 </script>

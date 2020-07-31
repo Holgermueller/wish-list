@@ -1,21 +1,23 @@
 <template>
   <div id="dashboard">
-    <Form />
+    <h1>This is the dashboard</h1>
 
-    <Recents />
+    <ListFilter />
+
+    <AddItem />
   </div>
 </template>
 
 <script>
-import Form from "./DashboardLayout/Form";
-import Recents from "./DashboardLayout/Recent";
+import ListFilter from "./DashboardLayout/ListFilter";
+import AddItem from "./DashboardLayout/AddItemDialog";
 
 export default {
   name: "Dashboard",
   components: {
-    Form,
-    Recents
-  }
+    AddItem,
+    ListFilter,
+  },
 };
 </script>
 
