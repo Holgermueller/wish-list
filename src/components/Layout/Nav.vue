@@ -11,8 +11,6 @@
         </v-btn>
       </div>
 
-      <Welcome v-if="userIsAuthenticated" />
-
       <v-divider></v-divider>
 
       <v-list nav>
@@ -45,21 +43,19 @@
 </template>
 
 <script>
-import Welcome from "./Welcome";
 import SignOut from "./SignOut";
 
 export default {
   name: "Nav",
 
   components: {
-    Welcome,
-    SignOut
+    SignOut,
   },
 
   data() {
     return {
       userId: null,
-      drawer: false
+      drawer: false,
     };
   },
 
@@ -82,36 +78,36 @@ export default {
           {
             icon: "mdi mdi-account",
             title: "Dashboard",
-            link: "/user"
+            link: "/user",
           },
           {
             icon: "mdi mdi-account-details",
             title: "Profile",
-            link: "/profile"
+            link: "/profile",
           },
           {
             icon: "mdi mdi-email",
             title: "Messages",
-            link: "/directMessages"
+            link: "/directMessages",
           },
           {
             icon: "mdi mdi-pin",
             title: "Pinned",
-            link: "/pinned"
-          }
+            link: "/pinned",
+          },
         ];
       }
       return menuLinks;
-    }
+    },
   },
 
   watch: {
     user(value) {
       return value;
-    }
+    },
   },
 
-  methods: {}
+  methods: {},
 };
 </script>
 
