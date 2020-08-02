@@ -43,9 +43,18 @@
         <v-divider></v-divider>
 
         <v-card-actions>
-          <v-btn @click="closeDialog">Cancel</v-btn>
+          <v-btn color="red" class="white--text" @click="closeDialog"
+            >Cancel</v-btn
+          >
           <v-spacer></v-spacer>
-          <v-btn @click="createEntry">Submit</v-btn>
+          <v-btn
+            color="blue"
+            class="white--text"
+            @click.prevent="createEntry"
+            :loading="loading"
+            :disabled="loading"
+            >Submit</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -66,6 +75,10 @@ export default {
   computed: {
     error() {
       return this.$store.getters.error;
+    },
+
+    loading() {
+      return this.$store.getters.loading;
     },
   },
 

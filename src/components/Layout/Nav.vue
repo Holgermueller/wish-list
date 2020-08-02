@@ -79,7 +79,7 @@ export default {
           {
             icon: "mdi mdi-account",
             title: "Dashboard",
-            link: "/user",
+            link: "/dashboard",
           },
         ];
       }

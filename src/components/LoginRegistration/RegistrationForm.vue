@@ -96,7 +96,7 @@ export default {
       showPassword: false,
       showConfirmPassword: false,
       valid: true,
-      errorFromDom: ""
+      errorFromDom: "",
     };
   },
 
@@ -111,15 +111,15 @@ export default {
 
     loading() {
       return this.$store.getters.loading;
-    }
+    },
   },
 
   watch: {
     user(value) {
       if (value !== null && value !== undefined) {
-        this.$router.push("/user");
+        this.$router.push("/dashboard");
       }
-    }
+    },
   },
 
   methods: {
@@ -131,27 +131,27 @@ export default {
         !this.confirmPassword
       ) {
         this.$store.dispatch("setError", {
-          errorFromDom: "Please fill out all of the fields."
+          errorFromDom: "Please fill out all of the fields.",
         });
       } else if (!this.displayName) {
         this.$store.dispatch("setError", {
-          errorFromDom: "Please provide a username."
+          errorFromDom: "Please provide a username.",
         });
       } else if (!this.email) {
         this.$store.dispatch("setError", {
-          errorFromDom: "Please provide an email."
+          errorFromDom: "Please provide an email.",
         });
       } else if (!this.password) {
         this.$store.dispatch("setError", {
-          errorFromDom: "Please provide a password."
+          errorFromDom: "Please provide a password.",
         });
       } else if (!this.confirmPassword) {
         this.$store.dispatch("setError", {
-          errorFromDom: "Please confirm your email."
+          errorFromDom: "Please confirm your email.",
         });
       } else if (this.password !== this.confirmPassword) {
         this.$store.dispatch("setError", {
-          errorFromDom: "Passwords do no match."
+          errorFromDom: "Passwords do no match.",
         });
       } else {
         this.registerUser();
@@ -163,7 +163,7 @@ export default {
       this.$store.dispatch("registerUser", {
         email: this.email,
         password: this.password,
-        displayName: this.displayName
+        displayName: this.displayName,
       });
     },
 
@@ -173,8 +173,8 @@ export default {
 
     onDismissed() {
       this.$store.dispatch("clearError");
-    }
-  }
+    },
+  },
 };
 </script>
 

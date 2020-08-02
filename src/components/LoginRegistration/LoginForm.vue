@@ -40,7 +40,7 @@
       <router-link
         :to="{
           name: 'Profile',
-          params: { currentUser: currentUser, userId: userId }
+          params: { currentUser: currentUser, userId: userId },
         }"
       >
         <v-btn
@@ -66,7 +66,7 @@ export default {
       showPassword: false,
       currentUser: false,
       userId: null,
-      errorFromDom: ""
+      errorFromDom: "",
     };
   },
 
@@ -81,30 +81,30 @@ export default {
 
     loading() {
       return this.$store.getters.loading;
-    }
+    },
   },
 
   watch: {
     user(value) {
       if (value !== null && value !== undefined) {
-        this.$router.push("./user");
+        this.$router.push("./dashboard");
       }
-    }
+    },
   },
 
   methods: {
     checkLoginForm() {
       if (!this.email && !this.password) {
         this.$store.dispatch("setError", {
-          errorFromDom: "Please fill out all of the fields."
+          errorFromDom: "Please fill out all of the fields.",
         });
       } else if (!this.email) {
         this.$store.dispatch("setError", {
-          errorFromDom: "You must provide an email to log in."
+          errorFromDom: "You must provide an email to log in.",
         });
       } else if (!this.password) {
         this.$store.dispatch("setError", {
-          errorFromDom: "You must provide a password to log in."
+          errorFromDom: "You must provide a password to log in.",
         });
       } else {
         this.loginUser();
@@ -117,7 +117,7 @@ export default {
         email: this.email,
         password: this.password,
         userId: this.userId,
-        currentUser: this.currentUser
+        currentUser: this.currentUser,
       });
     },
 
@@ -127,8 +127,8 @@ export default {
 
     onDismissed() {
       this.$store.dispatch("clearError");
-    }
-  }
+    },
+  },
 };
 </script>
 

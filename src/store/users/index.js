@@ -89,14 +89,14 @@ export default {
         });
     },
 
-    // autoSignIn({ commit }, payload) {
-    //   commit("setLoading", false);
-    //   commit("setUser", {
-    //     userId: payload.uid,
-    //     email: payload.email,
-    //     displayName: payload.displayName,
-    //   });
-    // },
+    autoSignIn({ commit }, payload) {
+      commit("setLoading", false);
+      commit("setUser", {
+        userId: payload.uid,
+        email: payload.email,
+        displayName: payload.displayName,
+      });
+    },
 
     deleteUser({ commit }) {
       commit("setLoading", true);
