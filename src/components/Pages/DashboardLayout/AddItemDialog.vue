@@ -3,6 +3,7 @@
     <v-dialog v-model="dialog" width="500">
       <template v-slot:activator="{ on, attrs }">
         <v-btn v-bind="attrs" v-on="on">
+          <v-icon>mdi-pencil</v-icon>
           Add An Item
         </v-btn>
       </template>

@@ -6,7 +6,24 @@
 
     <AddItem />
 
-    <ListDisplay />
+    <v-layout class="progress">
+      <v-flex class="tet-xs-center">
+        <v-progress-circular
+          indeterminate
+          class="primary--text"
+          :width="7"
+          :size="70"
+          v-if="loading"
+        ></v-progress-circular>
+      </v-flex>
+    </v-layout>
+
+    <ListDisplay
+      v-for="(listItem, index) in wishList"
+      :key="index"
+      :index="index"
+      :artist="listItem.artist"
+    />
   </div>
 </template>
 
@@ -25,10 +42,14 @@ export default {
   },
 
   created() {
-    return this.$store.dispatch("getTheList");
+    return this.$store.dispatch("getWishList");
   },
 
   computed: {
+    user() {
+      return this.$$store.getters.user;
+    },
+
     wishList() {
       return this.$store.getters.wishList;
     },
@@ -41,7 +62,17 @@ export default {
       return this.$store.getters.error;
     },
   },
+
+  methods: {
+    onDismissed() {
+      this.$store.dispatch("clearError");
+    },
+  },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.progress {
+  margin: 1% auto;
+}
+</style>

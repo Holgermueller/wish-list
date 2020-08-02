@@ -3,7 +3,7 @@
     <v-btn to="/">
       Home
     </v-btn>
-    <v-btn to="user"> Dashboard</v-btn>
+    <v-btn to="/dashboard"> Dashboard</v-btn>
 
     <v-navigation-drawer class="nav-drawer" v-model="drawer" absolute temporary>
       <div class="pa-2">

@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 import users from "./users";
-import list from "./list";
+import wishList from "./wishList";
 import shared from "./shared";
 
 Vue.use(Vuex);
@@ -10,7 +10,7 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
   modules: {
     users: users,
-    list: list,
+    wishList: wishList,
     shared: shared,
   },
 });
