@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import firebase from "firebase";
 import Home from "../components/index";
 import Dashboard from "../components/Pages/Dashboard";
+import SingleItemPage from "../components/Pages/SingleItem/SingleItem";
 
 Vue.use(VueRouter);
 
@@ -14,6 +15,15 @@ let router = new VueRouter({
       path: "/dashboard",
       name: "Dashboard",
       component: Dashboard,
+      props: true,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: "/singleItem",
+      name: "SingleItemPage",
+      component: SingleItemPage,
       props: true,
       meta: {
         requiresAuth: true,

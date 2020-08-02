@@ -1,15 +1,23 @@
 <template>
   <div id="wishListDisplay">
-    <v-card>
-      <v-card-title>
-        Artist name will appear here...
-      </v-card-title>
+    <v-hover v-slot:default="{ hover }">
+      <v-card :elevation="hover ? 12 : 2" class="entry-card">
+        <v-card-title>
+          Artist name will appear here...
+        </v-card-title>
 
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn>See more <v-icon>mdi-arrow-right-bold</v-icon></v-btn>
-      </v-card-actions>
-    </v-card>
+        <v-card-subtitle>
+          Title of work will appear here
+        </v-card-subtitle>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn to="/singleItem"
+            >See more <v-icon>mdi-arrow-right-bold</v-icon></v-btn
+          >
+        </v-card-actions>
+      </v-card>
+    </v-hover>
   </div>
 </template>
 
@@ -25,4 +33,12 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.entry-card {
+  width: 75%;
+  margin: 2px auto;
+}
+.entry-card:hover {
+  background-color: lightslategray;
+}
+</style>

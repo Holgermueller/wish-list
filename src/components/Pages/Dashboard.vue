@@ -19,7 +19,7 @@
     </v-layout>
 
     <ListDisplay
-      v-for="(listItem, index) in wishList"
+      v-for="(listItem, index) in getWishList"
       :key="index"
       :index="index"
       :artist="listItem.artist"
@@ -50,7 +50,7 @@ export default {
       return this.$$store.getters.user;
     },
 
-    wishList() {
+    getWishList() {
       return this.$store.getters.wishList;
     },
 

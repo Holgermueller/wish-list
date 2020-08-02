@@ -32,22 +32,24 @@ export default {
     getWishList({ commit }) {
       commit(["setLoading", true]);
 
-      firebase.collection("wishList").onSnapshot((querySnapshot) => {
-        let wishListFromDB = [];
-        querySnapshot.forEach((doc) => {
-          let wishListData = {
-            itemId: doc.id,
-            artist: doc.data().artist,
-          };
-          wishListFromDB.push(wishListData);
-        });
-        commit("setWishList", wishListFromDB);
-        commit("setLoading", false);
-      }),
+      firebase.collection("wishList").onSnapshot(
+        (querySnapshot) => {
+          let wishListFromDB = [];
+          querySnapshot.forEach((doc) => {
+            let wishListData = {
+              itemId: doc.id,
+              artist: doc.data().artist,
+            };
+            wishListFromDB.push(wishListData);
+          });
+          commit("setWishList", wishListFromDB);
+          commit("setLoading", false);
+        },
         (err) => {
           commit("setLoading", true);
           commit("setError", err);
-        };
+        }
+      );
     },
 
     addEntryToList({ commit, getters }, payload) {
