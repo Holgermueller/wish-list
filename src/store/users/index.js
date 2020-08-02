@@ -52,7 +52,6 @@ export default {
               displayName: payload.displayName,
               email: user.email,
               userId: user.uid,
-              bio: "Say something about yourself...",
             })
             .then(() => {})
             .catch((err) => {

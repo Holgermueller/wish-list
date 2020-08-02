@@ -32,6 +32,7 @@
                     placeholder="Enter artist or author name here..."
                     value="artist"
                     id="artist"
+                    clearable
                   >
                   </v-text-field>
                 </v-flex>
@@ -73,6 +74,10 @@ export default {
   },
 
   computed: {
+    user() {
+      return this.$store.getters.user;
+    },
+
     error() {
       return this.$store.getters.error;
     },
@@ -95,6 +100,10 @@ export default {
 
     closeDialog() {
       this.dialog = false;
+    },
+
+    resetForm() {
+      this.$refs.form.reset();
     },
   },
 };

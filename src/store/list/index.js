@@ -1,4 +1,4 @@
-import * as firebase from "firebase/app";
+import firebase from "../../firebase/firebaseInit";
 
 export default {
   state: {
@@ -27,6 +27,7 @@ export default {
               itemId: doc.id,
               artist: doc.data().artist,
             };
+            console.log(listData);
             wishListFromDB.push(listData);
           });
           commit("setWishList", wishListFromDB);
