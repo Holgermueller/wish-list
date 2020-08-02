@@ -14,9 +14,14 @@ import AddItem from "./DashboardLayout/AddItemDialog";
 
 export default {
   name: "Dashboard",
+
   components: {
     AddItem,
     ListFilter,
+  },
+
+  created() {
+    return this.$store.dispatch("getTheList");
   },
 };
 </script>

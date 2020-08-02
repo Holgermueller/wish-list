@@ -89,30 +89,14 @@ export default {
         });
     },
 
-    autoSignIn({ commit }, payload) {
-      commit("setLoading", false);
-      commit("setUser", {
-        userId: payload.uid,
-        email: payload.email,
-        displayName: payload.displayName,
-      });
-
-      // firebase
-      //   .auth()
-      //   .currentUser.reauthenticateWithCredential(credential)
-      //   .then(() => {
-      //     commit("setLoading", false);
-      //     commit("setUser", {
-      //       id: payload.uid,
-      //       email: payload.email,
-      //       displayName: payload.displayName
-      //     });
-      //   })
-      //   .catch(err => {
-      //     commit("setLoading", false);
-      //     commit("setError", err);
-      //   });
-    },
+    // autoSignIn({ commit }, payload) {
+    //   commit("setLoading", false);
+    //   commit("setUser", {
+    //     userId: payload.uid,
+    //     email: payload.email,
+    //     displayName: payload.displayName,
+    //   });
+    // },
 
     deleteUser({ commit }) {
       commit("setLoading", true);
