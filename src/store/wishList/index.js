@@ -9,6 +9,10 @@ export default {
     SET_WISH_LIST(state, payload) {
       state.wishList = payload;
     },
+
+    DELETE_FROM_LIST(state, payload) {
+      state.wishList.findIndex((item) => item.id === payload);
+    },
   },
 
   actions: {
@@ -42,8 +46,23 @@ export default {
         .collection("wishList")
         .add({ artist: payload.artist, creatorId: getters.user.userId })
         .then(() => {
-          console.log("Item added to list!");
           commit("SET_LOADING", false);
+        })
+        .catch((err) => {
+          commit("SET_LOADING", true);
+          commit("SET_ERROR", err);
+        });
+    },
+
+    removeItemFromList({ commit }, payload) {
+      commit("SET_LOADING", true);
+
+      firebase
+        .collection("wishList")
+        .doc(payload.itemId)
+        .delete()
+        .then(() => {
+          commit("DELETE_FROM_LIST");
         })
         .catch((err) => {
           commit("SET_LOADING", true);

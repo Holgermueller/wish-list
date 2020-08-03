@@ -10,7 +10,15 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn to="/singleItem"
+
+          <v-btn
+            :to="{
+              name: 'SingleItemPage',
+              params: {
+                id: id,
+                artist: artist,
+              },
+            }"
             >See more <v-icon>mdi-arrow-right-bold</v-icon></v-btn
           >
         </v-card-actions>
