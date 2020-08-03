@@ -2,9 +2,9 @@
   <div id="dashboard">
     <h1>This is the dashboard</h1>
 
-    <ListFilter />
-
     <AddItem />
+
+    <ListFilter />
 
     <v-layout class="progress">
       <v-flex class="tet-xs-center">
@@ -20,9 +20,10 @@
 
     <ListDisplay
       v-for="(listItem, index) in getWishList"
-      :key="index"
+      :key="listItem.itemId"
       :index="index"
       :artist="listItem.artist"
+      :id="listItem.itemId"
     />
   </div>
 </template>
@@ -46,10 +47,6 @@ export default {
   },
 
   computed: {
-    user() {
-      return this.$$store.getters.user;
-    },
-
     getWishList() {
       return this.$store.getters.wishList;
     },
@@ -72,6 +69,9 @@ export default {
 </script>
 
 <style scoped>
+#dashboard {
+  margin-bottom: 7%;
+}
 .progress {
   margin: 1% auto;
 }

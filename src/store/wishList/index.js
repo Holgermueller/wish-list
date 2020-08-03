@@ -2,69 +2,52 @@ import firebase from "../../firebase/firebaseInit";
 
 export default {
   state: {
-    wishList: [
-      {
-        itemId: "xxx",
-        artist: "doc.data().artist",
-      },
-      {
-        itemId: "xxx",
-        artist: "doc.data().artist",
-      },
-      {
-        itemId: "xxx",
-        artist: "doc.data().artist",
-      },
-    ],
+    wishList: [],
   },
 
   mutations: {
-    setWishList(state, payload) {
-      if (payload) {
-        state.wishList = payload;
-      } else {
-        state.wishList = "[Wish List will appear here]";
-      }
+    SET_WISH_LIST(state, payload) {
+      state.wishList = payload;
     },
   },
 
   actions: {
     getWishList({ commit }) {
-      commit(["setLoading", true]);
+      commit("SET_LOADING", true);
 
       firebase.collection("wishList").onSnapshot(
         (querySnapshot) => {
-          let wishListFromDB = [];
+          let wishListFromDb = [];
           querySnapshot.forEach((doc) => {
-            let wishListData = {
+            let listData = {
               itemId: doc.id,
               artist: doc.data().artist,
             };
-            wishListFromDB.push(wishListData);
+            wishListFromDb.push(listData);
           });
-          commit("setWishList", wishListFromDB);
-          commit("setLoading", false);
+          commit("SET_WISH_LIST", wishListFromDb);
+          commit("SET_LOADING", false);
         },
         (err) => {
-          commit("setLoading", true);
-          commit("setError", err);
+          commit("SET_LOADING", true);
+          commit("SET_ERROR", err);
         }
       );
     },
 
     addEntryToList({ commit, getters }, payload) {
-      commit("setLoading", true);
+      commit("SET_LOADING", true);
 
       firebase
         .collection("wishList")
         .add({ artist: payload.artist, creatorId: getters.user.userId })
         .then(() => {
           console.log("Item added to list!");
-          commit("setLoading", false);
+          commit("SET_LOADING", false);
         })
         .catch((err) => {
-          commit("setLoading", true);
-          commit("setError", err);
+          commit("SET_LOADING", true);
+          commit("SET_ERROR", err);
         });
     },
   },

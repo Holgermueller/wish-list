@@ -7,7 +7,7 @@ export default {
   },
 
   mutations: {
-    setUser(state, payload) {
+    SET_USER(state, payload) {
       state.user = payload;
     },
 
@@ -18,8 +18,8 @@ export default {
 
   actions: {
     registerUser({ commit }, payload) {
-      commit("setLoading", true);
-      commit("clearError");
+      commit("SET_LOADING", true);
+      commit("CLEAR_ERROR");
 
       firebase
         .auth()
@@ -31,11 +31,11 @@ export default {
               displayName: payload.displayName,
             })
             .then(() => {
-              commit("setLoading", false);
+              commit("SET_LOADING", false);
             })
             .catch((err) => {
-              commit("setLoading", false);
-              commit("setError", err);
+              commit("SET_LOADING", false);
+              commit("SET_ERROR", err);
             });
 
           const user = userCredential.user;
@@ -45,7 +45,7 @@ export default {
             userId: user.uid,
           };
 
-          commit("setUser", newUser);
+          commit("SET_USER", newUser);
 
           db.collection("userProfiles")
             .add({
@@ -55,42 +55,42 @@ export default {
             })
             .then(() => {})
             .catch((err) => {
-              commit("setLoading", false);
-              commit("setError", err);
+              commit("SET_LOADING", false);
+              commit("SET_ERROR", err);
             });
         })
         .catch((err) => {
-          commit("setLoading", false);
-          commit("setError", err);
+          commit("SET_LOADING", false);
+          commit("SET_ERROR", err);
         });
     },
 
     login({ commit }, payload) {
-      commit("setLoading", true);
-      commit("clearError");
+      commit("SET_LOADING", true);
+      commit("CLEAR_ERROR");
 
       firebase
         .auth()
         .signInWithEmailAndPassword(payload.email, payload.password)
         .then((user) => {
-          commit("setLoading", false);
+          commit("SET_LOADING", false);
           const signedInUser = {
             email: user.user.email,
             id: user.user.uid,
             displayName: user.user.displayName,
           };
-          commit("setLoading", false);
-          commit("setUser", signedInUser);
+          commit("SET_LOADING", false);
+          commit("SET_USER", signedInUser);
         })
         .catch((err) => {
-          commit("setLoading", false);
-          commit("setError", err);
+          commit("SET_LOADING", false);
+          commit("SET_ERROR", err);
         });
     },
 
     autoSignIn({ commit }, payload) {
-      commit("setLoading", false);
-      commit("setUser", {
+      commit("SET_LOADING", false);
+      commit("SET_USER", {
         userId: payload.uid,
         email: payload.email,
         displayName: payload.displayName,
@@ -98,34 +98,34 @@ export default {
     },
 
     deleteUser({ commit }) {
-      commit("setLoading", true);
+      commit("SET_LOADING", true);
 
       firebase
         .auth()
         .currentUser.delete()
         .then(() => {
-          commit("setLoading", false);
-          commit("setUser", null);
+          commit("SET_LOADING", false);
+          commit("SET_USER", null);
         })
         .catch((err) => {
-          commit("setLoading", false);
-          commit("setError", err);
+          commit("SET_LOADING", false);
+          commit("SET_ERROR", err);
         });
     },
 
     logout({ commit }) {
-      commit("setLoading", true);
+      commit("SET_LOADING", true);
 
       firebase
         .auth()
         .signOut()
         .then(() => {
-          commit("setLoading", false);
-          commit("setUser", null);
+          commit("SET_LOADING", false);
+          commit("SET_USER", null);
         })
         .catch((err) => {
-          commit("setLoading", false);
-          commit("setError", err);
+          commit("SET_LOADING", false);
+          commit("SET_ERROR", err);
         });
     },
   },
