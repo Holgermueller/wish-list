@@ -24,6 +24,7 @@
       :index="index"
       :artist="listItem.artist"
       :id="listItem.itemId"
+      :title="listItem.title"
     />
   </div>
 </template>

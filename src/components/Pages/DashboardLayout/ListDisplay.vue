@@ -2,7 +2,7 @@
   <div id="wishListDisplay">
     <v-hover v-slot:default="{ hover }">
       <v-card :elevation="hover ? 12 : 2" class="entry-card">
-        <v-card-title> {{ artist }}, {{ id }} </v-card-title>
+        <v-card-title> {{ artist }}, {{ title }} </v-card-title>
 
         <v-card-subtitle>
           Title of work will appear here
@@ -33,6 +33,10 @@ export default {
 
   props: {
     artist: {
+      type: String,
+    },
+
+    title: {
       type: String,
     },
 

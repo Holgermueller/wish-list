@@ -26,6 +26,11 @@ export default {
             let listData = {
               itemId: doc.id,
               artist: doc.data().artist,
+              title: doc.data().title,
+              medium: doc.data().medium,
+              genre: doc.data().genre,
+              publisher: doc.data().publisher,
+              creatorId: doc.data().creatorId,
             };
             wishListFromDb.push(listData);
           });
@@ -44,7 +49,14 @@ export default {
 
       firebase
         .collection("wishList")
-        .add({ artist: payload.artist, creatorId: getters.user.userId })
+        .add({
+          artist: payload.artist,
+          title: payload.title,
+          medium: payload.medium,
+          genre: payload.genre,
+          publisher: payload.publisher,
+          creatorId: getters.user.userId,
+        })
         .then(() => {
           commit("SET_LOADING", false);
         })
@@ -53,6 +65,8 @@ export default {
           commit("SET_ERROR", err);
         });
     },
+
+    editEntryInfo() {},
 
     removeItemFromList({ commit }, payload) {
       commit("SET_LOADING", true);

@@ -26,13 +26,61 @@
           <v-form ref="form">
             <v-container fluid>
               <v-layout wrap>
-                <v-flex>
+                <v-flex xs12 sm12 md12 lg12 xl12>
                   <v-text-field
                     type="text"
                     v-model="artist"
                     placeholder="Enter artist or author name here..."
                     value="artist"
                     id="artist"
+                    clearable
+                  >
+                  </v-text-field>
+                </v-flex>
+
+                <v-flex xs12 sm12 md12 lg12 xl12>
+                  <v-text-field
+                    type="text"
+                    v-model="title"
+                    placeholder="Title"
+                    value="title"
+                    id="title"
+                    clearable
+                  >
+                  </v-text-field>
+                </v-flex>
+
+                <v-flex xs12 sm12 md12 lg12 xl12>
+                  <v-text-field
+                    type="text"
+                    v-model="medium"
+                    placeholder="Medium (Album, book, etc...)"
+                    value="medium"
+                    id="medium"
+                    clearable
+                  >
+                  </v-text-field>
+                </v-flex>
+
+                <v-flex xs12 sm12 md12 lg12 xl12>
+                  <v-text-field
+                    type="text"
+                    v-model="genre"
+                    placeholder="Genre"
+                    value="genre"
+                    id="genre"
+                    clearable
+                  >
+                  </v-text-field>
+                </v-flex>
+
+                <v-flex xs12 sm12 md12 lg12 xl12>
+                  <v-text-field
+                    type="text"
+                    v-model="publisher"
+                    placeholder="Publisher or Lable"
+                    value="publisher"
+                    id="publisher"
                     clearable
                   >
                   </v-text-field>
@@ -71,6 +119,10 @@ export default {
     return {
       dialog: false,
       artist: "",
+      title: "",
+      medium: "",
+      genre: "",
+      publisher: "",
     };
   },
 
@@ -92,9 +144,13 @@ export default {
     createEntry() {
       this.$store.dispatch("addEntryToList", {
         artist: this.artist,
+        title: this.title,
+        medium: this.medium,
+        genre: this.genre,
+        publisher: this.publisher,
       });
 
-      console.log(this.artist);
+      this.resetForm();
 
       this.dialog = false;
     },
