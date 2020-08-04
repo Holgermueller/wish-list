@@ -4,7 +4,16 @@
 
     <AddItem />
 
-    <ListFilter />
+    <!-- <ListFilter /> -->
+
+    <div>
+      <v-text-field
+        v-model="searchTerm"
+        placeholder="Filter through your list..."
+        outlined
+        clearable
+      ></v-text-field>
+    </div>
 
     <v-layout class="progress">
       <v-flex class="tet-xs-center">
@@ -19,7 +28,7 @@
     </v-layout>
 
     <ListDisplay
-      v-for="(listItem, index) in getWishList"
+      v-for="(listItem, index) in filterByName"
       :key="listItem.itemId"
       :index="index"
       :artist="listItem.artist"
@@ -33,16 +42,22 @@
 </template>
 
 <script>
-import ListFilter from "./DashboardLayout/ListFilter";
+//import ListFilter from "./DashboardLayout/ListFilter";
 import AddItem from "./DashboardLayout/AddItemDialog";
 import ListDisplay from "./DashboardLayout/ListDisplay";
 
 export default {
   name: "Dashboard",
 
+  data() {
+    return {
+      searchTerm: "",
+    };
+  },
+
   components: {
     AddItem,
-    ListFilter,
+    //ListFilter,
     ListDisplay,
   },
 
@@ -61,6 +76,15 @@ export default {
 
     error() {
       return this.$store.getters.error;
+    },
+
+    filterByName() {
+      return this.getWishList.filter((listItem) => {
+        return (
+          listItem.artist.toLowerCase().indexOf(this.searchTerm.toLowerCase()) >
+          -1
+        );
+      });
     },
   },
 
