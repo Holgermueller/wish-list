@@ -1,12 +1,28 @@
 <template>
   <div id="singleItemPage">
-    <v-sheet>
-      <h1>This is the si9ngle item page.</h1>
+    <v-card>
+      <v-card-title>
+        <h2>{{ artist }}</h2>
+      </v-card-title>
 
-      <h2>{{ artist }}</h2>
+      <v-card-subtitle>
+        <h3>
+          {{ title }}
+        </h3>
+      </v-card-subtitle>
 
-      <v-btn @click.prevent="deleteFromList">Delete from list</v-btn>
-    </v-sheet>
+      <v-card-text>
+        <h4>
+          Notes:
+        </h4>
+      </v-card-text>
+
+      <v-card-actions>
+        <v-btn to="/dashboard">Back</v-btn>
+        <v-spacer></v-spacer>
+        <v-btn @click.prevent="deleteFromList">Delete from list</v-btn>
+      </v-card-actions>
+    </v-card>
   </div>
 </template>
 
@@ -16,6 +32,10 @@ export default {
 
   props: {
     artist: {
+      type: String,
+    },
+
+    title: {
       type: String,
     },
 

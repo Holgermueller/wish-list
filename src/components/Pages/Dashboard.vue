@@ -25,6 +25,9 @@
       :artist="listItem.artist"
       :id="listItem.itemId"
       :title="listItem.title"
+      :medium="listItem.medium"
+      :genre="listItem.genre"
+      :publisher="listItem.publisher"
     />
   </div>
 </template>

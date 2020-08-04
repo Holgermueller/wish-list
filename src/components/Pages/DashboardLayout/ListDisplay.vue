@@ -5,7 +5,7 @@
         <v-card-title> {{ artist }}, {{ title }} </v-card-title>
 
         <v-card-subtitle>
-          Title of work will appear here
+          {{ medium }}
         </v-card-subtitle>
 
         <v-card-actions>
@@ -17,6 +17,8 @@
               params: {
                 id: id,
                 artist: artist,
+                title: title,
+                medium: medium,
               },
             }"
             >See more <v-icon>mdi-arrow-right-bold</v-icon></v-btn
@@ -37,6 +39,10 @@ export default {
     },
 
     title: {
+      type: String,
+    },
+
+    medium: {
       type: String,
     },
 
