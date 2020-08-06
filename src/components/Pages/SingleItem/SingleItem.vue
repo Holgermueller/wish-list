@@ -39,7 +39,7 @@
       <v-card-actions>
         <v-btn to="/dashboard">Back</v-btn>
         <v-spacer></v-spacer>
-        <v-btn @click.prevent="deleteFromList">Delete from list</v-btn>
+        <DeleteSingleItem :artist="artist" :title="title" :id="id" />
       </v-card-actions>
     </v-card>
   </div>
@@ -47,12 +47,14 @@
 
 <script>
 import EditSingleItem from "./EditSingleItem";
+import DeleteSingleItem from "./DeleteItemDialog";
 
 export default {
   name: "SingleItemPage",
 
   components: {
     EditSingleItem,
+    DeleteSingleItem,
   },
 
   props: {
@@ -87,15 +89,7 @@ export default {
     },
   },
 
-  methods: {
-    deleteFromList() {
-      this.$store.dispatch("removeItemFromList", {
-        itemId: this.id,
-      });
-
-      this.$router.push("/dashboard");
-    },
-  },
+  methods: {},
 };
 </script>
 
