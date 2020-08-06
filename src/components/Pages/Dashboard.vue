@@ -4,14 +4,13 @@
 
     <AddItem />
 
-    <!-- <ListFilter /> -->
-
     <div>
       <v-text-field
         v-model="searchTerm"
         placeholder="Filter through your list..."
         outlined
         clearable
+        class="list-filter"
       ></v-text-field>
     </div>
 
@@ -42,7 +41,6 @@
 </template>
 
 <script>
-//import ListFilter from "./DashboardLayout/ListFilter";
 import AddItem from "./DashboardLayout/AddItemDialog";
 import ListDisplay from "./DashboardLayout/ListDisplay";
 
@@ -57,7 +55,6 @@ export default {
 
   components: {
     AddItem,
-    //ListFilter,
     ListDisplay,
   },
 
@@ -102,5 +99,10 @@ export default {
 }
 .progress {
   margin: 1% auto;
+}
+
+.list-filter {
+  width: 75%;
+  margin: 2% auto;
 }
 </style>

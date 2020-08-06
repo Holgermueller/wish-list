@@ -1,20 +1,39 @@
 <template>
   <div id="singleItemPage">
-    <v-card>
+    <v-card class="single-item-card">
       <v-card-title>
         <h2>{{ artist }}</h2>
+        <v-spacer></v-spacer>
+        <EditSingleItem />
       </v-card-title>
 
       <v-card-subtitle>
         <h3>
           {{ title }}
         </h3>
+
+        <h3>
+          {{ medium }}
+        </h3>
       </v-card-subtitle>
 
       <v-card-text>
-        <h4>
-          Notes:
-        </h4>
+        <div>
+          <h4 class="notes-section-header">
+            Notes:
+          </h4>
+
+          <v-divider></v-divider>
+
+          <div>Notes will appear here</div>
+        </div>
+
+        <div>
+          <a href="" class="bold"
+            >Get it here!
+            <v-icon>mdi-arrow-right-bold</v-icon>
+          </a>
+        </div>
       </v-card-text>
 
       <v-card-actions>
@@ -27,8 +46,14 @@
 </template>
 
 <script>
+import EditSingleItem from "./EditSingleItem";
+
 export default {
   name: "SingleItemPage",
+
+  components: {
+    EditSingleItem,
+  },
 
   props: {
     artist: {
@@ -36,6 +61,10 @@ export default {
     },
 
     title: {
+      type: String,
+    },
+
+    medium: {
       type: String,
     },
 
@@ -69,3 +98,18 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.single-item-card {
+  width: 85%;
+  margin: 7% auto;
+}
+
+.notes-section-header {
+  text-decoration: underline;
+}
+
+a {
+  text-decoration: none;
+}
+</style>

@@ -1,14 +1,14 @@
 <template>
   <div id="wishListDisplay">
-    <!-- <v-hover v-slot:default="{ hover }">
-      <v-card :elevation="hover ? 12 : 2" class="entry-card">
-        <v-card-title> {{ artist }}, {{ title }} </v-card-title>
+    <v-hover v-slot:default="{ hover }">
+      <v-card
+        :elevation="hover ? 12 : 2"
+        class="entry-card"
+        :class="`${medium}`"
+      >
+        <v-card-title>
+          {{ artist }}
 
-        <v-card-subtitle>
-          {{ medium }}
-        </v-card-subtitle>
-
-        <v-card-actions>
           <v-spacer></v-spacer>
 
           <v-btn
@@ -23,32 +23,14 @@
             }"
             >See more <v-icon>mdi-arrow-right-bold</v-icon></v-btn
           >
-        </v-card-actions>
+        </v-card-title>
+
+        <v-card-subtitle>
+          {{ title }},
+          {{ medium }}
+        </v-card-subtitle>
       </v-card>
-    </v-hover> -->
-
-    <v-card>
-      <v-card-title>
-        Wish List
-        <v-spacer></v-spacer>
-
-        <v-text-field
-          v-model="search"
-          preppend-icon="mdi-magnify"
-          label="Search through your list..."
-          clearable
-        >
-        </v-text-field>
-      </v-card-title>
-
-      <v-data-table
-        :headers="headers"
-        :items="items"
-        :search="search"
-        show-expand
-      >
-      </v-data-table>
-    </v-card>
+    </v-hover>
   </div>
 </template>
 
