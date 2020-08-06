@@ -10,7 +10,7 @@
 
       <v-card>
         <v-card-title>
-          Add something
+          Add something to your list...
         </v-card-title>
 
         <v-card-subtitle>
@@ -85,6 +85,15 @@
                   >
                   </v-text-field>
                 </v-flex>
+
+                <v-flex xs12 sm12 md12 lg12 xl12>
+                  <v-select
+                    value="priority"
+                    v-model="selectedPriority"
+                    :items="priority"
+                    label="Priority?"
+                  ></v-select>
+                </v-flex>
               </v-layout>
             </v-container>
           </v-form>
@@ -123,6 +132,8 @@ export default {
       medium: "",
       genre: "",
       publisher: "",
+      priority: ["Now", "Soon", "Whenever"],
+      selectedPriority: "",
     };
   },
 
@@ -148,6 +159,7 @@ export default {
         medium: this.medium,
         genre: this.genre,
         publisher: this.publisher,
+        selectedPriority: this.selectedPriority,
       });
 
       this.resetForm();

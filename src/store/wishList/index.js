@@ -31,6 +31,7 @@ export default {
               genre: doc.data().genre,
               publisher: doc.data().publisher,
               creatorId: doc.data().creatorId,
+              selectedPriority: doc.data().selectedPriority,
             };
             wishListFromDb.push(listData);
           });
@@ -56,6 +57,7 @@ export default {
           genre: payload.genre,
           publisher: payload.publisher,
           creatorId: getters.user.userId,
+          selectedPriority: payload.selectedPriority,
         })
         .then(() => {
           commit("SET_LOADING", false);

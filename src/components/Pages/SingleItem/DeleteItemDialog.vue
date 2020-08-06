@@ -12,7 +12,7 @@
         </v-card-title>
 
         <v-card-subtitle>
-          This actions cannot be reversed.
+          This action cannot be reversed.
         </v-card-subtitle>
 
         <v-card-actions>

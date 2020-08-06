@@ -1,7 +1,5 @@
 <template>
   <div id="dashboard">
-    <h1>This is the dashboard</h1>
-
     <AddItem />
 
     <div>
@@ -36,6 +34,7 @@
       :medium="listItem.medium"
       :genre="listItem.genre"
       :publisher="listItem.publisher"
+      :priority="listItem.selectedPriority"
     />
   </div>
 </template>

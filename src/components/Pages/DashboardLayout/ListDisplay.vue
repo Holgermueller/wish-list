@@ -1,11 +1,7 @@
 <template>
   <div id="wishListDisplay">
     <v-hover v-slot:default="{ hover }">
-      <v-card
-        :elevation="hover ? 12 : 2"
-        class="entry-card"
-        :class="`${medium}`"
-      >
+      <v-card :elevation="hover ? 12 : 2" :class="`entry-card ${priority}`">
         <v-card-title>
           {{ artist }}
 
@@ -19,6 +15,9 @@
                 artist: artist,
                 title: title,
                 medium: medium,
+                genre: genre,
+                publisher: publisher,
+                priority: priority,
               },
             }"
             >See more <v-icon>mdi-arrow-right-bold</v-icon></v-btn
@@ -48,6 +47,18 @@ export default {
     },
 
     medium: {
+      type: String,
+    },
+
+    genre: {
+      type: String,
+    },
+
+    publisher: {
+      type: String,
+    },
+
+    priority: {
       type: String,
     },
 
@@ -97,5 +108,9 @@ export default {
 }
 .entry-card:hover {
   background-color: lightslategray;
+}
+
+.v-card.Whenver {
+  border-left-color: 4px solid red !important;
 }
 </style>

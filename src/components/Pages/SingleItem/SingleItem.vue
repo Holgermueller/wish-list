@@ -4,7 +4,12 @@
       <v-card-title>
         <h2>{{ artist }}</h2>
         <v-spacer></v-spacer>
-        <EditSingleItem />
+        <EditSingleItem
+          :artist="artist"
+          :id="id"
+          :title="title"
+          :medium="medium"
+        />
       </v-card-title>
 
       <v-card-subtitle>
@@ -14,6 +19,12 @@
 
         <h3>
           {{ medium }}
+        </h3>
+        <h3>
+          {{ publisher }}
+        </h3>
+        <h3>
+          {{ genre }}
         </h3>
       </v-card-subtitle>
 
@@ -29,6 +40,7 @@
         </div>
 
         <div>
+          <v-divider></v-divider>
           <a href="" class="bold"
             >Get it here!
             <v-icon>mdi-arrow-right-bold</v-icon>
@@ -67,6 +79,14 @@ export default {
     },
 
     medium: {
+      type: String,
+    },
+
+    publisher: {
+      type: String,
+    },
+
+    genre: {
       type: String,
     },
 
