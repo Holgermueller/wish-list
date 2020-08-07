@@ -32,13 +32,18 @@
 
       <v-card-text>
         <div>
-          <h4 class="notes-section-header">
-            Notes:
-          </h4>
+          <section>
+            <h4 class="notes-section-header">
+              Notes:
+            </h4>
+            <v-spacer></v-spacer>
+
+            <AddNotes />
+          </section>
 
           <v-divider></v-divider>
 
-          <div class="notes-section">Notes will appear here</div>
+          <div class="notes-display">{Notes will appear here}</div>
         </div>
 
         <div>
@@ -65,6 +70,7 @@
 import EditSingleItem from "./EditSingleItem";
 import DeleteSingleItem from "./DeleteItemDialog";
 import AddLinkDialog from "./AddLink";
+import AddNotes from "./AddNotes";
 
 export default {
   name: "SingleItemPage",
@@ -73,6 +79,7 @@ export default {
     EditSingleItem,
     DeleteSingleItem,
     AddLinkDialog,
+    AddNotes,
   },
 
   props: {
@@ -129,7 +136,7 @@ export default {
   text-decoration: underline;
 }
 
-.notes-section {
+.notes-display {
   margin: 4px auto;
 }
 
