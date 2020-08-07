@@ -1,7 +1,11 @@
 <template>
   <div id="wishListDisplay">
     <v-hover v-slot:default="{ hover }">
-      <v-card :elevation="hover ? 12 : 2" :class="`entry-card ${priority}`">
+      <v-card
+        :elevation="hover ? 12 : 2"
+        :class="`entry-card ${priority}`"
+        outlined
+      >
         <v-card-title>
           {{ artist }}
 
@@ -110,7 +114,8 @@ export default {
   background-color: lightslategray;
 }
 
-.v-card.Whenver {
-  border-left-color: 4px solid red !important;
+.Whenver {
+  border-left-color: 4px solid success !important;
+  color: red;
 }
 </style>

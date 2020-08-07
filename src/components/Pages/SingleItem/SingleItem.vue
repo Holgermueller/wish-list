@@ -46,6 +46,8 @@
             <v-icon>mdi-arrow-right-bold</v-icon>
           </a>
         </div>
+
+        <AddLinkDialog />
       </v-card-text>
 
       <v-card-actions>
@@ -60,6 +62,7 @@
 <script>
 import EditSingleItem from "./EditSingleItem";
 import DeleteSingleItem from "./DeleteItemDialog";
+import AddLinkDialog from "./AddLink";
 
 export default {
   name: "SingleItemPage",
@@ -67,6 +70,7 @@ export default {
   components: {
     EditSingleItem,
     DeleteSingleItem,
+    AddLinkDialog,
   },
 
   props: {
