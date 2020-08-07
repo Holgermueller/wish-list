@@ -11,7 +11,80 @@
         <v-card-title>Edit information here:</v-card-title>
 
         <v-card-text>
-          info will appear here
+          <v-form ref="form">
+            <v-container fluid>
+              <v-layout wrap>
+                <v-flex xs12 sm12 md12 lg12 xl12>
+                  <v-text-field
+                    type="text"
+                    v-model="artist"
+                    placeholder="Enter artist or author name here..."
+                    value="artist"
+                    id="artist"
+                    clearable
+                  >
+                  </v-text-field>
+                </v-flex>
+
+                <v-flex xs12 sm12 md12 lg12 xl12>
+                  <v-text-field
+                    type="text"
+                    v-model="title"
+                    placeholder="Title"
+                    value="title"
+                    id="title"
+                    clearable
+                  >
+                  </v-text-field>
+                </v-flex>
+
+                <v-flex xs12 sm12 md12 lg12 xl12>
+                  <v-text-field
+                    type="text"
+                    v-model="medium"
+                    placeholder="Medium (Album, book, etc...)"
+                    value="medium"
+                    id="medium"
+                    clearable
+                  >
+                  </v-text-field>
+                </v-flex>
+
+                <v-flex xs12 sm12 md12 lg12 xl12>
+                  <v-text-field
+                    type="text"
+                    v-model="genre"
+                    placeholder="Genre"
+                    value="genre"
+                    id="genre"
+                    clearable
+                  >
+                  </v-text-field>
+                </v-flex>
+
+                <v-flex xs12 sm12 md12 lg12 xl12>
+                  <v-text-field
+                    type="text"
+                    v-model="editedGenre"
+                    :placeholder="publisher"
+                    value="publisher"
+                    id="publisher"
+                    clearable
+                  >
+                  </v-text-field>
+                </v-flex>
+
+                <!-- <v-flex xs12 sm12 md12 lg12 xl12>
+                  <v-select
+                    value="priority"
+                    v-model="selectedPriority"
+                    :items="priority"
+                    label="Priority?"
+                  ></v-select>
+                </v-flex> -->
+              </v-layout>
+            </v-container>
+          </v-form>
         </v-card-text>
 
         <v-card-actions>
@@ -28,9 +101,40 @@
 export default {
   name: "EditSingleItem",
 
+  props: {
+    artist: {
+      type: String,
+    },
+
+    title: {
+      type: String,
+    },
+
+    medium: {
+      type: String,
+    },
+
+    publisher: {
+      type: String,
+    },
+
+    genre: {
+      type: String,
+    },
+
+    id: {
+      type: String,
+    },
+  },
+
   data() {
     return {
       dialog: false,
+      editedArtist: "",
+      editedTitle: "",
+      editedMedium: "",
+      editedPublisher: "",
+      editedGenre: "",
     };
   },
 

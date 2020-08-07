@@ -9,6 +9,8 @@
           :id="id"
           :title="title"
           :medium="medium"
+          :publisher="publisher"
+          :genre="genre"
         />
       </v-card-title>
 
@@ -36,7 +38,7 @@
 
           <v-divider></v-divider>
 
-          <div>Notes will appear here</div>
+          <div class="notes-section">Notes will appear here</div>
         </div>
 
         <div>
@@ -125,6 +127,10 @@ export default {
 
 .notes-section-header {
   text-decoration: underline;
+}
+
+.notes-section {
+  margin: 4px auto;
 }
 
 a {
