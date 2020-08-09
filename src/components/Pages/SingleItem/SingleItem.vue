@@ -38,7 +38,7 @@
             </h4>
             <v-spacer></v-spacer>
 
-            <AddNotes :notes="notes" />
+            <AddNotes :notes="notes" :id="id" />
           </section>
 
           <v-divider></v-divider>

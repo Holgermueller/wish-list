@@ -17,8 +17,8 @@
                 <v-flex xs12 sm12 md12 lg12 xl12>
                   <v-text-field
                     type="text"
-                    v-model="artist"
-                    placeholder="Enter artist or author name here..."
+                    v-model="editedArtist"
+                    placeholder="artist"
                     value="artist"
                     id="artist"
                     clearable
@@ -29,8 +29,8 @@
                 <v-flex xs12 sm12 md12 lg12 xl12>
                   <v-text-field
                     type="text"
-                    v-model="title"
-                    placeholder="Title"
+                    v-model="editedTitle"
+                    placeholder="title"
                     value="title"
                     id="title"
                     clearable
@@ -41,7 +41,7 @@
                 <v-flex xs12 sm12 md12 lg12 xl12>
                   <v-text-field
                     type="text"
-                    v-model="medium"
+                    v-model="editedMedium"
                     placeholder="Medium (Album, book, etc...)"
                     value="medium"
                     id="medium"
@@ -53,7 +53,7 @@
                 <v-flex xs12 sm12 md12 lg12 xl12>
                   <v-text-field
                     type="text"
-                    v-model="genre"
+                    v-model="editedGenre"
                     placeholder="Genre"
                     value="genre"
                     id="genre"
@@ -65,7 +65,7 @@
                 <v-flex xs12 sm12 md12 lg12 xl12>
                   <v-text-field
                     type="text"
-                    v-model="editedGenre"
+                    v-model="editedPublisher"
                     :placeholder="publisher"
                     value="publisher"
                     id="publisher"
@@ -130,11 +130,11 @@ export default {
   data() {
     return {
       dialog: false,
-      editedArtist: "",
-      editedTitle: "",
-      editedMedium: "",
-      editedPublisher: "",
-      editedGenre: "",
+      editedArtist: this.artist,
+      editedTitle: this.title,
+      editedMedium: this.medium,
+      editedPublisher: this.publisher,
+      editedGenre: this.genre,
     };
   },
 

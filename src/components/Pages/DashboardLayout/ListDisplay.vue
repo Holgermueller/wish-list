@@ -33,6 +33,17 @@
           {{ title }},
           {{ medium }}
         </v-card-subtitle>
+
+        <v-card-text>
+          <v-layout row v-if="error">
+            <v-flex xs12 sm12 md12 lg12 xl12>
+              <app-alert
+                @dismissed="onDismissed"
+                :text="error.message || error"
+              ></app-alert>
+            </v-flex>
+          </v-layout>
+        </v-card-text>
       </v-card>
     </v-hover>
   </div>
@@ -73,6 +84,12 @@ export default {
 
     notes: {
       type: String,
+    },
+  },
+
+  computed: {
+    error() {
+      return this.$store.getters.error;
     },
   },
 

@@ -18,11 +18,11 @@
               <v-layout wrap>
                 <v-flex>
                   <v-textarea
-                    name="notes"
+                    type="text"
                     :placeholder="notes"
-                    value="notes"
                     v-model="editedNotes"
                     clearable
+                    outlined
                   >
                   </v-textarea>
                 </v-flex>
@@ -34,7 +34,7 @@
         <v-card-actions>
           <v-btn @click="closeDialog">Cancel</v-btn>
           <v-spacer></v-spacer>
-          <v-btn @click="submitNotes">
+          <v-btn @click.prevent="submitNotes">
             Submit
           </v-btn>
         </v-card-actions>
@@ -51,12 +51,16 @@ export default {
     notes: {
       type: String,
     },
+
+    id: {
+      type: String,
+    },
   },
 
   data() {
     return {
       dialog: false,
-      editedNotes: "",
+      editedNotes: this.notes,
     };
   },
 
@@ -66,7 +70,11 @@ export default {
     },
 
     submitNotes() {
-      console.log(this.notes);
+      this.$store.dispatch("editNotes", {
+        itemId: this.id,
+        newlyEditedNotes: this.editedNotes,
+      });
+
       this.closeDialog();
     },
   },

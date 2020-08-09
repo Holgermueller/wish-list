@@ -13,6 +13,15 @@ export default {
     DELETE_FROM_LIST(state, payload) {
       state.wishList.findIndex((item) => item.id === payload);
     },
+
+    UPDATE_NOTES(state, payload) {
+      const thisItemsNotes = state.wishList.find((thisItem) => {
+        return thisItem.id === payload.itemId;
+      });
+      if (payload.newlyEditedNotes) {
+        thisItemsNotes.notes = payload.newlyEditedNotes;
+      }
+    },
   },
 
   actions: {
@@ -73,6 +82,28 @@ export default {
 
     editEntryInfo() {},
 
+    addLink() {},
+
+    editNotes({ commit }, payload) {
+      commit("SET_LOADING", true);
+
+      firebase
+        .collection("wishList")
+        .doc(payload.itemId)
+        .update({
+          notes: payload.newlyEditedNotes,
+        })
+        .then(() => {
+          console.log("note updated!");
+          commit("UPDATE_NOTES");
+          commit("SET_LOADING", false);
+        })
+        .catch((err) => {
+          commit("SET_ERROR", err);
+          commit("SET_LOADING", true);
+        });
+    },
+
     removeItemFromList({ commit }, payload) {
       commit("SET_LOADING", true);
 
@@ -82,6 +113,7 @@ export default {
         .delete()
         .then(() => {
           commit("DELETE_FROM_LIST");
+          commit("SET_LOADING", false);
         })
         .catch((err) => {
           commit("SET_LOADING", true);
