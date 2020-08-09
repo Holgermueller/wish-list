@@ -28,9 +28,15 @@
         <h3>
           {{ genre }}
         </h3>
+
+        <h3>Priority: {{ priority }}</h3>
       </v-card-subtitle>
 
       <v-card-text>
+        <div class="update-priority">
+          <UpdatePriority :priority="priority" :id="id" />
+        </div>
+
         <div>
           <section>
             <h4 class="notes-section-header">
@@ -71,6 +77,7 @@ import EditSingleItem from "./EditSingleItem";
 import DeleteSingleItem from "./DeleteItemDialog";
 import AddLinkDialog from "./AddLink";
 import AddNotes from "./AddNotes";
+import UpdatePriority from "./UpdatePriority";
 
 export default {
   name: "SingleItemPage",
@@ -80,6 +87,7 @@ export default {
     DeleteSingleItem,
     AddLinkDialog,
     AddNotes,
+    UpdatePriority,
   },
 
   props: {
@@ -108,6 +116,10 @@ export default {
     },
 
     notes: {
+      type: String,
+    },
+
+    priority: {
       type: String,
     },
   },

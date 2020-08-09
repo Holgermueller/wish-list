@@ -127,6 +127,8 @@ export default {
 
     addLink() {},
 
+    changePriority() {},
+
     editNotes({ commit }, payload) {
       commit("SET_LOADING", true);
 
