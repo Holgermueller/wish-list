@@ -38,12 +38,12 @@
             </h4>
             <v-spacer></v-spacer>
 
-            <AddNotes />
+            <AddNotes :notes="notes" />
           </section>
 
           <v-divider></v-divider>
 
-          <div class="notes-display">{Notes will appear here}</div>
+          <div class="notes-display">{{ notes }}</div>
         </div>
 
         <div>
@@ -106,6 +106,10 @@ export default {
     id: {
       type: String,
     },
+
+    notes: {
+      type: String,
+    },
   },
 
   data() {
@@ -137,7 +141,7 @@ export default {
 }
 
 .notes-display {
-  margin: 4px auto;
+  margin: 8px auto;
 }
 
 a {

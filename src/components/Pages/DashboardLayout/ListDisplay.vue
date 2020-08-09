@@ -22,6 +22,7 @@
                 genre: genre,
                 publisher: publisher,
                 priority: priority,
+                notes: notes,
               },
             }"
             >See more <v-icon>mdi-arrow-right-bold</v-icon></v-btn
@@ -67,6 +68,10 @@ export default {
     },
 
     id: {
+      type: String,
+    },
+
+    notes: {
       type: String,
     },
   },

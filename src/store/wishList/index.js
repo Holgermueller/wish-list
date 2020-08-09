@@ -32,6 +32,7 @@ export default {
               publisher: doc.data().publisher,
               creatorId: doc.data().creatorId,
               selectedPriority: doc.data().selectedPriority,
+              notes: doc.data().notes,
             };
             wishListFromDb.push(listData);
           });
@@ -58,6 +59,8 @@ export default {
           publisher: payload.publisher,
           creatorId: getters.user.userId,
           selectedPriority: payload.selectedPriority,
+          notes:
+            "Tell people something about this to make finding what you/'re looking for easier for them.",
         })
         .then(() => {
           commit("SET_LOADING", false);

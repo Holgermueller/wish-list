@@ -36,6 +36,7 @@
       :genre="listItem.genre"
       :publisher="listItem.publisher"
       :priority="listItem.selectedPriority"
+      :notes="listItem.notes"
     />
   </div>
 </template>

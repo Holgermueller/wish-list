@@ -19,9 +19,9 @@
                 <v-flex>
                   <v-textarea
                     name="notes"
-                    placeholder="Notes"
+                    :placeholder="notes"
                     value="notes"
-                    v-model="notes"
+                    v-model="editedNotes"
                     clearable
                   >
                   </v-textarea>
@@ -47,12 +47,16 @@
 export default {
   name: "AddNotes",
 
-  props: {},
+  props: {
+    notes: {
+      type: String,
+    },
+  },
 
   data() {
     return {
       dialog: false,
-      notes: "",
+      editedNotes: "",
     };
   },
 
