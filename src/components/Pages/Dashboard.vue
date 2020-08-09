@@ -4,6 +4,7 @@
 
     <div>
       <v-text-field
+        prepend-inner-icon="mdi-magnify"
         v-model="searchTerm"
         placeholder="Filter through your list..."
         outlined

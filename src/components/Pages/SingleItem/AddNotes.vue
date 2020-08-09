@@ -15,17 +15,18 @@
         <v-card-text>
           <v-form ref="form">
             <v-container fluid>
-              <v-row>
-                <v-col cols="12" md="6">
+              <v-layout wrap>
+                <v-flex>
                   <v-textarea
                     name="notes"
                     placeholder="Notes"
                     value="notes"
                     v-model="notes"
+                    clearable
                   >
                   </v-textarea>
-                </v-col>
-              </v-row>
+                </v-flex>
+              </v-layout>
             </v-container>
           </v-form>
         </v-card-text>
