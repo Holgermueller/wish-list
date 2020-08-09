@@ -56,7 +56,7 @@ export default {
 
     deleteFromList() {
       this.$store.dispatch("removeItemFromList", {
-        itemId: this.id,
+        id: this.id,
       });
 
       this.$router.push("/dashboard");

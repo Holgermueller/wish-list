@@ -174,6 +174,10 @@ export default {
     resetForm() {
       this.$refs.form.reset();
     },
+
+    onDismissed() {
+      this.$store.dispatch("clearError");
+    },
   },
 };
 </script>

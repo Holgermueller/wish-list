@@ -73,15 +73,6 @@
                   >
                   </v-text-field>
                 </v-flex>
-
-                <!-- <v-flex xs12 sm12 md12 lg12 xl12>
-                  <v-select
-                    value="priority"
-                    v-model="selectedPriority"
-                    :items="priority"
-                    label="Priority?"
-                  ></v-select>
-                </v-flex> -->
               </v-layout>
             </v-container>
           </v-form>
@@ -90,7 +81,7 @@
         <v-card-actions>
           <v-btn @click="closeDialog">Cancel</v-btn>
           <v-spacer></v-spacer>
-          <v-btn @click="closeDialog">Submit Changes</v-btn>
+          <v-btn @click="updateInfo">Submit Changes</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -141,6 +132,19 @@ export default {
   methods: {
     closeDialog() {
       this.dialog = false;
+    },
+
+    updateInfo() {
+      this.$store.dispatch("editEntryInfo", {
+        id: this.id,
+        editedArtist: this.editedArtist,
+        editedTitle: this.editedTitle,
+        editedMedium: this.editedMedium,
+        editedPublisher: this.editedPublisher,
+        editedGenre: this.editedGenre,
+      });
+
+      this.closeDialog();
     },
   },
 };

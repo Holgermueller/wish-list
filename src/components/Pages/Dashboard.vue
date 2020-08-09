@@ -25,12 +25,23 @@
       </v-flex>
     </v-layout>
 
+    <div>
+      <v-layout row v-if="error">
+        <v-flex xs12 sm12 md12 lg12 xl12>
+          <app-alert
+            @dismissed="onDismissed"
+            :text="error.message || error"
+          ></app-alert>
+        </v-flex>
+      </v-layout>
+    </div>
+
     <ListDisplay
       v-for="(listItem, index) in filterByName"
-      :key="listItem.itemId"
+      :key="listItem.id"
       :index="index"
       :artist="listItem.artist"
-      :id="listItem.itemId"
+      :id="listItem.id"
       :title="listItem.title"
       :medium="listItem.medium"
       :genre="listItem.genre"

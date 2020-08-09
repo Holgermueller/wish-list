@@ -71,7 +71,7 @@ export default {
 
     submitNotes() {
       this.$store.dispatch("editNotes", {
-        itemId: this.id,
+        id: this.id,
         newlyEditedNotes: this.editedNotes,
       });
 

@@ -16,10 +16,31 @@ export default {
 
     UPDATE_NOTES(state, payload) {
       const thisItemsNotes = state.wishList.find((thisItem) => {
-        return thisItem.id === payload.itemId;
+        return thisItem.id === payload.id;
       });
-      if (payload.newlyEditedNotes) {
+      if (payload.notes) {
         thisItemsNotes.notes = payload.newlyEditedNotes;
+      }
+    },
+
+    UPDATE_ITEM(state, payload) {
+      const itemToEdit = state.wishList.find((thisItem) => {
+        return thisItem.id === payload.id;
+      });
+      if (payload.artist) {
+        itemToEdit.artist = payload.editedArtist;
+      }
+      if (payload.title) {
+        itemToEdit.title = payload.editedTitle;
+      }
+      if (payload.medium) {
+        itemToEdit.medium = payload.editedMedium;
+      }
+      if (payload.genre) {
+        itemToEdit.genre = payload.editedGenre;
+      }
+      if (payload.publisher) {
+        itemToEdit.publisher = payload.editedPublisher;
       }
     },
   },
@@ -33,7 +54,7 @@ export default {
           let wishListFromDb = [];
           querySnapshot.forEach((doc) => {
             let listData = {
-              itemId: doc.id,
+              id: doc.id,
               artist: doc.data().artist,
               title: doc.data().title,
               medium: doc.data().medium,
@@ -80,7 +101,29 @@ export default {
         });
     },
 
-    editEntryInfo() {},
+    editEntryInfo({ commit }, payload) {
+      commit("SET_LOADING", true);
+
+      firebase
+        .collection("wishList")
+        .doc(payload.id)
+        .update({
+          artist: payload.editedArtist,
+          title: payload.editedTitle,
+          medium: payload.editedMedium,
+          genre: payload.editedGenre,
+          publisher: payload.editedPublisher,
+        })
+        .then(() => {
+          console.log("item updated!");
+          commit("UPDATE_ITEM");
+          commit("SET_LOADING", firebase);
+        })
+        .catch((err) => {
+          commit("SET_ERROR", err);
+          commit("SET_LOADING", true);
+        });
+    },
 
     addLink() {},
 
@@ -89,12 +132,11 @@ export default {
 
       firebase
         .collection("wishList")
-        .doc(payload.itemId)
+        .doc(payload.id)
         .update({
           notes: payload.newlyEditedNotes,
         })
         .then(() => {
-          console.log("note updated!");
           commit("UPDATE_NOTES");
           commit("SET_LOADING", false);
         })
@@ -109,7 +151,7 @@ export default {
 
       firebase
         .collection("wishList")
-        .doc(payload.itemId)
+        .doc(payload.id)
         .delete()
         .then(() => {
           commit("DELETE_FROM_LIST");
