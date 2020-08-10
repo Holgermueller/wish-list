@@ -43,6 +43,15 @@ export default {
         itemToEdit.publisher = payload.editedPublisher;
       }
     },
+
+    UPDATE_PRIORITY(state, payload) {
+      const itemToUpdate = state.wishList.find((thisItem) => {
+        return thisItem.id === payload.id;
+      });
+      if (payload.priority) {
+        itemToUpdate.priority = payload.newSelectedPriority;
+      }
+    },
   },
 
   actions: {
@@ -61,7 +70,7 @@ export default {
               genre: doc.data().genre,
               publisher: doc.data().publisher,
               creatorId: doc.data().creatorId,
-              selectedPriority: doc.data().selectedPriority,
+              priority: doc.data().priority,
               notes: doc.data().notes,
             };
             wishListFromDb.push(listData);
@@ -88,7 +97,7 @@ export default {
           genre: payload.genre,
           publisher: payload.publisher,
           creatorId: getters.user.userId,
-          selectedPriority: payload.selectedPriority,
+          priority: payload.selectedPriority,
           notes:
             "Tell people something about this to make finding what you/'re looking for easier for them.",
         })
@@ -127,7 +136,25 @@ export default {
 
     addLink() {},
 
-    changePriority() {},
+    changePriority({ commit }, payload) {
+      commit("SET_LOADING", true);
+
+      firebase
+        .collection("wishList")
+        .doc(payload.id)
+        .update({
+          priority: payload.newSelectedPriority,
+        })
+        .then(() => {
+          console.log("priority updated");
+          commit("SET_LOADING", false);
+          commit("UPDATE_PRIORITY");
+        })
+        .catch((err) => {
+          commit("SET_ERROR", err);
+          commit("SET_LOADING", true);
+        });
+    },
 
     editNotes({ commit }, payload) {
       commit("SET_LOADING", true);

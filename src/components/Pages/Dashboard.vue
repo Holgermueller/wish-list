@@ -46,7 +46,7 @@
       :medium="listItem.medium"
       :genre="listItem.genre"
       :publisher="listItem.publisher"
-      :priority="listItem.selectedPriority"
+      :priority="listItem.priority"
       :notes="listItem.notes"
     />
   </div>

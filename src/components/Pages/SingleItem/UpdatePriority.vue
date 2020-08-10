@@ -68,9 +68,14 @@ export default {
     },
 
     updatePriority() {
-      console.log(this.newSelectedPriority);
+      this.$store.dispatch("changePriority", {
+        id: this.id,
+        newSelectedPriority: this.newSelectedPriority,
+      });
 
       this.closeDialog();
+
+      this.$router.push("/dashboard");
     },
   },
 };
