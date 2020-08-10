@@ -124,7 +124,6 @@ export default {
           publisher: payload.editedPublisher,
         })
         .then(() => {
-          console.log("item updated!");
           commit("UPDATE_ITEM");
           commit("SET_LOADING", firebase);
         })
@@ -146,7 +145,6 @@ export default {
           priority: payload.newSelectedPriority,
         })
         .then(() => {
-          console.log("priority updated");
           commit("SET_LOADING", false);
           commit("UPDATE_PRIORITY");
         })

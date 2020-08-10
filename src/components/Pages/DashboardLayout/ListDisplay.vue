@@ -12,6 +12,7 @@
           <v-spacer></v-spacer>
 
           <v-btn
+            :class="`${priority}`"
             :to="{
               name: 'SingleItemPage',
               params: {
@@ -121,12 +122,35 @@ export default {
   width: 75%;
   margin: 2px auto;
 }
+
 .entry-card:hover {
   background-color: lightslategray;
 }
 
-.Whenver {
-  border-left-color: 4px solid success !important;
-  color: red;
+.v-card.Whenever {
+  border-left-color: red;
+  border-left-width: 8px;
+}
+
+.v-card.Now {
+  border-left-color: blue;
+  border-left-width: 8px;
+}
+
+.v-card.Soon {
+  border-left-color: green;
+  border-left-width: 8px;
+}
+
+.v-btn.Whenever {
+  background-color: red !important;
+}
+
+.v-btn.Now {
+  background-color: blue !important;
+}
+
+.v-btn.Soon {
+  background-color: green !important;
 }
 </style>
