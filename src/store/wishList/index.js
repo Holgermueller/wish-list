@@ -154,7 +154,6 @@ export default {
           linkTo: payload.linkTo,
         })
         .then(() => {
-          console.log("link added");
           commit("SET_LOADING", false);
           commit("ADD_LINK");
         })

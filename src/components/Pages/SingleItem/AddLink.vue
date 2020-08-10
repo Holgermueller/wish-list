@@ -69,8 +69,6 @@ export default {
 
   methods: {
     submitLink() {
-      console.log(this.linkToAddEdit);
-
       this.$store.dispatch("addLink", {
         linkTo: this.linkToAddEdit,
         id: this.id,
