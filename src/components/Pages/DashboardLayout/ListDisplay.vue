@@ -24,6 +24,7 @@
                 publisher: publisher,
                 priority: priority,
                 notes: notes,
+                linkTo: linkTo,
               },
             }"
             >See more <v-icon>mdi-arrow-right-bold</v-icon></v-btn
@@ -73,6 +74,10 @@ export default {
     },
 
     notes: {
+      type: String,
+    },
+
+    linkTo: {
       type: String,
     },
   },

@@ -52,6 +52,15 @@ export default {
         itemToUpdate.priority = payload.newSelectedPriority;
       }
     },
+
+    ADD_LINK(state, payload) {
+      const itemToGetLink = state.wishList.find((thisItem) => {
+        return thisItem.id === payload.id;
+      });
+      if (payload.linkTo) {
+        itemToGetLink.linkTo = payload.linkTo;
+      }
+    },
   },
 
   actions: {
@@ -72,6 +81,7 @@ export default {
               creatorId: doc.data().creatorId,
               priority: doc.data().priority,
               notes: doc.data().notes,
+              linkTo: doc.data().linkTo,
             };
             wishListFromDb.push(listData);
           });
@@ -100,6 +110,7 @@ export default {
           priority: payload.selectedPriority,
           notes:
             "Tell people something about this to make finding what you/'re looking for easier for them.",
+          linkTo: "#",
         })
         .then(() => {
           commit("SET_LOADING", false);
@@ -133,7 +144,25 @@ export default {
         });
     },
 
-    addLink() {},
+    addLink({ commit }, payload) {
+      commit("SET_LOADING", true);
+
+      firebase
+        .collection("wishList")
+        .doc(payload.id)
+        .update({
+          linkTo: payload.linkTo,
+        })
+        .then(() => {
+          console.log("link added");
+          commit("SET_LOADING", false);
+          commit("ADD_LINK");
+        })
+        .catch((err) => {
+          commit("SET_ERROR", err);
+          commit("SET_LOADING", true);
+        });
+    },
 
     changePriority({ commit }, payload) {
       commit("SET_LOADING", true);

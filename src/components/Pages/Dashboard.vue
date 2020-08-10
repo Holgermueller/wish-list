@@ -48,6 +48,7 @@
       :publisher="listItem.publisher"
       :priority="listItem.priority"
       :notes="listItem.notes"
+      :linkTo="listItem.linkTo"
     />
   </div>
 </template>

@@ -23,8 +23,8 @@
                 <v-flex xs12 sm12 md12 lg12 xl12>
                   <v-text-field
                     type="text"
-                    v-model="linkToAdd"
-                    placeholder="Add link here..."
+                    v-model="linkToAddEdit"
+                    :placeholder="linkTo"
                     value="linkToAdd"
                     id="linkToAdd"
                     clearable
@@ -50,16 +50,31 @@
 export default {
   name: "AddLinkDialog",
 
+  props: {
+    linkTo: {
+      type: String,
+    },
+
+    id: {
+      type: String,
+    },
+  },
+
   data() {
     return {
       dialog: false,
-      linkToAdd: "",
+      linkToAddEdit: this.linkTo,
     };
   },
 
   methods: {
     submitLink() {
-      console.log("click");
+      console.log(this.linkToAddEdit);
+
+      this.$store.dispatch("addLink", {
+        linkTo: this.linkToAddEdit,
+        id: this.id,
+      });
 
       this.closeDialog();
     },

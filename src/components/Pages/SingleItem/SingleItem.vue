@@ -60,7 +60,7 @@
           </a>
         </div>
 
-        <AddLinkDialog />
+        <AddLinkDialog :id="id" :linkTo="linkTo" />
       </v-card-text>
 
       <v-card-actions>
@@ -120,6 +120,10 @@ export default {
     },
 
     priority: {
+      type: String,
+    },
+
+    linkTo: {
       type: String,
     },
   },
