@@ -39,7 +39,12 @@
         <v-card-actions>
           <v-btn @click="closeDialog">Cancel</v-btn>
           <v-spacer></v-spacer>
-          <v-btn @click="submitLink">Submit</v-btn>
+          <v-btn
+            @click.prevent="submitLink"
+            :loading="loading"
+            :disabled="loading"
+            >Submit</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -65,6 +70,12 @@ export default {
       dialog: false,
       linkToAddEdit: this.linkTo,
     };
+  },
+
+  computed: {
+    loading() {
+      return this.$store.getters.loading;
+    },
   },
 
   methods: {

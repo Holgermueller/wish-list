@@ -34,7 +34,11 @@
         <v-card-actions>
           <v-btn @click="closeDialog">Cancel</v-btn>
           <v-spacer></v-spacer>
-          <v-btn @click.prevent="submitNotes">
+          <v-btn
+            @click.prevent="submitNotes"
+            :loading="loading"
+            :disabled="loading"
+          >
             Submit
           </v-btn>
         </v-card-actions>
@@ -62,6 +66,12 @@ export default {
       dialog: false,
       editedNotes: this.notes,
     };
+  },
+
+  computed: {
+    loading() {
+      return this.$store.getters.loading;
+    },
   },
 
   methods: {

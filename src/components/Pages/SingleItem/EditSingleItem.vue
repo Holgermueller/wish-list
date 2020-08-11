@@ -81,7 +81,12 @@
         <v-card-actions>
           <v-btn @click="closeDialog">Cancel</v-btn>
           <v-spacer></v-spacer>
-          <v-btn @click="updateInfo">Submit Changes</v-btn>
+          <v-btn
+            @click.prevent="updateInfo"
+            :loading="loading"
+            :disabled="loading"
+            >Submit Changes</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -127,6 +132,12 @@ export default {
       editedPublisher: this.publisher,
       editedGenre: this.genre,
     };
+  },
+
+  computed: {
+    loading() {
+      return this.$store.getters.loading;
+    },
   },
 
   methods: {
