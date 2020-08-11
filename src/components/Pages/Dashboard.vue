@@ -89,12 +89,17 @@ export default {
     },
 
     filterByName() {
-      return this.getWishList.filter((listItem) => {
-        return (
-          listItem.artist.toLowerCase().indexOf(this.searchTerm.toLowerCase()) >
-          -1
-        );
-      });
+      if (this.searchTerm) {
+        return this.getWishList.filter((listItem) => {
+          return (
+            listItem.artist
+              .toLowerCase()
+              .indexOf(this.searchTerm.toLowerCase()) > -1
+          );
+        });
+      } else {
+        return this.getWishList;
+      }
     },
   },
 
