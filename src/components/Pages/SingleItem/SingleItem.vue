@@ -54,7 +54,7 @@
 
         <div>
           <v-divider></v-divider>
-          <a href="" class="bold"
+          <a :href="linkTo" class="bold"
             >Get it here!
             <v-icon>mdi-arrow-right-bold</v-icon>
           </a>
