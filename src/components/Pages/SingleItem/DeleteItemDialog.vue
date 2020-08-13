@@ -2,7 +2,9 @@
   <div class="text-center">
     <v-dialog v-model="dialog" width="500">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn v-bind="attrs" v-on="on"> Delete Item</v-btn>
+        <v-btn v-bind="attrs" v-on="on">
+          <v-icon left>mdi-trash-can-outline</v-icon> Delete Item</v-btn
+        >
       </template>
 
       <v-card>
@@ -16,13 +18,20 @@
         </v-card-subtitle>
 
         <v-card-actions>
-          <v-btn @click="closeDialog">Cancel</v-btn>
+          <v-btn @click="closeDialog">
+            <v-icon left>mdi-cancel</v-icon>
+            Cancel</v-btn
+          >
           <v-spacer></v-spacer>
           <v-btn
             @click.prevent="deleteFromList"
             :loading="loading"
             :disabled="loading"
-            >Delete</v-btn
+          >
+            <v-icon left>
+              mdi-check
+            </v-icon>
+            Delete</v-btn
           >
         </v-card-actions>
       </v-card>

@@ -2,7 +2,9 @@
   <div>
     <v-dialog v-model="dialog" width="500">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn v-bind="attrs" v-on="on"> Add/Edit Notes</v-btn>
+        <v-btn v-bind="attrs" v-on="on">
+          <v-icon left>mdi-pencil</v-icon> Add/Edit Notes</v-btn
+        >
       </template>
 
       <v-card>

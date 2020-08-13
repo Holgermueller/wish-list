@@ -2,7 +2,7 @@
   <div id="singleItemPage">
     <v-card class="single-item-card">
       <v-card-title>
-        <h2>{{ artist }}</h2>
+        <h2>Title: {{ title }}</h2>
         <v-spacer></v-spacer>
         <EditSingleItem
           :artist="artist"
@@ -15,21 +15,13 @@
       </v-card-title>
 
       <v-card-subtitle>
-        <h3>
-          {{ title }}
-        </h3>
+        <h3>Artist/Author: {{ artist }}</h3>
 
-        <h3>
-          {{ medium }}
-        </h3>
-        <h3>
-          {{ publisher }}
-        </h3>
-        <h3>
-          {{ genre }}
-        </h3>
+        <h3>Medium: {{ medium }}</h3>
+        <h3>Publisher: {{ publisher }}</h3>
+        <h3>Genre: {{ genre }}</h3>
 
-        <h3>Priority: {{ priority }}</h3>
+        <h3 :class="`${priority}`">Priority: {{ priority }}</h3>
       </v-card-subtitle>
 
       <v-card-text>
@@ -37,24 +29,24 @@
           <UpdatePriority :priority="priority" :id="id" />
         </div>
 
+        <v-divider></v-divider>
+
         <div>
           <section>
             <h4 class="notes-section-header">
               Notes:
             </h4>
-            <v-spacer></v-spacer>
-
-            <AddNotes :notes="notes" :id="id" />
           </section>
-
-          <v-divider></v-divider>
 
           <div class="notes-display">{{ notes }}</div>
         </div>
 
+        <AddNotes :notes="notes" :id="id" />
+
+        <v-divider></v-divider>
+
         <div>
-          <v-divider></v-divider>
-          <h2 v-if="linkTo">
+          <h2 class="link-to" v-if="linkTo">
             <a :href="linkTo" class="bold" target="_blank"
               >Get it here!
               <v-icon>mdi-arrow-right-bold</v-icon>
@@ -68,7 +60,10 @@
       </v-card-text>
 
       <v-card-actions>
-        <v-btn to="/dashboard">Back</v-btn>
+        <v-btn to="/dashboard">
+          <v-icon left>mdi-arrow-left-bold</v-icon>
+          Back</v-btn
+        >
         <v-spacer></v-spacer>
         <DeleteSingleItem :artist="artist" :title="title" :id="id" />
       </v-card-actions>
@@ -156,15 +151,31 @@ export default {
   margin: 7% auto;
 }
 
+.v-divider {
+  margin: 8px;
+}
+
 .notes-section-header {
   text-decoration: underline;
+  margin: 8px;
 }
 
 .notes-display {
-  margin: 8px auto;
+  margin: 8px;
+  padding: 4px;
+  background-color: slategrey;
+  border-radius: 15px;
+}
+
+.link-to {
+  margin: 8px;
 }
 
 a {
   text-decoration: none;
+}
+
+.Whenever {
+  color: green;
 }
 </style>

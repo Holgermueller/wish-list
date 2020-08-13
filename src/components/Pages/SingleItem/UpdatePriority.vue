@@ -3,6 +3,7 @@
     <v-dialog v-model="dialog" width="500">
       <template v-slot:activator="{ on, attrs }">
         <v-btn v-bind="attrs" v-on="on">
+          <v-icon left>mdi-priority-high</v-icon>
           Update Priority
         </v-btn>
       </template>
@@ -30,13 +31,16 @@
         </v-card-text>
 
         <v-card-actions>
-          <v-btn @click="closeDialog">Cancel</v-btn>
+          <v-btn @click="closeDialog">
+            <v-icon left>mdi-cancel</v-icon>
+            Cancel</v-btn
+          >
           <v-spacer></v-spacer>
           <v-btn
             @click.prevent="updatePriority"
             :loading="loading"
             :disabled="loading"
-            >Update</v-btn
+            ><v-icon left>mdi-check</v-icon> Update</v-btn
           >
         </v-card-actions>
       </v-card>
