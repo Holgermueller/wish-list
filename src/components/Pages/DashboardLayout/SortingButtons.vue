@@ -6,14 +6,24 @@
       </v-card-title>
       <v-card-actions>
         <v-btn @click="sortBy('artist')">
-          <v-icon left>mdi-alphabetical-variant</v-icon>
+          <v-icon left>mdi-sort-alphabetical-ascending</v-icon>
           Name</v-btn
         >
 
+        <v-btn @click="reverseSort('artist')">
+          <v-icon left>mdi-sort-alphabetical-descending</v-icon>
+          Name
+        </v-btn>
+
         <v-btn @click="sortBy('title')">
-          <v-icon left>mdi-alphabetical-variant </v-icon>
+          <v-icon left>mdi-sort-alphabetical-ascending</v-icon>
           Title</v-btn
         >
+
+        <v-btn @click="reverseSort('title')">
+          <v-icon left>mdi-sort-alphabetical-descending</v-icon>
+          Title
+        </v-btn>
       </v-card-actions>
     </v-card>
   </div>
@@ -36,6 +46,10 @@ export default {
   methods: {
     sortBy(prop) {
       this.getWishList.sort((a, b) => (a[prop] < b[prop] ? -1 : 1));
+    },
+
+    reverseSort(prop) {
+      this.getWishList.sort((a, b) => (a[prop] < b[prop] ? -1 : 1)).reverse();
     },
   },
 };
