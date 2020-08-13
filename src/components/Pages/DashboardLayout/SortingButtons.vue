@@ -24,6 +24,11 @@
           <v-icon left>mdi-sort-alphabetical-descending</v-icon>
           Title
         </v-btn>
+
+        <v-btn @click="prioritySort('priority')">
+          <v-icon left>mdi-priority-high</v-icon>
+          Priority</v-btn
+        >
       </v-card-actions>
     </v-card>
   </div>
@@ -50,6 +55,10 @@ export default {
 
     reverseSort(prop) {
       this.getWishList.sort((a, b) => (a[prop] < b[prop] ? -1 : 1)).reverse();
+    },
+
+    prioritySort(prop) {
+      this.getWishList.sort((a, b) => (a[prop] < b[prop] ? -1 : 1));
     },
   },
 };

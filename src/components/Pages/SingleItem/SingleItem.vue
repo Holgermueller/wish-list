@@ -1,6 +1,6 @@
 <template>
   <div id="singleItemPage">
-    <v-card class="single-item-card">
+    <v-card :class="`single-item-card ${priority}`" outlined>
       <v-card-title>
         <h2>Title: {{ title }}</h2>
         <v-spacer></v-spacer>
@@ -26,20 +26,24 @@
 
       <v-card-text>
         <div class="update-priority">
-          <UpdatePriority :priority="priority" :id="id" />
+          <UpdatePriority
+            :class="`${priority}`"
+            :priority="priority"
+            :id="id"
+          />
         </div>
 
         <v-divider></v-divider>
 
-        <div>
-          <section>
+        <section>
+          <div>
             <h4 class="notes-section-header">
               Notes:
             </h4>
-          </section>
+          </div>
 
           <div class="notes-display">{{ notes }}</div>
-        </div>
+        </section>
 
         <AddNotes :notes="notes" :id="id" />
 
@@ -162,7 +166,7 @@ export default {
 
 .notes-display {
   margin: 8px;
-  padding: 4px;
+  padding: 8px;
   background-color: slategrey;
   border-radius: 15px;
 }
@@ -175,7 +179,21 @@ a {
   text-decoration: none;
 }
 
+.Soon {
+  color: #228b22;
+  border-color: #228b22;
+  border-width: 2px;
+}
+
 .Whenever {
-  color: green;
+  color: #00bfff;
+  border-width: 2px;
+  border-color: #00bfff;
+}
+
+.Now {
+  color: #b22222;
+  border-color: #b22222;
+  border-width: 2px;
 }
 </style>

@@ -109,7 +109,7 @@ export default {
           creatorId: getters.user.userId,
           priority: payload.selectedPriority,
           notes:
-            "Tell people something about this to make finding what you/'re looking for easier for them.",
+            "Looking for an import edition, a specific translations, a certain color vinyl? Put that information here.",
           linkTo: "#",
         })
         .then(() => {

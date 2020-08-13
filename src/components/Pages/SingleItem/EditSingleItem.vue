@@ -2,13 +2,17 @@
   <div class="text-center">
     <v-dialog v-model="dialog" width="500">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn v-bind="attrs" v-on="on">
+        <v-btn v-bind="attrs" v-on="on" text>
+          <v-icon left>mdi-file-edit</v-icon>
           Edit information
         </v-btn>
       </template>
 
-      <v-card>
-        <v-card-title>Edit information here:</v-card-title>
+      <v-card outlined>
+        <v-card-title
+          >Edit information here:
+          <v-icon right>mdi-file-edit</v-icon>
+        </v-card-title>
 
         <v-card-text>
           <v-form ref="form">
@@ -79,13 +83,20 @@
         </v-card-text>
 
         <v-card-actions>
-          <v-btn @click="closeDialog">Cancel</v-btn>
+          <v-btn @click="closeDialog" color="red" text>
+            <v-icon left>mdi-cancel</v-icon>
+            Cancel</v-btn
+          >
           <v-spacer></v-spacer>
           <v-btn
             @click.prevent="updateInfo"
             :loading="loading"
             :disabled="loading"
-            >Submit Changes</v-btn
+            color="blue"
+            text
+          >
+            <v-icon left>mdi-check</v-icon>
+            Submit Changes</v-btn
           >
         </v-card-actions>
       </v-card>

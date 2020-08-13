@@ -2,13 +2,13 @@
   <div>
     <v-dialog v-model="dialog" width="500">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn v-bind="attrs" v-on="on">
+        <v-btn v-bind="attrs" v-on="on" :class="`${priority}`" text>
           <v-icon left>mdi-priority-high</v-icon>
           Update Priority
         </v-btn>
       </template>
 
-      <v-card>
+      <v-card :class="`${priority}`" outlined>
         <v-card-title>
           Change Priority
         </v-card-title>
@@ -31,7 +31,7 @@
         </v-card-text>
 
         <v-card-actions>
-          <v-btn @click="closeDialog">
+          <v-btn @click="closeDialog" color="red" text>
             <v-icon left>mdi-cancel</v-icon>
             Cancel</v-btn
           >
@@ -40,6 +40,8 @@
             @click.prevent="updatePriority"
             :loading="loading"
             :disabled="loading"
+            color="blue"
+            text
             ><v-icon left>mdi-check</v-icon> Update</v-btn
           >
         </v-card-actions>
@@ -96,4 +98,22 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.Soon {
+  color: #228b22;
+  border-color: #228b22;
+  border-width: 2px;
+}
+
+.Whenever {
+  color: #00bfff;
+  border-width: 2px;
+  border-color: #00bfff;
+}
+
+.Now {
+  color: #b22222;
+  border-color: #b22222;
+  border-width: 2px;
+}
+</style>

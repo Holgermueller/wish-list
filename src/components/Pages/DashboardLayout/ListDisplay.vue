@@ -133,29 +133,29 @@ export default {
 }
 
 .v-card.Whenever {
-  border-left-color: red;
+  border-left-color: #00bfff;
   border-left-width: 8px;
 }
 
 .v-card.Now {
-  border-left-color: blue;
+  border-left-color: #b22222;
   border-left-width: 8px;
 }
 
 .v-card.Soon {
-  border-left-color: green;
+  border-left-color: #228b22;
   border-left-width: 8px;
 }
 
 .v-btn.Whenever {
-  background-color: red !important;
+  background-color: #00bfff !important;
 }
 
 .v-btn.Now {
-  background-color: blue !important;
+  background-color: #b22222 !important;
 }
 
 .v-btn.Soon {
-  background-color: green !important;
+  background-color: #228b22 !important;
 }
 </style>

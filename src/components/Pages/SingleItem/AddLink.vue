@@ -2,15 +2,16 @@
   <div>
     <v-dialog v-model="dialog" width="500">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn v-bind="attrs" v-on="on">
+        <v-btn v-bind="attrs" v-on="on" text>
           <v-icon left>mdi-link</v-icon>
           Add/Edit Link
         </v-btn>
       </template>
 
-      <v-card>
+      <v-card outlined>
         <v-card-title>
-          Add A Link
+          Add/Edit a Link For This Item
+          <v-icon right>mdi-link</v-icon>
         </v-card-title>
 
         <v-card-subtitle>
@@ -38,7 +39,7 @@
         </v-card-text>
 
         <v-card-actions>
-          <v-btn @click="closeDialog">
+          <v-btn @click="closeDialog" color="red" text>
             <v-icon left>mdi-cancel</v-icon> Cancel</v-btn
           >
           <v-spacer></v-spacer>
@@ -46,6 +47,8 @@
             @click.prevent="submitLink"
             :loading="loading"
             :disabled="loading"
+            color="blue"
+            text
           >
             <v-icon left>mdi-check</v-icon> Submit</v-btn
           >
