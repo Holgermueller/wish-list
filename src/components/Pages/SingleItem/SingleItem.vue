@@ -54,10 +54,14 @@
 
         <div>
           <v-divider></v-divider>
-          <a :href="linkTo" class="bold"
-            >Get it here!
-            <v-icon>mdi-arrow-right-bold</v-icon>
-          </a>
+          <h2 v-if="linkTo">
+            <a :href="linkTo" class="bold" target="_blank"
+              >Get it here!
+              <v-icon>mdi-arrow-right-bold</v-icon>
+            </a>
+          </h2>
+
+          <h2 v-else></h2>
         </div>
 
         <AddLinkDialog :id="id" :linkTo="linkTo" />

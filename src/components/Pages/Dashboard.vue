@@ -36,22 +36,7 @@
       </v-layout>
     </div>
 
-    <v-card class="sorting-buttons">
-      <v-card-title>
-        Sort your list
-      </v-card-title>
-      <v-card-actions>
-        <v-btn @click="sortBy('artist')">
-          <v-icon>mdi-account</v-icon>
-          Name</v-btn
-        >
-
-        <v-btn @click="sortBy('title')">
-          <v-icon>mdi-format-title</v-icon>
-          Title</v-btn
-        >
-      </v-card-actions>
-    </v-card>
+    <SortingButtons :getWishList="getWishList" />
 
     <ListDisplay
       v-for="(listItem, index) in filterByName"
@@ -73,6 +58,7 @@
 <script>
 import AddItem from "./DashboardLayout/AddItemDialog";
 import ListDisplay from "./DashboardLayout/ListDisplay";
+import SortingButtons from "./DashboardLayout/SortingButtons";
 
 export default {
   name: "Dashboard",
@@ -86,6 +72,7 @@ export default {
   components: {
     AddItem,
     ListDisplay,
+    SortingButtons,
   },
 
   created() {
@@ -124,10 +111,6 @@ export default {
     onDismissed() {
       this.$store.dispatch("clearError");
     },
-
-    sortBy(prop) {
-      this.getWishList.sort((a, b) => (a[prop] < b[prop] ? -1 : 1));
-    },
   },
 };
 </script>
@@ -141,10 +124,6 @@ export default {
 }
 
 .list-filter {
-  width: 75%;
-  margin: 2% auto;
-}
-.sorting-buttons {
   width: 75%;
   margin: 2% auto;
 }
