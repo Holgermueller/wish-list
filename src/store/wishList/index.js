@@ -223,5 +223,13 @@ export default {
     wishList(state) {
       return state.wishList;
     },
+
+    singleListItem(state) {
+      return (id) => {
+        return state.wishList.find((item) => {
+          return item.id === id;
+        });
+      };
+    },
   },
 };

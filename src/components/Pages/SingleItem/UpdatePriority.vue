@@ -91,8 +91,6 @@ export default {
       });
 
       this.closeDialog();
-
-      this.$router.push("/dashboard");
     },
   },
 };

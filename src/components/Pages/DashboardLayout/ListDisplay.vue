@@ -11,22 +11,7 @@
 
           <v-spacer></v-spacer>
 
-          <v-btn
-            :class="`${priority}`"
-            :to="{
-              name: 'SingleItemPage',
-              params: {
-                id: id,
-                artist: artist,
-                title: title,
-                medium: medium,
-                genre: genre,
-                publisher: publisher,
-                priority: priority,
-                notes: notes,
-                linkTo: linkTo,
-              },
-            }"
+          <v-btn :class="`${priority}`" :to="'/singleItem/' + id"
             >See more <v-icon>mdi-arrow-right-bold</v-icon></v-btn
           >
         </v-card-title>
