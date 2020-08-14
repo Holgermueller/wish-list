@@ -1,15 +1,13 @@
 <template>
   <div>
-    <div>
-      <v-text-field
-        prepend-inner-icon="mdi-magnify"
-        v-model="searchTerm"
-        placeholder="Filter through your list..."
-        outlined
-        clearable
-        class="list-filter"
-      ></v-text-field>
-    </div>
+    <v-text-field
+      prepend-inner-icon="mdi-magnify"
+      v-model="searchTerm"
+      placeholder="Filter through your list..."
+      outlined
+      clearable
+      class="list-filter"
+    ></v-text-field>
   </div>
 </template>
 
@@ -17,7 +15,11 @@
 export default {
   name: "FilterForList",
 
-  props: {},
+  props: {
+    getWishList: {
+      type: Array,
+    },
+  },
 
   data() {
     return {

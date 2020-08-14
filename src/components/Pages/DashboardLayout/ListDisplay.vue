@@ -74,35 +74,7 @@ export default {
   },
 
   data() {
-    return {
-      search: "",
-      headers: [
-        {
-          text: "Artist",
-          align: "start",
-          sortable: true,
-          value: "artist",
-        },
-        {
-          text: "Title",
-          sortable: true,
-          value: "title",
-        },
-        {
-          text: "Format",
-          sortable: false,
-          value: "medium",
-        },
-      ],
-
-      items: [
-        {
-          artist: this.artist,
-          title: this.title,
-          medium: this.medium,
-        },
-      ],
-    };
+    return {};
   },
 };
 </script>

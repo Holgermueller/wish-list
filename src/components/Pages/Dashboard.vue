@@ -2,16 +2,16 @@
   <div id="dashboard">
     <AddItem />
 
-    <div>
-      <v-text-field
-        prepend-inner-icon="mdi-magnify"
-        v-model="searchTerm"
-        placeholder="Filter through your list..."
-        outlined
-        clearable
-        class="list-filter"
-      ></v-text-field>
-    </div>
+    <v-text-field
+      prepend-inner-icon="mdi-magnify"
+      v-model="searchTerm"
+      placeholder="Filter through your list..."
+      outlined
+      clearable
+      class="list-filter"
+    ></v-text-field>
+
+    <SortingButtons :getWishList="getWishList" />
 
     <v-layout class="progress">
       <v-flex class="tet-xs-center">
@@ -35,8 +35,6 @@
         </v-flex>
       </v-layout>
     </div>
-
-    <SortingButtons :getWishList="getWishList" />
 
     <ListDisplay
       v-for="(listItem, index) in filterByName"
@@ -125,6 +123,6 @@ export default {
 
 .list-filter {
   width: 75%;
-  margin: 2% auto;
+  margin: 8px auto;
 }
 </style>
