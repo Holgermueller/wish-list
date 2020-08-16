@@ -14,6 +14,17 @@
         </v-card-title>
 
         <v-card-text>
+          <div>
+            <v-layout row v-if="error">
+              <v-flex xs12 sm12 md12 lg12 xl12>
+                <app-alert
+                  @dismissed="onDismissed"
+                  :text="error.message || error"
+                ></app-alert>
+              </v-flex>
+            </v-layout>
+          </div>
+
           <v-form ref="form">
             <v-container fluid>
               <v-layout wrap>
@@ -42,6 +53,7 @@
             :disabled="loading"
             color="blue"
             text
+            :id="id"
             ><v-icon left>mdi-check</v-icon> Update</v-btn
           >
         </v-card-actions>
@@ -77,6 +89,10 @@ export default {
     loading() {
       return this.$store.getters.loading;
     },
+
+    error() {
+      return this.$store.getters.error;
+    },
   },
 
   methods: {
@@ -91,6 +107,10 @@ export default {
       });
 
       this.closeDialog();
+    },
+
+    onDismissed() {
+      this.$store.dispatch("clearError");
     },
   },
 };

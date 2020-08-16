@@ -25,6 +25,17 @@
       </v-card-subtitle>
 
       <v-card-text>
+        <div>
+          <v-layout row v-if="error">
+            <v-flex xs12 sm12 md12 lg12 xl12>
+              <app-alert
+                @dismissed="onDismissed"
+                :text="error.message || error"
+              ></app-alert>
+            </v-flex>
+          </v-layout>
+        </div>
+
         <div class="update-priority">
           <UpdatePriority
             :class="`${item.priority}`"
@@ -116,7 +127,11 @@ export default {
     },
   },
 
-  methods: {},
+  methods: {
+    onDismissed() {
+      this.$store.dispatch("clearError");
+    },
+  },
 };
 </script>
 
