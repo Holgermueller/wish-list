@@ -11,7 +11,10 @@
 
           <v-spacer></v-spacer>
 
-          <v-btn :class="`${priority}`" :to="'/singleItem/' + id"
+          <v-btn
+            :itemid="itemId"
+            :class="`${priority}`"
+            :to="'/singleItem/' + itemId"
             >See more <v-icon>mdi-arrow-right-bold</v-icon></v-btn
           >
         </v-card-title>
@@ -54,7 +57,7 @@ export default {
       type: String,
     },
 
-    id: {
+    itemId: {
       type: String,
     },
 

@@ -1,12 +1,16 @@
 <template>
   <div id="singleItemPage">
-    <v-card :class="`single-item-card ${item.priority}`" outlined>
+    <v-card
+      :itemid="item.itemId"
+      :class="`single-item-card ${item.priority}`"
+      outlined
+    >
       <v-card-title>
         <h2>Title: {{ item.title }}</h2>
         <v-spacer></v-spacer>
         <EditSingleItem
           :artist="item.artist"
-          :id="item.id"
+          :itemId="item.itemId"
           :title="item.title"
           :medium="item.medium"
           :publisher="item.publisher"
@@ -40,7 +44,7 @@
           <UpdatePriority
             :class="`${item.priority}`"
             :priority="item.priority"
-            :id="item.id"
+            :itemId="item.itemId"
           />
         </div>
 
@@ -56,7 +60,7 @@
           <div class="notes-display">{{ item.notes }}</div>
         </section>
 
-        <AddNotes :notes="item.notes" :id="id" />
+        <AddNotes :notes="item.notes" :itemId="item.itemId" />
 
         <v-divider></v-divider>
 
@@ -74,7 +78,7 @@
           <h2 v-else></h2>
         </div>
 
-        <AddLinkDialog :id="id" :linkTo="item.linkTo" />
+        <AddLinkDialog :itemId="item.itemId" :linkTo="item.linkTo" />
       </v-card-text>
 
       <v-card-actions>
@@ -83,7 +87,11 @@
           Back</v-btn
         >
         <v-spacer></v-spacer>
-        <DeleteSingleItem :artist="item.artist" :title="item.title" :id="id" />
+        <DeleteSingleItem
+          :artist="item.artist"
+          :title="item.title"
+          :itemId="item.itemId"
+        />
       </v-card-actions>
     </v-card>
   </div>
@@ -107,7 +115,7 @@ export default {
     UpdatePriority,
   },
 
-  props: ["id"],
+  props: ["itemId"],
 
   data() {
     return {};
@@ -115,7 +123,7 @@ export default {
 
   computed: {
     item() {
-      return this.$store.getters.singleListItem(this.id);
+      return this.$store.getters.singleListItem(this.itemId);
     },
 
     loading() {

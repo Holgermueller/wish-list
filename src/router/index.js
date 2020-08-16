@@ -21,7 +21,7 @@ let router = new VueRouter({
       },
     },
     {
-      path: "/singleItem/:id",
+      path: "/singleItem/:itemId",
       name: "SingleItemPage",
       component: SingleItemPage,
       props: true,

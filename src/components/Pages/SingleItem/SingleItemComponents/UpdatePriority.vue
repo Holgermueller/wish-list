@@ -53,7 +53,7 @@
             :disabled="loading"
             color="blue"
             text
-            :id="id"
+            :itemId="itemId"
             ><v-icon left>mdi-check</v-icon> Update</v-btn
           >
         </v-card-actions>
@@ -71,7 +71,7 @@ export default {
       type: String,
     },
 
-    id: {
+    itemId: {
       type: String,
     },
   },
@@ -102,7 +102,7 @@ export default {
 
     updatePriority() {
       this.$store.dispatch("changePriority", {
-        id: this.id,
+        itemId: this.itemId,
         newSelectedPriority: this.newSelectedPriority,
       });
 

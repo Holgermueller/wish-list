@@ -67,7 +67,7 @@ export default {
       type: String,
     },
 
-    id: {
+    itemId: {
       type: String,
     },
   },
@@ -89,7 +89,7 @@ export default {
     submitLink() {
       this.$store.dispatch("addLink", {
         linkTo: this.linkToAddEdit,
-        id: this.id,
+        itemId: this.itemId,
       });
 
       this.closeDialog();

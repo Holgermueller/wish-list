@@ -64,7 +64,7 @@ export default {
       type: String,
     },
 
-    id: {
+    itemId: {
       type: String,
     },
   },
@@ -89,7 +89,7 @@ export default {
 
     submitNotes() {
       this.$store.dispatch("editNotes", {
-        id: this.id,
+        itemId: this.itemId,
         newlyEditedNotes: this.editedNotes,
       });
 

@@ -56,7 +56,7 @@ export default {
       type: String,
     },
 
-    id: {
+    itemId: {
       type: String,
     },
   },
@@ -80,7 +80,7 @@ export default {
 
     deleteFromList() {
       this.$store.dispatch("removeItemFromList", {
-        id: this.id,
+        itemId: this.itemId,
       });
 
       this.$router.push("/dashboard");

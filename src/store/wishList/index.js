@@ -16,7 +16,7 @@ export default {
 
     UPDATE_NOTES(state, payload) {
       const thisItemsNotes = state.wishList.find((thisItem) => {
-        return thisItem.id === payload.id;
+        return thisItem.id === payload.itemId;
       });
       if (payload.notes) {
         thisItemsNotes.notes = payload.newlyEditedNotes;
@@ -25,7 +25,7 @@ export default {
 
     UPDATE_ITEM(state, payload) {
       const itemToEdit = state.wishList.find((thisItem) => {
-        return thisItem.id === payload.id;
+        return thisItem.id === payload.itemId;
       });
       if (payload.artist) {
         itemToEdit.artist = payload.editedArtist;
@@ -46,7 +46,7 @@ export default {
 
     UPDATE_PRIORITY(state, payload) {
       const itemToUpdate = state.wishList.find((thisItem) => {
-        return thisItem.id === payload.id;
+        return thisItem.id === payload.itemId;
       });
       if (payload.priority) {
         itemToUpdate.priority = payload.newSelectedPriority;
@@ -55,7 +55,7 @@ export default {
 
     ADD_LINK(state, payload) {
       const itemToGetLink = state.wishList.find((thisItem) => {
-        return thisItem.id === payload.id;
+        return thisItem.id === payload.itemId;
       });
       if (payload.linkTo) {
         itemToGetLink.linkTo = payload.linkTo;
@@ -72,7 +72,7 @@ export default {
           let wishListFromDb = [];
           querySnapshot.forEach((doc) => {
             let listData = {
-              id: doc.id,
+              itemId: doc.id,
               artist: doc.data().artist,
               title: doc.data().title,
               medium: doc.data().medium,
@@ -126,7 +126,7 @@ export default {
 
       firebase
         .collection("wishList")
-        .doc(payload.id)
+        .doc(payload.itemId)
         .update({
           artist: payload.editedArtist,
           title: payload.editedTitle,
@@ -149,7 +149,7 @@ export default {
 
       firebase
         .collection("wishList")
-        .doc(payload.id)
+        .doc(payload.itemId)
         .update({
           linkTo: payload.linkTo,
         })
@@ -168,7 +168,7 @@ export default {
 
       firebase
         .collection("wishList")
-        .doc(payload.id)
+        .doc(payload.itemId)
         .update({
           priority: payload.newSelectedPriority,
         })
@@ -187,7 +187,7 @@ export default {
 
       firebase
         .collection("wishList")
-        .doc(payload.id)
+        .doc(payload.itemId)
         .update({
           notes: payload.newlyEditedNotes,
         })
@@ -206,7 +206,7 @@ export default {
 
       firebase
         .collection("wishList")
-        .doc(payload.id)
+        .doc(payload.itemId)
         .delete()
         .then(() => {
           commit("DELETE_FROM_LIST");
@@ -225,9 +225,9 @@ export default {
     },
 
     singleListItem(state) {
-      return (id) => {
+      return (itemId) => {
         return state.wishList.find((item) => {
-          return item.id === id;
+          return item.id === itemId;
         });
       };
     },

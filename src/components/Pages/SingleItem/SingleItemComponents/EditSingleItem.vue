@@ -129,7 +129,7 @@ export default {
       type: String,
     },
 
-    id: {
+    itemId: {
       type: String,
     },
   },
@@ -158,7 +158,7 @@ export default {
 
     updateInfo() {
       this.$store.dispatch("editEntryInfo", {
-        id: this.id,
+        itemId: this.itemId,
         editedArtist: this.editedArtist,
         editedTitle: this.editedTitle,
         editedMedium: this.editedMedium,

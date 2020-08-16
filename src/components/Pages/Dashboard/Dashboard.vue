@@ -38,10 +38,10 @@
 
     <ListDisplay
       v-for="(listItem, index) in filterByName"
-      :key="listItem.id"
+      :key="listItem.itemId"
       :index="index"
       :artist="listItem.artist"
-      :id="listItem.id"
+      :itemId="listItem.itemId"
       :title="listItem.title"
       :medium="listItem.medium"
       :genre="listItem.genre"
