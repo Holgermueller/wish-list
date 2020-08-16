@@ -227,7 +227,7 @@ export default {
     singleListItem(state) {
       return (itemId) => {
         return state.wishList.find((item) => {
-          return item.id === itemId;
+          return item.itemId === itemId;
         });
       };
     },

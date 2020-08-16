@@ -115,7 +115,11 @@ export default {
     UpdatePriority,
   },
 
-  props: ["itemId"],
+  props: {
+    itemId: {
+      type: String,
+    },
+  },
 
   data() {
     return {};
