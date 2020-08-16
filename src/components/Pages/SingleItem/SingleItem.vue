@@ -79,11 +79,11 @@
 </template>
 
 <script>
-import EditSingleItem from "./EditSingleItem";
-import DeleteSingleItem from "./DeleteItemDialog";
-import AddLinkDialog from "./AddLink";
-import AddNotes from "./AddNotes";
-import UpdatePriority from "./UpdatePriority";
+import EditSingleItem from "./SingleItemComponents/EditSingleItem";
+import DeleteSingleItem from "./SingleItemComponents/DeleteItemDialog";
+import AddLinkDialog from "./SingleItemComponents/AddLink";
+import AddNotes from "./SingleItemComponents/AddNotes";
+import UpdatePriority from "./SingleItemComponents/UpdatePriority";
 
 export default {
   name: "SingleItemPage",

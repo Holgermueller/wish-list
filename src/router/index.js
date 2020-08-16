@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import firebase from "firebase";
 import Home from "../components/index";
-import Dashboard from "../components/Pages/Dashboard";
+import Dashboard from "../components/Pages/Dashboard/Dashboard";
 import SingleItemPage from "../components/Pages/SingleItem/SingleItem";
 
 Vue.use(VueRouter);
