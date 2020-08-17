@@ -27,8 +27,6 @@
                     type="text"
                     v-model="linkToAddEdit"
                     :placeholder="linkTo"
-                    value="linkToAdd"
-                    id="linkToAdd"
                     clearable
                   >
                   </v-text-field>
@@ -88,8 +86,8 @@ export default {
   methods: {
     submitLink() {
       this.$store.dispatch("addLink", {
-        linkTo: this.linkToAddEdit,
         itemId: this.itemId,
+        editedLinkTo: this.linkToAddEdit,
       });
 
       this.closeDialog();

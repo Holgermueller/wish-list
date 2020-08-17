@@ -53,7 +53,6 @@
             :disabled="loading"
             color="blue"
             text
-            :itemId="itemId"
             ><v-icon left>mdi-check</v-icon> Update</v-btn
           >
         </v-card-actions>

@@ -53,7 +53,7 @@ export default {
       }
     },
 
-    ADD_LINK(state, payload) {
+    ADD_EDIT_LINK(state, payload) {
       const itemToGetLink = state.wishList.find((thisItem) => {
         return thisItem.id === payload.itemId;
       });
@@ -110,7 +110,7 @@ export default {
           priority: payload.selectedPriority,
           notes:
             "Looking for an import edition, a specific translations, a certain color vinyl? Put that information here.",
-          linkTo: "#",
+          linkTo: "",
         })
         .then(() => {
           commit("SET_LOADING", false);
@@ -135,8 +135,8 @@ export default {
           publisher: payload.editedPublisher,
         })
         .then(() => {
-          commit("UPDATE_ITEM");
-          commit("SET_LOADING", firebase);
+          commit("UPDATE_ITEM", payload);
+          commit("SET_LOADING", false);
         })
         .catch((err) => {
           commit("SET_ERROR", err);
@@ -151,11 +151,11 @@ export default {
         .collection("wishList")
         .doc(payload.itemId)
         .update({
-          linkTo: payload.linkTo,
+          linkTo: payload.editedLinkTo,
         })
         .then(() => {
           commit("SET_LOADING", false);
-          commit("ADD_LINK");
+          commit("ADD_EDIT_LINK", payload);
         })
         .catch((err) => {
           commit("SET_ERROR", err);
@@ -174,7 +174,7 @@ export default {
         })
         .then(() => {
           commit("SET_LOADING", false);
-          commit("UPDATE_PRIORITY");
+          commit("UPDATE_PRIORITY", payload);
         })
         .catch((err) => {
           commit("SET_ERROR", err);
@@ -192,7 +192,7 @@ export default {
           notes: payload.newlyEditedNotes,
         })
         .then(() => {
-          commit("UPDATE_NOTES");
+          commit("UPDATE_NOTES", payload);
           commit("SET_LOADING", false);
         })
         .catch((err) => {
