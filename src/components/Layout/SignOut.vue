@@ -5,7 +5,6 @@
       :loading="loading"
       :disabled="loading"
       class="sign-out"
-      block
     >
       <span class="mdi mdi-exit-to-app"></span>
       Sign Out
@@ -20,15 +19,15 @@ export default {
   computed: {
     loading() {
       return this.$store.getters.loading;
-    }
+    },
   },
 
   methods: {
     logout() {
       this.$store.dispatch("logout");
       this.$router.go({ path: this.$router.path });
-    }
-  }
+    },
+  },
 };
 </script>
 
