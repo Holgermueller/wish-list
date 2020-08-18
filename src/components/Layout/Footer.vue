@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-footer class="font-weight-medium">
+    <v-footer class="font-weight-medium" absolute>
       &copy; 2020 Holger Mueller
     </v-footer>
   </div>
@@ -15,5 +15,6 @@ export default {
 <style scoped>
 .v-footer {
   justify-content: center;
+  bottom: 0;
 }
 </style>

@@ -93,17 +93,17 @@ export default {
 }
 
 .v-card.Whenever {
-  border-left-color: #00bfff;
+  border-color: #00bfff;
   border-left-width: 8px;
 }
 
 .v-card.Now {
-  border-left-color: #b22222;
+  border-color: #b22222;
   border-left-width: 8px;
 }
 
 .v-card.Soon {
-  border-left-color: #228b22;
+  border-color: #228b22;
   border-left-width: 8px;
 }
 

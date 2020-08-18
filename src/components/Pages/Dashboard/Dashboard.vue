@@ -115,7 +115,7 @@ export default {
 
 <style scoped>
 #dashboard {
-  margin-bottom: 7%;
+  margin: 7%;
 }
 .progress {
   margin: 1% auto;

@@ -1,24 +1,17 @@
 <template>
   <div id="nav">
-    <v-list nav>
-      <v-list-item
-        v-for="link in menuLinks"
-        :key="link.title"
-        :to="link.link"
-        link
-      >
-        <v-list-item-icon>
+    <v-app-bar class="nav" fixed dense>
+      <div v-for="link in menuLinks" :key="link.title" link>
+        <v-btn :to="link.link">
           <v-icon>
             {{ link.icon }}
           </v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title>{{ link.title }}</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
-
-    <SignOut v-if="userIsAuthenticated" />
+          {{ link.title }}
+        </v-btn>
+      </div>
+      <v-spacer></v-spacer>
+      <SignOut v-if="userIsAuthenticated" />
+    </v-app-bar>
   </div>
 </template>
 
@@ -77,14 +70,11 @@ export default {
 </script>
 
 <style scoped>
-#nav {
-  z-index: 2;
-}
 .nav {
-  width: 25%;
-  position: fixed;
   z-index: 2;
+  width: 100%;
 }
+
 a {
   text-decoration: none;
 }
