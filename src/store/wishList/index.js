@@ -64,35 +64,38 @@ export default {
   },
 
   actions: {
-    getWishList({ commit }) {
+    getWishList({ commit, getters }) {
       commit("SET_LOADING", true);
 
-      firebase.collection("wishList").onSnapshot(
-        (querySnapshot) => {
-          let wishListFromDb = [];
-          querySnapshot.forEach((doc) => {
-            let listData = {
-              itemId: doc.id,
-              artist: doc.data().artist,
-              title: doc.data().title,
-              medium: doc.data().medium,
-              genre: doc.data().genre,
-              publisher: doc.data().publisher,
-              creatorId: doc.data().creatorId,
-              priority: doc.data().priority,
-              notes: doc.data().notes,
-              linkTo: doc.data().linkTo,
-            };
-            wishListFromDb.push(listData);
-          });
-          commit("SET_WISH_LIST", wishListFromDb);
-          commit("SET_LOADING", false);
-        },
-        (err) => {
-          commit("SET_LOADING", true);
-          commit("SET_ERROR", err);
-        }
-      );
+      firebase
+        .collection("wishList")
+        .where("creatorId", "==", getters.user.userId)
+        .onSnapshot(
+          (querySnapshot) => {
+            let wishListFromDb = [];
+            querySnapshot.forEach((doc) => {
+              let listData = {
+                itemId: doc.id,
+                artist: doc.data().artist,
+                title: doc.data().title,
+                medium: doc.data().medium,
+                genre: doc.data().genre,
+                publisher: doc.data().publisher,
+                creatorId: doc.data().creatorId,
+                priority: doc.data().priority,
+                notes: doc.data().notes,
+                linkTo: doc.data().linkTo,
+              };
+              wishListFromDb.push(listData);
+            });
+            commit("SET_WISH_LIST", wishListFromDb);
+            commit("SET_LOADING", false);
+          },
+          (err) => {
+            commit("SET_LOADING", true);
+            commit("SET_ERROR", err);
+          }
+        );
     },
 
     addEntryToList({ commit, getters }, payload) {

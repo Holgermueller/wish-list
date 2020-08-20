@@ -10,6 +10,8 @@
         </v-btn>
       </div>
       <v-spacer></v-spacer>
+      Hello, {{ userName }}
+      <v-spacer></v-spacer>
       <SignOut v-if="userIsAuthenticated" />
     </v-app-bar>
   </div>
@@ -33,6 +35,10 @@ export default {
   },
 
   computed: {
+    userName() {
+      return this.$store.getters.user.displayName;
+    },
+
     loading() {
       return this.$store.getters.loading;
     },

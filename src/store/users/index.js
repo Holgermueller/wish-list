@@ -120,8 +120,8 @@ export default {
         .auth()
         .signOut()
         .then(() => {
-          commit("SET_LOADING", false);
           commit("SET_USER", null);
+          commit("SET_LOADING", false);
         })
         .catch((err) => {
           commit("SET_LOADING", false);

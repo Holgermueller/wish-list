@@ -1,7 +1,7 @@
 <template>
   <div id="signOut">
     <v-btn
-      @click="logout"
+      @click.prevent="logout"
       :loading="loading"
       :disabled="loading"
       class="sign-out"
