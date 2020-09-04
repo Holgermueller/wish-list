@@ -82,6 +82,7 @@ export default {
           commit("SET_LOADING", false);
           commit("SET_USER", signedInUser);
         })
+
         .catch((err) => {
           commit("SET_LOADING", false);
           commit("SET_ERROR", err);
