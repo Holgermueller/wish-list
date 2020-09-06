@@ -12,13 +12,7 @@
       <v-spacer></v-spacer>
       Hello, {{ userName }}
       <v-spacer></v-spacer>
-      <v-switch
-        :dark="isDark"
-        v-model="isDark"
-        :value="isDark"
-        inset
-        label="Night mode"
-      ></v-switch>
+      <v-switch @change="toggleDark" inset label="Night mode"></v-switch>
       <v-spacer></v-spacer>
       <SignOut v-if="userIsAuthenticated" />
     </v-app-bar>
@@ -35,16 +29,10 @@ export default {
     SignOut,
   },
 
-  props: {
-    dark: {
-      type: Boolean,
-    },
-  },
-
   data() {
     return {
       userId: null,
-      isDark: this.dark,
+      isDark: true,
     };
   },
 
@@ -83,13 +71,13 @@ export default {
     user(value) {
       return value;
     },
-
-    nightMode() {
-      this.$props.dark = false;
-    },
   },
 
-  methods: {},
+  methods: {
+    toggleDark() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+    },
+  },
 };
 </script>
 
