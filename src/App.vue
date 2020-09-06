@@ -1,7 +1,7 @@
 <template>
-  <v-app>
+  <v-app :dark="true">
     <v-main>
-      <Nav />
+      <Nav :dark="true" />
       <router-view></router-view>
       <Footer />
     </v-main>

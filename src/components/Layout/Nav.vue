@@ -12,7 +12,13 @@
       <v-spacer></v-spacer>
       Hello, {{ userName }}
       <v-spacer></v-spacer>
-      <v-switch v-model="nightMode" inset label="Night mode"></v-switch>
+      <v-switch
+        :dark="isDark"
+        v-model="isDark"
+        :value="isDark"
+        inset
+        label="Night mode"
+      ></v-switch>
       <v-spacer></v-spacer>
       <SignOut v-if="userIsAuthenticated" />
     </v-app-bar>
@@ -29,10 +35,16 @@ export default {
     SignOut,
   },
 
+  props: {
+    dark: {
+      type: Boolean,
+    },
+  },
+
   data() {
     return {
       userId: null,
-      nightMode: true,
+      isDark: this.dark,
     };
   },
 
@@ -70,6 +82,10 @@ export default {
   watch: {
     user(value) {
       return value;
+    },
+
+    nightMode() {
+      this.$props.dark = false;
     },
   },
 
