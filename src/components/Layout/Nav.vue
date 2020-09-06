@@ -12,6 +12,8 @@
       <v-spacer></v-spacer>
       Hello, {{ userName }}
       <v-spacer></v-spacer>
+      <v-switch v-model="nightMode" inset label="Night mode"></v-switch>
+      <v-spacer></v-spacer>
       <SignOut v-if="userIsAuthenticated" />
     </v-app-bar>
   </div>
@@ -30,6 +32,7 @@ export default {
   data() {
     return {
       userId: null,
+      nightMode: true,
     };
   },
 
@@ -78,6 +81,9 @@ export default {
 .nav {
   z-index: 2;
   width: 100%;
+}
+.v-input--switch {
+  margin: 8px;
 }
 
 a {
