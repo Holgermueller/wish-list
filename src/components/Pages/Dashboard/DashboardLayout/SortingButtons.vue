@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card class="sorting-buttons">
+    <v-card class="sorting-buttons" outlined>
       <v-card-title>
         Sort your list
       </v-card-title>
@@ -65,6 +65,9 @@ export default {
 </script>
 
 <style scoped>
+.v-card {
+  border-color: #190061;
+}
 .sorting-buttons {
   width: 75%;
   margin: 2% auto;

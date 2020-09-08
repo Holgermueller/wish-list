@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-footer class="font-weight-medium" absolute>
+    <v-footer color="#190061" class="font-weight-medium white--text" absolute>
       &copy; 2020 Holger Mueller
     </v-footer>
   </div>

@@ -13,7 +13,7 @@
 
           <v-btn
             :itemid="itemId"
-            :class="`${priority}`"
+            :class="`white--text ${priority}`"
             :to="'/singleItem/' + itemId"
             >See more <v-icon>mdi-arrow-right-bold</v-icon></v-btn
           >

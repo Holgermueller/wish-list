@@ -1,6 +1,6 @@
 <template>
   <div id="nav">
-    <v-app-bar class="nav" fixed dense>
+    <v-app-bar color="#190061" class="nav white--text" fixed dense>
       <div v-for="link in menuLinks" :key="link.title" link>
         <v-btn :to="link.link">
           <v-icon>
@@ -89,7 +89,6 @@ export default {
 .v-input--switch {
   margin: 8px;
 }
-
 a {
   text-decoration: none;
 }
