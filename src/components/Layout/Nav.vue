@@ -2,7 +2,7 @@
   <div id="nav">
     <v-app-bar color="#190061" class="nav white--text" fixed dense>
       <div v-for="link in menuLinks" :key="link.title" link>
-        <v-btn :to="link.link">
+        <v-btn color="#190061" :to="link.link" class="white--text">
           <v-icon>
             {{ link.icon }}
           </v-icon>
@@ -10,9 +10,18 @@
         </v-btn>
       </div>
       <v-spacer></v-spacer>
-      Hello, {{ userName }}
+      <h2>Hello, {{ userName }}</h2>
+
       <v-spacer></v-spacer>
-      <v-switch @change="toggleDark" inset label="Night mode"></v-switch>
+      <v-switch
+        append-icon="mdi-white-balance-sunny"
+        prepend-icon="mdi-moon-waning-crescent"
+        dark
+        color="white"
+        @change="toggleDark"
+        :ripple="false"
+        inset
+      ></v-switch>
       <v-spacer></v-spacer>
       <SignOut v-if="userIsAuthenticated" />
     </v-app-bar>
@@ -86,8 +95,8 @@ export default {
   z-index: 2;
   width: 100%;
 }
-.v-input--switch {
-  margin: 8px;
+.v-input--switch--inset {
+  margin-top: 16px;
 }
 a {
   text-decoration: none;

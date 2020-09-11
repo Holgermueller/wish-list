@@ -2,6 +2,7 @@
   <div>
     <v-card class="sorting-buttons" outlined>
       <v-card-title>
+        <v-icon left>mdi-sort</v-icon>
         Sort your list
       </v-card-title>
       <v-card-actions>

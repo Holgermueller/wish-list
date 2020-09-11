@@ -4,7 +4,8 @@
       @click.prevent="logout"
       :loading="loading"
       :disabled="loading"
-      class="sign-out"
+      class="sign-out white--text"
+      color="#190061"
     >
       <span class="mdi mdi-exit-to-app"></span>
       Sign Out
