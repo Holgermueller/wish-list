@@ -123,6 +123,8 @@ export default {
 
     clearLoginForm() {
       this.$refs.form.reset();
+      this.email = "";
+      this.password = "";
     },
 
     onDismissed() {

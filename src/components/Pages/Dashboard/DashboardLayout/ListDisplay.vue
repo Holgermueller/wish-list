@@ -75,10 +75,6 @@ export default {
       return this.$store.getters.error;
     },
   },
-
-  data() {
-    return {};
-  },
 };
 </script>
 

@@ -42,24 +42,29 @@ export default {
   props: {
     getWishList: {
       type: Array,
+      required: true,
     },
   },
 
   data() {
-    return {};
+    return {
+      mutableWishList: this.getWishList,
+    };
   },
 
   methods: {
     sortBy(prop) {
-      this.getWishList.sort((a, b) => (a[prop] < b[prop] ? -1 : 1));
+      this.mutableWishList.sort((a, b) => (a[prop] < b[prop] ? -1 : 1));
     },
 
     reverseSort(prop) {
-      this.getWishList.sort((a, b) => (a[prop] < b[prop] ? -1 : 1)).reverse();
+      this.mutableWishList
+        .sort((a, b) => (a[prop] < b[prop] ? -1 : 1))
+        .reverse();
     },
 
     prioritySort(prop) {
-      this.getWishList.sort((a, b) => (a[prop] < b[prop] ? -1 : 1));
+      this.mutableWishList.sort((a, b) => (a[prop] < b[prop] ? -1 : 1));
     },
   },
 };
