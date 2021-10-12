@@ -1,5 +1,5 @@
 <template>
-  <div id="wishListDisplay">
+  <div :id="itemId">
     <v-hover v-slot:default="{ hover }">
       <v-card
         :elevation="hover ? 12 : 2"
