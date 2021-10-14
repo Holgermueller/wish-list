@@ -11,7 +11,7 @@
       class="list-filter"
     ></v-text-field>
 
-    <SortingButtons :getWishList="getWishList" />
+    <SortingButtons :getWishList="mutableWishList" />
 
     <v-layout class="progress">
       <v-flex class="tet-xs-center">
@@ -64,6 +64,7 @@ export default {
   data() {
     return {
       searchTerm: "",
+      mutableWishList: this.getWishList,
     };
   },
 

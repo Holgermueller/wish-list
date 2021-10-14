@@ -35,38 +35,47 @@ export default {
   props: {
     artist: {
       type: String,
+      required: true,
     },
 
     title: {
       type: String,
+      required: true,
     },
 
     medium: {
       type: String,
+      required: true,
     },
 
     genre: {
       type: String,
+      required: true,
     },
 
     publisher: {
       type: String,
+      required: true,
     },
 
     priority: {
       type: String,
+      required: true,
     },
 
     itemId: {
       type: String,
+      required: true,
     },
 
     notes: {
       type: String,
+      required: true,
     },
 
     linkTo: {
       type: String,
+      required: true,
     },
   },
 
